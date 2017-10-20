@@ -1,0 +1,75 @@
+﻿@model QuickRMS.Domain.Models.DeviceInfo.Device
+<div class="widget-box" style=" width: 360px;">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-list"></i></span>
+        <h5>设备信息</h5>
+    </div>
+    <div class="widget-content">
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">ID：<label class="nopadding">@Model.DeviceCode</label></div>
+            
+
+            <div class="col-lg-6  no-right-padding">名称：<label class="nopadding">@Model.DeviceName</label></div>
+          
+
+        </div>
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">所属区域：<label class="nopadding">@Model.Area.Name</label></div>
+            
+            <div class="col-lg-6  no-right-padding">安装位置：<label class="nopadding">@Model.Address</label></div>
+           
+        </div>
+
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">安装时间：<label class="nopadding">@Model.InstallTime</label></div>
+           
+            <div class="col-lg-6  no-right-padding">备注：<label class="nopadding">@Model.Memo</label></div>
+           
+        </div>
+
+    </div>
+</div>
+
+<div class="widget-box" style=" width: 360px;">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-list"></i></span>
+        <h5>温度修正</h5>
+    </div>
+    <div class="widget-content">
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">室外：<label class="nopadding">@Model.OutdoorFix</label></div>
+           
+            <div class="col-lg-6  no-right-padding">供水1：<label class="nopadding">@Model.SupplyWaterFix1</label></div>
+            
+        </div>
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">回水1：<label class="nopadding">@Model.BackFix1</label></div>
+           
+            <div class="col-lg-6  no-right-padding">热源1：<label class="nopadding">@Model.FixWater1</label></div>
+            
+        </div>
+
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">供水2：<label class="nopadding">@Model.SupplyWaterFix2</label></div>
+           
+            <div class="col-lg-6  no-right-padding">回水2：<label class="nopadding">@Model.BackFix2</label></div>
+            
+        </div>
+
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">热源2：<label class="nopadding">@Model.FixWater2</label></div>
+           
+      
+        </div>
+
+    </div>
+</div>
+
+

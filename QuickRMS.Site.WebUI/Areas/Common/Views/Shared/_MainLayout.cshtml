@@ -1,0 +1,88 @@
+﻿@using QuickRMS.Site.WebUI.Extension.MvcHelper
+@using QuickRMS.Site.Models.AdminCommon
+@{
+    List<SidebarMenuModel> sidebarMenuDataList = ViewBag.SidebarMenuModel;
+    BreadCrumbNavModel breadCrumbNavData = ViewBag.BreadCrumbModel;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>@ViewBag.Title</title>
+    <link href="/Content/admin/css/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    @RenderSection("css", false)
+    <link href="/Content/admin/css/matrix-style.css" rel="stylesheet">
+    <link href="/Content/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Content/admin/css/uniform.css" rel="stylesheet">
+    <link href="/Content/admin/css/select2.css" rel="stylesheet">
+    <link href="/Content/admin/css/select2-bootstrap.css" rel="stylesheet">
+    <link href="/Content/admin/css/matrix-media.css" rel="stylesheet">
+    <link href="/Content/admin/css/font.css" rel="stylesheet">
+</head>
+<body>
+
+    <!--Header-Part-->
+    <div id="header">
+        <h1><a href="dashboard.html">YACHUNHUA</a></h1>
+    </div>
+    <!--Header-Part-->
+    @Html.Partial("_HeaderMenu")
+
+    @*@Html.Partial("_TopSearch")*@
+
+    @Html.Partial("_SidebarMenu", sidebarMenuDataList)
+    <!--main-container-part-->
+    <div id="content">
+        <!--BreadCrumbs-->
+        @Html.Partial("_BreadCrumb", breadCrumbNavData)
+        <!--BreadCrumbs-->
+        <!--Body-->
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+        <!--Body-->
+    </div>
+    <!--end-main-container-part-->
+    <!--Footer-part-->
+    @Html.Partial("_Footer")
+    <!--end-Footer-part-->
+
+
+    <script src="~/Content/admin/js/jquery.min.js"></script>
+
+    <script src="~/Content/admin/js/bootstrap3js/bootstrap.min.js"></script>
+    <script src="~/Content/admin/js/bootstrap3js/bootbox.min.js"></script>
+    <script src="~/Content/admin/js/bootstrap3js/typeahead.bundle.min.js"></script>
+
+
+    <script src="~/Content/admin/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/admin/js/jquery.dataTables.AjaxSource.min.js"></script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/admin/js/select2.min.js"></script>
+
+    <link href="~/Plugins/ladda/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="~/Plugins/fileinput/fileinput.min.css" rel="stylesheet" />
+    <script src="~/Plugins/ladda/spin.min.js"></script>
+    <script src="~/Plugins/ladda/ladda.min.js"></script>
+
+<script src="~/Content/admin/js/echarts.min.js"></script>
+
+    <link href="~/Plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <script src="~/Plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+<link href="~/Plugins/timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    <script src="~/Plugins/timepicker/js/bootstrap-timepicker.min.js"></script>
+
+    <link href="~/Plugins/isloading/style.css" rel="stylesheet" />
+    <script src="~/Plugins/isloading/jquery.isloading.min.js"></script>
+<script src="~/Content/admin/js/matrix.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @Html.RenderScriptBlocks()
+</body>
+</html>

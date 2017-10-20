@@ -1,0 +1,70 @@
+﻿<#+
+// <copyright file="EntityMapTemplate.tt" company="QuickFramework">
+//  Copyright ©QuickFramework. All Rights Reserved.
+// </copyright>
+
+public class EntityMapTemplate : CSharpTemplate
+{
+    private T4ModelInfo _model;
+        
+    public EntityMapTemplate(T4ModelInfo model)
+    {
+        _model = model;
+    }
+
+    /// <summary>
+    /// 获取生成的文件名，根据模型名定义
+    /// </summary>
+    public string FileName
+    {
+        get
+        { 
+            return string.Format("{0}Map.cs", _model.Name);
+        }
+    }
+
+	public override string TransformText()
+	{
+#>
+
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
+using Quick.Framework.EFData;
+using QuickRMS.Domain.Models<#= _model.UseModuleDir ? "." + _model.ModuleName : null #>;
+
+
+namespace QuickRMS.Domain.Data.Mapping<#= _model.UseModuleDir ? "." + _model.ModuleName : null #>
+{
+   
+	partial class <#= _model.Name #>Map
+    {
+		/// <summary>
+		/// 映射配置
+		/// </summary>
+   /*  partial void <#= _model.Name #>MapAppend()
+        {
+			// Primary Key
+            this.HasKey(t => t.Id);
+
+            // Properties 
+
+            // Table & Column Mappings
+            this.ToTable("<#= _model.ModuleName+"_"+_model.Name #>");
+            this.Property(t => t.Id).HasColumnName("Id").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            
+		<#+foreach(var prop in _model.Properties){
+		 if(!prop.GetMethod.IsVirtual){
+		 #>
+		 this.Property(t => t.<#=prop.Name #>).HasColumnName("<#=prop.Name #>"); 
+		 <#+}}#>
+            // Relation
+        }
+		*/
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

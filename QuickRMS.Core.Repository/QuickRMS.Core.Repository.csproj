@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C91E908E-C4D4-42F5-940F-EFF112D36A8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickRMS.Core.Repository</RootNamespace>
+    <AssemblyName>QuickRMS.Core.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authen\IAreaRepository.cs" />
+    <Compile Include="Authen\IModulePermissionRepository.cs" />
+    <Compile Include="Authen\IModuleRepository.cs" />
+    <Compile Include="Authen\Impl\AreaRepository.cs" />
+    <Compile Include="Authen\Impl\ModulePermissionRepository.cs" />
+    <Compile Include="Authen\Impl\ModuleRepository.cs" />
+    <Compile Include="Authen\Impl\PermissionRepository.cs" />
+    <Compile Include="Authen\Impl\RoleModulePermissionRepository.cs" />
+    <Compile Include="Authen\Impl\RoleRepository.cs" />
+    <Compile Include="Authen\Impl\UserAreaRepository.cs" />
+    <Compile Include="Authen\Impl\UserRepository.cs" />
+    <Compile Include="Authen\Impl\UserRoleRepository.cs" />
+    <Compile Include="Authen\IPermissionRepository.cs" />
+    <Compile Include="Authen\IRoleModulePermissionRepository.cs" />
+    <Compile Include="Authen\IRoleRepository.cs" />
+    <Compile Include="Authen\IUserAreaRepository.cs" />
+    <Compile Include="Authen\IUserRepository.cs" />
+    <Compile Include="Authen\IUserRoleRepository.cs" />
+    <Compile Include="DeviceInfo\ICurveLibraryRepository.cs" />
+    <Compile Include="DeviceInfo\IDeviceCureLibraryRepository.cs" />
+    <Compile Include="DeviceInfo\IDeviceDataRepository.cs" />
+    <Compile Include="DeviceInfo\IDeviceMaintenanceRepository.cs" />
+    <Compile Include="DeviceInfo\IDeviceRepository.cs" />
+    <Compile Include="DeviceInfo\IHistoryRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\CurveLibraryRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\DeviceCureLibraryRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\DeviceDataRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\DeviceMaintenanceRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\DeviceRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\HistoryRepository.cs" />
+    <Compile Include="DeviceInfo\Impl\ValvesRepository.cs" />
+    <Compile Include="DeviceInfo\IValvesRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysConfig\Impl\OperateLogRepository.cs" />
+    <Compile Include="SysConfig\Impl\SysSettingRepository.cs" />
+    <Compile Include="SysConfig\Impl\TimeSpanSettingRepository.cs" />
+    <Compile Include="SysConfig\IOperateLogRepository.cs" />
+    <Compile Include="SysConfig\ISysSettingRepository.cs" />
+    <Compile Include="SysConfig\ITimeSpanSettingRepository.cs" />
+    <Compile Include="T4\EntityCodeScript1.cs">
+      <DependentUpon>EntityCodeScript.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="T4\EntityCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityCodeScript1.cs</LastGenOutput>
+      <LastOutputs>
+..\Authen\IAreaRepository.cs
+..\Authen\IModulePermissionRepository.cs
+..\Authen\IModuleRepository.cs
+..\Authen\Impl\AreaRepository.cs
+..\Authen\Impl\ModulePermissionRepository.cs
+..\Authen\Impl\ModuleRepository.cs
+..\Authen\Impl\PermissionRepository.cs
+..\Authen\Impl\RoleModulePermissionRepository.cs
+..\Authen\Impl\RoleRepository.cs
+..\Authen\Impl\UserAreaRepository.cs
+..\Authen\Impl\UserRepository.cs
+..\Authen\Impl\UserRoleRepository.cs
+..\Authen\IPermissionRepository.cs
+..\Authen\IRoleModulePermissionRepository.cs
+..\Authen\IRoleRepository.cs
+..\Authen\IUserAreaRepository.cs
+..\Authen\IUserRepository.cs
+..\Authen\IUserRoleRepository.cs
+..\DeviceInfo\ICurveLibraryRepository.cs
+..\DeviceInfo\IDeviceCureLibraryRepository.cs
+..\DeviceInfo\IDeviceDataRepository.cs
+..\DeviceInfo\IDeviceMaintenanceRepository.cs
+..\DeviceInfo\IDeviceRepository.cs
+..\DeviceInfo\IHistoryRepository.cs
+..\DeviceInfo\Impl\CurveLibraryRepository.cs
+..\DeviceInfo\Impl\DeviceCureLibraryRepository.cs
+..\DeviceInfo\Impl\DeviceDataRepository.cs
+..\DeviceInfo\Impl\DeviceMaintenanceRepository.cs
+..\DeviceInfo\Impl\DeviceRepository.cs
+..\DeviceInfo\Impl\HistoryRepository.cs
+..\DeviceInfo\Impl\ValvesRepository.cs
+..\DeviceInfo\IValvesRepository.cs
+..\SysConfig\Impl\OperateLogRepository.cs
+..\SysConfig\Impl\SysSettingRepository.cs
+..\SysConfig\Impl\TimeSpanSettingRepository.cs
+..\SysConfig\IOperateLogRepository.cs
+..\SysConfig\ISysSettingRepository.cs
+..\SysConfig\ITimeSpanSettingRepository.cs
+.\EntityCodeScript1.cs
+</LastOutputs>
+    </None>
+    <None Include="T4\Include\EntityRepositoryTemplate.ttinclude" />
+    <None Include="T4\Include\IEntityRepositoryTemplate.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quick.Framework.EFData\Quick.Framework.EFData.csproj">
+      <Project>{e29f850e-3069-40fc-99ae-9720876b0187}</Project>
+      <Name>Quick.Framework.EFData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quick.Framework.Tool\Quick.Framework.Tool.csproj">
+      <Project>{a9a5cdd3-ca9a-4952-a3de-0f107bbb826a}</Project>
+      <Name>Quick.Framework.Tool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickRMS.Domain.Models\QuickRMS.Domain.Models.csproj">
+      <Project>{c4722979-9db4-4c08-9c66-586f8d085d61}</Project>
+      <Name>QuickRMS.Domain.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

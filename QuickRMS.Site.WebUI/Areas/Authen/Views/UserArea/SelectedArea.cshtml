@@ -1,0 +1,17 @@
+﻿@model IEnumerable<QuickRMS.Site.Models.Authen.UserArea.UserAreaModel>
+<div class="container-fluid">
+    @foreach (var item in Model)
+    {
+        <div class="row uowpSelected">
+            @Html.HiddenFor(t => item.UserId)
+            <div class="col-sm-4">
+                @Html.HiddenFor(t => item.AreaId)
+                <input class="form-control" type="text" value="@item.AreaName" disabled="disabled" />
+            </div>
+            <div class="col-sm-4">
+                <input type="button" class="btn btn-default" onclick="RemoveUserWp(this)" value="删除" />
+            </div>
+        </div>
+
+    }
+</div>

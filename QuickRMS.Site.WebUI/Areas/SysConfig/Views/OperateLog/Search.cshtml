@@ -1,0 +1,82 @@
+﻿@using QuickRMS.Site.Models.SysConfig.OperateLog
+@using QuickRMS.Site.Models.AdminCommon
+@model SearchModel
+@{
+    var deleteAllButton = new QuickRMS.Site.Models.AdminCommon.ButtonModel();
+    deleteAllButton = ViewBag.DeleteAll;
+}
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-search"></i></span>
+        <h5>操作</h5>
+    </div>
+    <div class="widget-content nopadding">
+        <form class="form-horizontal search-form" method="post" name="basic_validate" novalidate="novalidate">
+            <div class="form-group">
+                <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.Area)</label>
+                    <div class="col-sm-2 search-input">
+                        @Html.TextBoxFor(t => t.Area, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.Controller)</label>
+                    <div class="col-sm-2 search-input">
+                        @Html.TextBoxFor(t => t.Controller, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.Action)</label>
+                    <div class="col-sm-2 search-input">
+                        @Html.TextBoxFor(t => t.Action, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.LoginName)</label>
+                    <div class="col-sm-2 search-input">
+                        @Html.TextBoxFor(t => t.LoginName, new { @class = "form-control" })
+                    </div>
+                </div>
+                 <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.IPAddress)</label>
+                    <div class="col-sm-2 search-input">
+                        @Html.TextBoxFor(t => t.IPAddress, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+           <div class="form-group">
+                <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.StartTime)</label>
+                    <div class="col-sm-2 search-input">
+                         @Html.DatePickerFor(t => t.StartTime, new { @class = "form-control" })
+                    </div>
+                </div>
+                 <div class="search-group">
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.EndTime)</label>
+                    <div class="col-sm-2 search-input">
+                         @Html.DatePickerFor(t => t.EndTime, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        
+            <div class="form-actions form-operate text-right" style="border-top: 0;">
+                <button type="button" class="btn btn-danger" onclick="ClearForm($('.search-form'));">
+                    <span class="icon-bullhorn"></span>清空
+                </button>
+                <button type="button" class="btn btn-success" onclick="Search()">
+                    <span class="icon-search"></span>搜索
+                </button>
+                @if (deleteAllButton != null)
+                {
+                    <button type="button" class="create btn btn-primary" onclick="DeleteAll()">
+                        <span class="@deleteAllButton.Icon"></span> @deleteAllButton.Text
+                    </button>
+                }
+            </div>
+        </form>
+    </div>
+</div>

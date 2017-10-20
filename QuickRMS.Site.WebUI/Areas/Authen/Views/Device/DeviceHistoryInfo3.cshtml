@@ -1,0 +1,40 @@
+﻿@model QuickRMS.Site.Models.Device.HistoryInfo3Model
+<div class="widget-box" style=" width: 100%;">
+  
+    <div class="widget-content">
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">@Html.DisplayNameFor(t => t.Time) :<label class="nopadding">@Model.Time</label></div>
+
+
+            <div class="col-lg-6  no-right-padding">@Html.DisplayNameFor(t => t.Num) :<label class="nopadding">@Model.Num</label></div>
+
+
+        </div>
+
+        <div class="row show-grid" style="overflow: auto; margin-top: 80px; margin-bottom: 80px;">
+            <table id="historyinfo2" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                       @for (double i = -40; i <= 20;)
+                       {
+                           <td>@i</td>
+                           i = i + 0.5;
+                       }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var info in Model.HistoryInfo3List)
+                        {
+
+<td>@info.Value</td>
+                }
+                        </tr >
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

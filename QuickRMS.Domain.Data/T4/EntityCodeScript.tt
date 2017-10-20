@@ -1,0 +1,58 @@
+﻿<#@ output extension="cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="$(SolutionDir)\Quick.Framework.Tool\bin\Debug\Quick.Framework.Tool.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="Quick.Framework.Tool" #>
+<#@ Import Namespace="Quick.Framework.Tool.T4" #>
+<#@ Import Namespace="Quick.Framework.Tool.Entity" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="Include\EntityMapConfigurationTemplate.ttinclude" #>
+<#@ include file="Include\EntityMapTemplate.ttinclude" #>
+<#
+	//******* Configuration *******
+
+	string currentNamespace = @"\QuickRMS.Domain.Data";
+	string modelsDLLPath = @"QuickRMS.Domain.Models\bin\Debug\QuickRMS.Domain.Models.dll";
+	string configurationFolder = "Mapping";
+
+	//******* Configuration *******
+
+    string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+    string projectPath = currentPath.Substring(0, currentPath.IndexOf(@"\T4"));
+    string solutionPath = currentPath.Substring(0, currentPath.IndexOf(currentNamespace));
+
+    string modelFile= Path.Combine(solutionPath, modelsDLLPath);
+    byte[] fileData= File.ReadAllBytes(modelFile);
+    Assembly assembly = Assembly.Load(fileData);
+    Type baseType = typeof(EntityBase<>);
+    IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => m.IsAssignableToGenericType(baseType) && !m.IsAbstract);
+    foreach(Type modelType in modelTypes)
+    {
+        T4ModelInfo model = new T4ModelInfo(modelType, true);
+        
+		//实体映射类
+        EntityMapConfigurationTemplate config = new EntityMapConfigurationTemplate(model);   
+
+        var path = model.UseModuleDir 
+            ? string.Format(@"{0}\{1}\{2}\Configuration", projectPath, configurationFolder, model.ModuleName)
+            : string.Format(@"{0}\{1}\Configuration", projectPath, configurationFolder);
+
+        config.Output.Encoding = Encoding.UTF8;
+        config.RenderToFile(Path.Combine(path, config.FileName));
+
+        //实体配置类
+        EntityMapTemplate mapconfig = new EntityMapTemplate(model);
+
+        var mapPath = model.UseModuleDir 
+            ? string.Format(@"{0}\{1}\{2}", projectPath, configurationFolder, model.ModuleName)
+            : string.Format(@"{0}\{1}", projectPath, configurationFolder);
+
+        mapconfig.Output.Encoding = Encoding.UTF8;
+        mapconfig.RenderToFile(Path.Combine(mapPath, mapconfig.FileName));
+
+    }
+#>

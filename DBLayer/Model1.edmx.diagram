@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f6bf54675604f5399b8cec542ac20dc" Name="Diagram1">
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Auth_Module" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Auth_ModulePermission" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Auth_Permission" Width="1.5" PointX="5.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Auth_Role" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Auth_RoleModulePermission" Width="1.5" PointX="11" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Authen_UserArea" Width="1.5" PointX="10" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.Authen_UserRole" Width="1.5" PointX="11" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.SysConfig_OperateLog" Width="1.5" PointX="10" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_Areas" Width="1.5" PointX="1.5" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_CurveLibrary" Width="1.5" PointX="12.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_Datas" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_DeviceCurveLibrary" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_DeviceMaintenances" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_Devices" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_History" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_SysSettings" Width="1.5" PointX="7.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_TimeSpanSettings" Width="1.5" PointX="9.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IEHNCS_DBModel.T_Users" Width="1.5" PointX="7.75" PointY="13.875" IsExpanded="true" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Auth_Module_dbo_Auth_Module_ParentId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Authen_UserArea_dbo_T_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_Authen_UserRole_dbo_T_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_T_Areas_dbo_T_Areas_ParentId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_T_Devices_dbo_T_Areas_AreaId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_T_Datas_dbo_T_Devices_DeviceId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId" ManuallyRouted="false" />
+        <AssociationConnector Association="IEHNCS_DBModel.FK_dbo_T_History_dbo_T_Devices_DeviceId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

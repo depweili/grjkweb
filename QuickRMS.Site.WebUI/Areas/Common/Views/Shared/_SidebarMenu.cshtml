@@ -1,0 +1,100 @@
+﻿@using Newtonsoft.Json
+@using QuickRMS.Site.Models.AdminCommon
+@using QuickRMS.Site.WebUI.Common
+@using QuickRMS.Site.WebUI.Extension.MvcHelper
+@model IEnumerable<SidebarMenuModel>
+<div id="sidebar">
+    <ul>
+        <li class="index"><a href="@Url.Action("Index", "Dashboard", new {Area = "Common"})"><i class="fa fa-arrows"></i> <span>快速导航</span></a> </li>
+        @foreach (var parentMenu in Model)
+        {
+            <li class="submenu">
+                <a href="javascript:void(0)">
+                    <i class="icon @parentMenu.Icon"></i> <span>@parentMenu.Name</span>
+                    @*@if (parentMenu.ChildMenuList.Count > 0)
+                    {
+                        <span class="label label-important">
+                            @parentMenu.ChildMenuList.Count
+                        </span>
+                    }*@
+                </a>
+                <ul class="childmenu">
+                    @foreach (var childMenu in parentMenu.ChildMenuList)
+                    {
+                        string value = null;
+                        var href = childMenu.LinkUrl;
+                        if (href.Count(r => r == '/') == 3)
+                        {
+                            var pos = href.LastIndexOf('/');
+                            if (pos > 1)
+                            {
+                                value = href.Substring(pos + 1);
+                            }
+                        }
+                        var ro = new RouteObject
+                        {
+                            Area = childMenu.Area,
+                            Id = value
+                        };
+                        <li><a rel="@childMenu.Controller" href="@Url.Action(childMenu.Action, childMenu.Controller, ro, null)"><i class="icon @childMenu.Icon"></i> <span>@childMenu.Name</span></a></li>
+                        @*<li><a rel="@childMenu.LinkUrl" href="@childMenu.LinkUrl"><i class="icon @childMenu.Icon"></i> <span>@childMenu.Name</span></a></li>*@
+
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+
+    <div id="shad" class="map-info__tab">
+        <div id="MapInfoTab" class="mapinfo_but " title="收起左栏" style="top: 219px;">
+            <div class="mapinfo_but_con">
+                <span class="mapinfo_but_span"></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@Html.ScriptBlock(
+    @<script type="text/javascript">
+         $(function() {
+             $("#MapInfoTab").hover(function() {
+                 var t = $(this).attr("title");
+                 if (t === "收起左栏") {
+                     $(this).addClass("mapinfo_but_close_on");
+                 } else {
+                     $(this).addClass("mapinfo_but_open_on");
+                 }
+             }, function () {
+                 var t = $(this).attr("title");
+                 if (t === "收起左栏") {
+                     $(this).removeClass("mapinfo_but_close_on"); 
+                    
+                 } else {
+                     $(this).removeClass("mapinfo_but_open_on");
+                     $(this).addClass("mapinfo_but_open");
+                 }
+             });
+         });
+
+
+
+         $("#MapInfoTab").on("click",function() {
+             var t = $(this).attr("title");
+             if (t === "收起左栏") {
+                 $(this).addClass("mapinfo_but_open");
+                 $(this).removeClass("mapinfo_but_close_on");
+                 $("#sidebar").css("left", -220);
+                 $("#content").css("margin-left", 0);
+                 $(this).attr("title", "展开左栏");
+             } else {
+                 $("#sidebar").css("left", 0);
+                 $(this).removeClass("mapinfo_but_open");
+                 $(this).removeClass("mapinfo_but_open_on");
+                 $(this).attr("title", "收起左栏");
+                 $("#content").css("margin-left", 220);
+             }
+         });
+        
+     </script>
+    );

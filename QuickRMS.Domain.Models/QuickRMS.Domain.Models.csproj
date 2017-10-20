@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4722979-9DB4-4C08-9C66-586F8D085D61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickRMS.Domain.Models</RootNamespace>
+    <AssemblyName>QuickRMS.Domain.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authen\ModulePermission.cs" />
+    <Compile Include="Authen\Module.cs" />
+    <Compile Include="Authen\Area.cs" />
+    <Compile Include="Authen\Permission.cs" />
+    <Compile Include="Authen\RoleModulePermission.cs" />
+    <Compile Include="Authen\UserRole.cs" />
+    <Compile Include="Authen\User.cs" />
+    <Compile Include="Authen\Role.cs" />
+    <Compile Include="Authen\UserArea.cs" />
+    <Compile Include="CommEnums.cs" />
+    <Compile Include="DeviceInfo\CurveLibrary.cs" />
+    <Compile Include="DeviceInfo\Device.cs" />
+    <Compile Include="DeviceInfo\DeviceCureLibrary.cs" />
+    <Compile Include="DeviceInfo\DeviceData.cs" />
+    <Compile Include="DeviceInfo\DeviceMaintenance.cs" />
+    <Compile Include="DeviceInfo\History.cs" />
+    <Compile Include="DeviceInfo\HistoryTypeCollect.cs" />
+    <Compile Include="DeviceInfo\Valves.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysConfig\OperateLog.cs" />
+    <Compile Include="SysConfig\SysSetting.cs" />
+    <Compile Include="SysConfig\TimeSpanSetting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quick.Framework.Tool\Quick.Framework.Tool.csproj">
+      <Project>{a9a5cdd3-ca9a-4952-a3de-0f107bbb826a}</Project>
+      <Name>Quick.Framework.Tool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

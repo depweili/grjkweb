@@ -1,0 +1,123 @@
+﻿@using QuickRMS.Site.WebUI.Extension.MvcHelper
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-list"></i></span>
+        <h5>选择设备</h5>
+    </div>
+    <div class="widget-content">
+        <div class="row">
+           
+                <div id="oTree"></div>
+           
+        </div>
+
+    </div>
+</div>
+
+
+@Html.ScriptBlock(
+    @<script src="~/Plugins/treeview/bootstrap-treeview.min.js"></script>
+                        )
+
+@Html.ScriptBlock(
+
+    @<script type="text/javascript">
+    $(function () {
+      
+                var treeDataUrl="@Url.Action("AreaDeviceTree")?rand=" + Math.random();
+              
+        function getAllNodes(nodes) {
+            var result = [];
+            for (var i = 0; i < nodes.length; i++) {
+                var node = nodes[i];
+                result.push(node);
+                if (node.nodes && node.nodes.length > 0) {
+                    result = result.concat(getAllNodes(node.nodes));
+                }
+            }
+
+            return result;
+        }
+
+        AjaxGet(treeDataUrl, {}, function (data) {
+            var d = $.parseJSON(data) || [];
+            Qrms.DeviceObjs = [];
+            var allnodes = getAllNodes(d);
+            for (var i = 0; i < allnodes.length; i++) {
+               
+                if (allnodes[i].deviceCode) {
+                    Qrms.DeviceObjs.push(allnodes[i]);
+
+                }
+            }
+
+            if (QR.cPageFunction === 100) {
+                Qrms.updateMap();
+
+            }
+            
+            //console.log(data);
+            $('#oTree').treeview({
+                data: data,
+                onNodeSelected: function(event, data) {
+                    console.log(data);
+                    Qrms.currentdNode = data;
+                    if (typeof Qrms.updatePageData == "function") {
+                        Qrms.updatePageData(data);
+                    }
+
+                }
+            });
+        },function() {
+            console.log("error...");
+        });
+
+
+      
+
+                //var treeData = [
+                //    {
+                //        text: 'Parent 1',
+                //        id: '1',
+                //        nodes: [
+                //            {
+                //                text: 'Child 1',
+                //                id: '2',
+                //                 nodes: [
+                //                    {
+                //                        text: 'Grandchild 11111111111',
+                //                        id: '3'
+                //                    },
+                //                    {
+                //                        text: 'Grandchild 2',
+                //                        id: '4'
+                //                    }
+                //                ]
+                //            },
+                //            {
+                //                text: 'Child 2',
+                //                id: '5'
+                //            }
+                //        ]
+                //    },
+                //    {
+                //        text: 'Parent 2',
+                //        id: '2'
+                //    },
+                //    {
+                //        text: 'Parent 3',
+                //        id: '3'
+                //    },
+                //    {
+                //        text: 'Parent 4',
+                //        id: '4'
+                //    },
+                //    {
+                //        text: 'Parent 5',
+                //        id: '5'
+                //    }
+                //];
+                
+            });
+    </script>
+             )

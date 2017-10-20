@@ -1,0 +1,54 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="$(SolutionDir)\Quick.Framework.Tool\bin\Debug\Quick.Framework.Tool.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="Quick.Framework.Tool" #>
+<#@ Import Namespace="Quick.Framework.Tool.T4" #>
+<#@ Import Namespace="Quick.Framework.Tool.Entity" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="Include\IEntityRepositoryTemplate.ttinclude" #>
+<#@ include file="Include\EntityRepositoryTemplate.ttinclude" #>
+<#
+
+	//******* Configuration *******
+
+	string currentNamespace = @"\QuickRMS.Core.Repository";
+	string modelsDLLPath = @"QuickRMS.Domain.Models\bin\Debug\QuickRMS.Domain.Models.dll";
+
+	//******* Configuration *******
+
+    string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+    string projectPath =currentPath.Substring(0, currentPath.IndexOf(@"\T4"));
+    string solutionPath = currentPath.Substring(0, currentPath.IndexOf(currentNamespace));
+
+    string modelFile= Path.Combine(solutionPath, modelsDLLPath);
+    byte[] fileData= File.ReadAllBytes(modelFile);
+    Assembly assembly = Assembly.Load(fileData);
+    Type baseType = typeof(EntityBase<>);
+    IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => m.IsAssignableToGenericType(baseType) && !m.IsAbstract);
+    foreach(Type modelType in modelTypes)
+    {
+        T4ModelInfo model = new T4ModelInfo(modelType, true);
+        
+        //实体仓储操作接口
+        IEntityRepositoryTemplate irep= new IEntityRepositoryTemplate(model);
+        var path = model.UseModuleDir
+            ? string.Format(@"{0}\{1}", projectPath, model.ModuleName)
+            : string.Format(@"{0}\", projectPath);
+        irep.Output.Encoding = Encoding.UTF8;
+        irep.RenderToFile(Path.Combine(path, irep.FileName));
+        
+        //实体仓储操作实现
+        EntityRepositoryTemplate rep= new EntityRepositoryTemplate(model);
+        path = model.UseModuleDir
+            ? string.Format(@"{0}\{1}\Impl", projectPath, model.ModuleName)
+            : string.Format(@"{0}\Impl", projectPath);
+        rep.Output.Encoding = Encoding.UTF8;
+        rep.RenderToFile(Path.Combine(path, rep.FileName));
+    }
+#>

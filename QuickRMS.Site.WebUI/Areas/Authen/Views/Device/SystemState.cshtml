@@ -1,0 +1,260 @@
+﻿@{
+    ViewBag.Title = ViewBag.CurrentTitle + "";
+   
+}
+@section css{
+    @Styles.Render("~/bundles/css/jqueryui")
+}
+
+<div id="content-body" class="row">
+    <div class="col-lg-3">
+        @Html.Partial("_AreaDeviceTree")
+
+    </div>
+    <div class="col-lg-9">
+     
+            <form class="form-inline">
+                <div class="widget-box">
+
+                    <div class="widget-content">
+                        <div class="row">
+
+                            <div id="currentTime" class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <input id="btnSyncTime" class="btn btn-default" disabled="disabled" type="button" value="同步时间（T）" />
+                            </div>
+
+                            <div class="col-lg-8 text-success">
+                                <label>设备地区天气：</label><label id="currentWeather"></label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="widget-box">
+
+                    <div class="widget-content">
+                        <div class="row">
+                            <div class="col-lg-1 form-ctrl-7 no-right-padding">室外温度：</div>
+                            <div id="lblOutdoor" class="col-lg-1 nopadding"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+                            <div class="col-lg-7">
+                                <input id="btnUpdateData" class="btn btn-default" disabled="disabled" type="button" value="立即更新" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"><i class="icon-list"></i></span>
+                        <h5>A路系统</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="row show-grid">
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">外网供水温度：</div>
+                            <div class="col-lg-1 nopadding" id="lblSup1"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">外网回水温度：</div>
+                            <div class="col-lg-1 nopadding" id="lblBack1"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">热源出水温度：</div>
+                            <div class="col-lg-1 nopadding" id="lblFix1"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">阀门开度比例：</div>
+                            <div class="col-lg-1 nopadding" id="lblValve1"></div>
+                            <div class="col-lg-1 nopadding">%</div>
+
+                            <div class="col-lg-2">水网1状态：</div>
+                            <div class="col-lg-1 nopadding" id="lblState1"></div>
+                            <div class="col-lg-5">
+                                <label class="btn btn-default btn-sm" id="lblAutoWorkMode1">自动</label>
+                                <label class="btn btn-default btn-sm" id="lblMaunalWorkMode1">手动</label>
+                                <label class="btn btn-default btn-sm" id="lblCycle1">曲线</label>
+                                <label class="btn btn-default btn-sm" id="lblTime1">时间</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"><i class="icon-list"></i></span>
+                        <h5>B路系统</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="row show-grid">
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">外网供水温度：</div>
+                            <div class="col-lg-1 nopadding" id="lblSup2"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">外网回水温度：</div>
+                            <div class="col-lg-1 nopadding" id="lblBack2"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">热源出水温度：</div>
+                            <div class="col-lg-1 nopadding" id="lblFix2"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">阀门开度比例：</div>
+                            <div class="col-lg-1 nopadding" id="lblValve2"></div>
+                            <div class="col-lg-1 nopadding">℃</div>
+
+                            <div class="col-lg-2">水网1状态：</div>
+                            <div class="col-lg-1 nopadding" id="lblState2"></div>
+                            <div class="col-lg-5">
+                                <label class="btn btn-default btn-sm" id="lblAutoWorkMode2">自动</label>
+                                <label class="btn btn-default btn-sm" id="lblManualWorkMode2">手动</label>
+                                <label class="btn btn-default btn-sm" id="lblCycle2">曲线</label>
+                                <label class="btn btn-default btn-sm" id="lblTime2">时间</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="widget-box">
+
+                    <div class="widget-content">
+                        <div class="row">
+
+                            <div class="col-lg-2 form-ctrl-7 no-right-padding">操作模式：</div>
+                            <div class="col-lg-2">
+                                <label class="btn btn-default btn-sm" id="lblWorkState1">日常</label>
+                                <label class="btn btn-default btn-sm" id="lblWorkState2">假日</label>
+                            </div>
+                            <div class="col-lg-2 form-ctrl-7 no-right-padding">是否校阀：</div>
+                            <div class="col-lg-1" id="lblCheckValve">
+                                无校阀
+                            </div>
+                            <div class="col-lg-2 form-ctrl-9 no-right-padding">阀门控制路数：</div>
+                            <div class="col-lg-2" id="lblControlChannel">
+                                A通路
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var today = "@ViewBag.Now";
+        var day;
+        function tick() {
+            if (!day) {
+                day = new Date(today);
+            }
+            day.setSeconds(day.getSeconds() + 1);
+            //console.log(day);
+            document.getElementById("currentTime").innerHTML = showLocale(day);
+            window.setTimeout("tick()", 1000);
+        }
+        tick();
+        showWeather("海淀");
+
+        QR.cPageFunction = 1;
+
+        Qrms.updatePageData = function (node) {
+            var city = node.areaName;
+            showWeather(city);
+
+            if (node.isOnline) {
+                enableButton("btnSyncTime");
+                enableButton("btnUpdateData");
+            } else {
+                disableButton("btnUpdateData");
+                disableButton("btnSyncTime");
+            }
+
+            if (node.deviceCode && node.isOnline) {
+                $.isLoading({ text: "正在处理..." });
+                var id = node.id;
+                var dataUrl="@Url.Action("GetDeviceDatas","BaseDataApi")?rand=" + Math.random();
+                AjaxGet(dataUrl, { id: id }, function (data) {
+                    $.isLoading("hide");
+                    console.log(data);
+                    $("#lblOutdoor").text(data.OutdoorTemp||"0.00");
+
+                   
+                    $("#lblSup1").text(data.SupplyWaterTemp1 || "0.00");
+                    $("#lblBack1").text(data.BackWaterTemp1 || "0.00");
+                    $("#lblFix1").text(data.FixWaterTemp1 || "0.00");
+                    $("#lblValve1").text(data.Valve1);
+                    $("#lblState1").text(data.WaterNetStatus1Text);
+                    $("#lblSup2").text(data.SupplyWaterTemp2 || "0.00");
+
+                    $("#lblBack2").text(data.BackWaterTemp2 || "0.00");
+                    $("#lblFix2").text(data.FixWaterTemp2 || "0.00");
+                    $("#lblValve2").text(data.Valve2 || "0.00");
+                    $("#lblState2").text(data.WaterNetStatus2Text);
+                    if (data.Data28) {
+
+                        var valveState = data.Data29[0];
+
+                        if (valveState != Qrms.CheckValveState.无校阀)
+                        {
+                            $("#lblCheckValve").text("(" + data.Data30[0] + ")");
+                        }
+
+                        switch (data.WorkStatus)
+                        {
+                            case Qrms.WorkStatus.假日模式:
+                                enableButton("lblWorkState2");
+                                disableButton("lblWorkState1");
+                               
+                                break;
+                            case Qrms.WorkStatus.工作模式:
+                                enableButton("lblWorkState1");
+                                disableButton("lblWorkState2");
+                                break;
+                            default:
+                                break;
+                        }
+                        var cct= Qrms.GetEnumPropName(Qrms.ValveControlChannel, node.ctrlNumber);
+                        if (cct) {
+                            $("#lblControlChannel").text(cct);
+                        }
+
+
+                    }
+
+                    
+
+                },function() {
+                    $.isLoading("hide");
+                });
+            }
+        }
+
+        function bindPageData(data) {
+            
+        }
+    </script>
+}

@@ -1,0 +1,260 @@
+﻿@{
+    ViewBag.Title = ViewBag.CurrentTitle + "";
+
+}
+@section css{
+    @Styles.Render("~/bundles/css/jqueryui")
+}
+
+<div id="content-body" class="row">
+    <div class="col-lg-3">
+        @Html.Partial("_AreaDeviceTree")
+
+    </div>
+
+    <div class="col-lg-9">
+        <form class="form-inline">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="widget-box">
+
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>模式选择</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="rdoTimePeriodMode" id="qx" checked="checked" value="option1"> 曲线
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="rdoTimePeriodMode" id="sd" value="option2"> 时段
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="rdoTimePeriodMode" id="zr" value="option3"> 周日
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="rdoTimePeriodMode" id="jr" value="option3"> 假日
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="widget-box">
+
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>时间段列表</h5>
+                                </div>
+                                <div class="widget-content" style="height: 368px;">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-lg-4 col-lg-offset-8">
+                                            <button type="button" class="btn btn-success" id="btnUpdate">从终端更新</button>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <td>上限</td>
+                                            <td>下限</td>
+                                            <td>曲线号</td>
+                                        </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6" style="margin-left: 10px;">
+                    <div class="row">
+                        <div class="widget-box">
+
+                            <div class="widget-box">
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>详细信息</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="form-group">
+                                        <label class="">时间段上限：</label>
+                                        <input class="form-control form-ctrl-6" id="topPeriod" name="topPeriod" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="">时间段下限：</label>
+                                        <input class="form-control form-ctrl-6" id="bottomPeriod" name="bottomPeriod" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="">曲线：</label>
+                                        <select class="form-control" id="DeviceCurLibraryList" style="width: 110px;"></select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="widget-box">
+
+                            <div class="widget-box">
+
+                                <div class="widget-content">
+                                    <div id="qxchart" style="width: 100%;height:300px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="control-label">时段控制：</label>
+                    <label class="control-label">曲线1（开）曲线2（关）</label>
+                </div>
+                <div class="col-lg-6">
+                    <input class="btn btn-default" type="button" id="btnAddSpan" value="添加">
+                    <input class="btn btn-default" type="button" id="btnEditSpan" value="编辑">
+                    <input class="btn btn-default" type="button" id="btnDeleteSpan" value="删除">
+                    <input class="btn btn-default" type="button" id="btnSaveSpan" value="保存并下发">
+                </div>
+            </div>
+</form>
+
+
+
+</div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+
+        $('#topPeriod,#bottomPeriod').timepicker({
+            defaultTime: "04:00",
+            maxHours: 24,
+            showMeridian: false,
+            minuteStep: 1
+        });
+
+
+        Qrms.updatePageData = function(node) {
+
+            if (node.isOnline) {
+                enableButton("btnAddSpan");
+                enableButton("btnUpdateData");
+                enableButton("btnEditSpan");
+                enableButton("btnDeleteSpan");
+                enableButton("btnSaveSpan");
+            } else {
+
+                disableButton("btnAddSpan");
+                disableButton("btnUpdateData");
+                disableButton("btnEditSpan");
+                disableButton("btnDeleteSpan");
+                disableButton("btnSaveSpan");
+            }
+
+            if (node.deviceCode && node.isOnline) {
+                $.isLoading({ text: "正在处理..." });
+                var id = node.id;
+                var dataUrl = "@Url.Action("GetDeviceCurLibraryList", "BaseDataApi")?rand=" + Math.random();
+                AjaxGet(dataUrl, { id: id }, function(res) {
+                    $.isLoading("hide");
+
+                    var data = res || [];
+                    console.log(data);
+                    $("#DeviceCurLibraryList").empty();
+                    $("#DeviceCurLibraryList").append("<option value='0'>-请选择-</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        var ele = data[i];
+                        var opt = $("<option value='" + ele.Code + "'>" + ele.Name + "</option>");
+                        opt.data("dclData", ele);
+                        $("#DeviceCurLibraryList").append(opt);
+                    }
+
+
+                }, function() {
+                    $.isLoading("hide");
+                });
+            }
+        }
+
+
+        var option = {
+            title: {
+                text: '曲线图'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+
+            },
+            toolbox: {
+                show: false,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: { readOnly: false },
+                    magicType: { type: ['line', 'bar'] },
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2]
+            },
+            yAxis: {
+                type: 'value',
+                data: [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0, 1.2],
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            },
+            series: [
+                {
+                    name: '最高气温',
+                    type: 'line'
+                   
+
+                }
+            ]
+        };
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('qxchart'));
+        myChart.setOption(option);
+
+        $("#DeviceCurLibraryList").on("change", function() {
+            var $opt = $(this).find("option:selected");
+            var data = $opt.data("dclData") || {};
+            var start = -40;
+            var dataX = [], dataY = [];
+            for (var i = 1; i <= 121;i++) {
+                dataX.push(start);
+                dataY.push(data["Column" + i]);
+                start += 0.5;
+            }
+            myChart.setOption({
+                xAxis: {
+                    data: dataX
+                },
+
+                series: [
+                    {
+                        data: dataY
+                    }
+                ]
+            });
+        });
+    </script>
+}

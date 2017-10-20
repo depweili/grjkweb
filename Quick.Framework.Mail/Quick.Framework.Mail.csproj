@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA2D0F8B-BBD1-4FE6-8BC8-0FE6FDEC958E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quick.Framework.Mail</RootNamespace>
+    <AssemblyName>Quick.Framework.Mail</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Email.cs" />
+    <Compile Include="Base\MailJob.cs" />
+    <Compile Include="Base\MailQueue.cs" />
+    <Compile Include="Base\MailQueueDB.cs" />
+    <Compile Include="Config\MailJobElement.cs" />
+    <Compile Include="Config\MailQueueElement.cs" />
+    <Compile Include="Config\MailSection.cs" />
+    <Compile Include="EventHandler\MailAddedMailEventArgs.cs" />
+    <Compile Include="EventHandler\MailAddingMailEventArgs.cs" />
+    <Compile Include="EventHandler\MailDeletedMailEventArgs.cs" />
+    <Compile Include="EventHandler\MailDeletingMailEventArgs.cs" />
+    <Compile Include="EventHandler\MailDequeueMailEventArgs.cs" />
+    <Compile Include="EventHandler\MailErrorEventArgs.cs" />
+    <Compile Include="EventHandler\MailErrorType.cs" />
+    <Compile Include="EventHandler\MailEvent.cs" />
+    <Compile Include="EventHandler\MailExceedMailMaxTryTimesEventArgs.cs" />
+    <Compile Include="EventHandler\MailExceedQueueSizeEventArgs.cs" />
+    <Compile Include="EventHandler\MailSendedMailEventArgs.cs" />
+    <Compile Include="EventHandler\MailSendingMailEventArgs.cs" />
+    <Compile Include="MailHelper.cs" />
+    <Compile Include="MailManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

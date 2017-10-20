@@ -1,0 +1,195 @@
+﻿<error errorId="87cebc7d-043d-4af8-ba46-b679f09540df" application="/LM/W3SVC/48/ROOT" host="ALEX" type="System.ComponentModel.Composition.ChangeRejectedException" message="撰写保持不变。由于以下错误，更改被拒绝: 撰写生成了一个撰写错误，其根本原因有 1 点，如以下所列。 有关详细信息，请查看 CompositionException.Errors 属性。&#xD;&#xA;&#xD;&#xA;1) 未找到与约束 &#xA;	ContractName	QuickRMS.Core.Service.Authen.IHistoryService&#xA;	RequiredTypeIdentity	QuickRMS.Core.Service.Authen.IHistoryService 匹配的导出&#xD;&#xA;&#xD;&#xA;结果: 无法对部件“QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController”设置导入“QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController.HistoryService (ContractName=&quot;QuickRMS.Core.Service.Authen.IHistoryService&quot;)”。&#xD;&#xA;元素: QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController.HistoryService (ContractName=&quot;QuickRMS.Core.Service.Authen.IHistoryService&quot;) --&gt;  QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController&#xD;&#xA;" source="System.ComponentModel.Composition" detail="System.ComponentModel.Composition.ChangeRejectedException: 撰写保持不变。由于以下错误，更改被拒绝: 撰写生成了一个撰写错误，其根本原因有 1 点，如以下所列。 有关详细信息，请查看 CompositionException.Errors 属性。&#xD;&#xA;&#xD;&#xA;1) 未找到与约束 &#xA;	ContractName	QuickRMS.Core.Service.Authen.IHistoryService&#xA;	RequiredTypeIdentity	QuickRMS.Core.Service.Authen.IHistoryService 匹配的导出&#xD;&#xA;&#xD;&#xA;结果: 无法对部件“QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController”设置导入“QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController.HistoryService (ContractName=&quot;QuickRMS.Core.Service.Authen.IHistoryService&quot;)”。&#xD;&#xA;元素: QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController.HistoryService (ContractName=&quot;QuickRMS.Core.Service.Authen.IHistoryService&quot;) --&gt;  QuickRMS.Site.WebUI.Areas.Authen.Controllers.DeviceController&#xD;&#xA;&#xD;&#xA;   在 System.ComponentModel.Composition.CompositionResult.ThrowOnErrors(AtomicComposition atomicComposition)&#xD;&#xA;   在 System.ComponentModel.Composition.Hosting.ComposablePartExportProvider.Compose(CompositionBatch batch)&#xD;&#xA;   在 System.ComponentModel.Composition.Hosting.CompositionContainer.Compose(CompositionBatch batch)&#xD;&#xA;   在 System.ComponentModel.Composition.AttributedModelServices.ComposeParts(CompositionContainer container, Object[] attributedParts)&#xD;&#xA;   在 QuickRMS.Site.WebUI.MefControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType) 位置 e:\项目\IehncsOnline\QuickRMS.Site.WebUI\App_Start\MefConfig.cs:行号 105&#xD;&#xA;   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" time="2016-07-30T13:52:22.4236361Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:zh-CN,zh;q=0.8&#xD;&#xA;HTTP_COOKIE:UserName=admin; SaveCookies=0; SlnLoginName=admin; IsRememberPwd=False; kr0C_2132_saltkey=gof26C61; kr0C_2132_lastvisit=1468380774; kr0C_2132_widthauto=1; kr0C_2132_ulastactivity=69ccBuG77UK1tOFdAOjyC2NyVOAq06WO70kVbUg4ejZTcK5IPlsu; kr0C_2132_auth=9b50S05fPUNduNcWn%2BURALaUQ1lowXtjOkvVAB2er5z1z94MRWKDLte8g35kBHMYRs%2F1ezdqFG%2FThZB1mfj7; kr0C_2132_lastcheckfeed=1%7C1468384423; kr0C_2132_nofavfid=1; ASP.NET_SessionId=ce0x3eosdwcnuipwrhpyxpj1&#xD;&#xA;HTTP_HOST:localhost:12055&#xD;&#xA;HTTP_REFERER:http://localhost:12055/Admin/Dashboard&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch&#xD;&#xA;Accept-Language: zh-CN,zh;q=0.8&#xD;&#xA;Cookie: UserName=admin; SaveCookies=0; SlnLoginName=admin; IsRememberPwd=False; kr0C_2132_saltkey=gof26C61; kr0C_2132_lastvisit=1468380774; kr0C_2132_widthauto=1; kr0C_2132_ulastactivity=69ccBuG77UK1tOFdAOjyC2NyVOAq06WO70kVbUg4ejZTcK5IPlsu; kr0C_2132_auth=9b50S05fPUNduNcWn%2BURALaUQ1lowXtjOkvVAB2er5z1z94MRWKDLte8g35kBHMYRs%2F1ezdqFG%2FThZB1mfj7; kr0C_2132_lastcheckfeed=1%7C1468384423; kr0C_2132_nofavfid=1; ASP.NET_SessionId=ce0x3eosdwcnuipwrhpyxpj1&#xD;&#xA;Host: localhost:12055&#xD;&#xA;Referer: http://localhost:12055/Admin/Dashboard&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/48/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="E:\项目\IehncsOnline\QuickRMS.Site.WebUI\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="48" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/48" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="127.0.0.1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Authen/Device/TerminalSetting" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="E:\项目\IehncsOnline\QuickRMS.Site.WebUI\Authen\Device\TerminalSetting" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="127.0.0.1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="127.0.0.1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="6874" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Authen/Device/TerminalSetting" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="12055" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/Authen/Device/TerminalSetting" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="zh-CN,zh;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="UserName=admin; SaveCookies=0; SlnLoginName=admin; IsRememberPwd=False; kr0C_2132_saltkey=gof26C61; kr0C_2132_lastvisit=1468380774; kr0C_2132_widthauto=1; kr0C_2132_ulastactivity=69ccBuG77UK1tOFdAOjyC2NyVOAq06WO70kVbUg4ejZTcK5IPlsu; kr0C_2132_auth=9b50S05fPUNduNcWn%2BURALaUQ1lowXtjOkvVAB2er5z1z94MRWKDLte8g35kBHMYRs%2F1ezdqFG%2FThZB1mfj7; kr0C_2132_lastcheckfeed=1%7C1468384423; kr0C_2132_nofavfid=1; ASP.NET_SessionId=ce0x3eosdwcnuipwrhpyxpj1" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:12055" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:12055/Admin/Dashboard" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="UserName">
+      <value string="admin" />
+    </item>
+    <item name="SaveCookies">
+      <value string="0" />
+    </item>
+    <item name="SlnLoginName">
+      <value string="admin" />
+    </item>
+    <item name="IsRememberPwd">
+      <value string="False" />
+    </item>
+    <item name="kr0C_2132_saltkey">
+      <value string="gof26C61" />
+    </item>
+    <item name="kr0C_2132_lastvisit">
+      <value string="1468380774" />
+    </item>
+    <item name="kr0C_2132_widthauto">
+      <value string="1" />
+    </item>
+    <item name="kr0C_2132_ulastactivity">
+      <value string="69ccBuG77UK1tOFdAOjyC2NyVOAq06WO70kVbUg4ejZTcK5IPlsu" />
+    </item>
+    <item name="kr0C_2132_auth">
+      <value string="9b50S05fPUNduNcWn%2BURALaUQ1lowXtjOkvVAB2er5z1z94MRWKDLte8g35kBHMYRs%2F1ezdqFG%2FThZB1mfj7" />
+    </item>
+    <item name="kr0C_2132_lastcheckfeed">
+      <value string="1%7C1468384423" />
+    </item>
+    <item name="kr0C_2132_nofavfid">
+      <value string="1" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="ce0x3eosdwcnuipwrhpyxpj1" />
+    </item>
+  </cookies>
+</error>

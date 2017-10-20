@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = ViewBag.CurrentTitle + "";
+
+}
+@section css{
+    @Styles.Render("~/bundles/css/jqueryui")
+}
+
+<div id="content-body" class="row">
+    <div class="col-lg-3">
+        @Html.Partial("_AreaDeviceTree")
+
+    </div>
+    <div class="col-lg-9">
+
+      
+            <div class="row">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"><i class="icon-list"></i></span>
+                        <h5>温度修正</h5>
+                    </div>
+                    <div class="widget-content">
+
+                        <form class="form-inline contentArea">
+
+                            <div class="row" style="margin-bottom: 15px;">
+                                <div class="col-lg-6">
+                                    <label class="">室外&nbsp;&nbsp;</label>
+                                    <input type="text" class="form-control" id="inputEmail3">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="">供水1</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 60px;">
+                                <div class="col-lg-6">
+                                    <label class="control-label">回水1</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="control-label">热源1</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-bottom: 15px;">
+                                <div class="col-lg-6">
+                                    <label class="control-label">供水2</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="control-label">回水2</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px;">
+                                <div class="col-lg-6">
+                                    <label class="control-label">热源2</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="control-label">定时&nbsp;&nbsp;</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 100px;">
+
+                                <div class="col-lg-4 col-lg-offset-6">
+                                    <input class="btn btn-default" type="button" value="更新">
+                                    <input class="btn btn-default" type="button" value="保存并下发">
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+  
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+    </script>
+}

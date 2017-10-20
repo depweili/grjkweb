@@ -1,0 +1,2411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IEHNCS_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auth_Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="Area" Type="nvarchar(max)" />
+          <Property Name="Controller" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="OrderSort" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsMenu" Type="bit" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Auth_ModulePermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Auth_Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Auth_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="OrderSort" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Auth_RoleModulePermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Authen_UserArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Authen_UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="SysConfig_OperateLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogTime" Type="datetime" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_Areas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsLeaf" Type="bit" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="6" />
+        </EntityType>
+        <EntityType Name="T_CurveLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Column1" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column2" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column3" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column4" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column5" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column6" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column7" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column8" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column9" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column10" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column11" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column12" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column13" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column14" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column15" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column16" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column17" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column18" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column19" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column20" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column21" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column22" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column23" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column24" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column25" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column26" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column27" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column28" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column29" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column30" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column31" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column32" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column33" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column34" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column35" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column36" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column37" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column38" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column39" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column40" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column41" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column42" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column43" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column44" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column45" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column46" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column47" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column48" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column49" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column50" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column51" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column52" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column53" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column54" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column55" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column56" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column57" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column58" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column59" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column60" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column61" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column62" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column63" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column64" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column65" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column66" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column67" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column68" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column69" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column70" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column71" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column72" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column73" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column74" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column75" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column76" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column77" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column78" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column79" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column80" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column81" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column82" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column83" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column84" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column85" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column86" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column87" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column88" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column89" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column90" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column91" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column92" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column93" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column94" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column95" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column96" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column97" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column98" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column99" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column100" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column101" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column102" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column103" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column104" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column105" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column106" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column107" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column108" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column109" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column110" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column111" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column112" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column113" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column114" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column115" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column116" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column117" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column118" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column119" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column120" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column121" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_Datas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="DataTime" Type="datetime" Nullable="false" />
+          <Property Name="OutdoorTemp" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterTemp1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterTemp2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BackWaterTemp1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BackWaterTemp2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FixWaterTemp1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FixWaterTemp2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Valve1" Type="int" />
+          <Property Name="Valve2" Type="int" />
+          <Property Name="WirelessStatus" Type="int" Nullable="false" />
+          <Property Name="WorkStatus" Type="int" Nullable="false" />
+          <Property Name="WaterNetStatus1" Type="int" />
+          <Property Name="WaterNetStatus2" Type="int" />
+          <Property Name="Data27" Type="varbinary(max)" />
+          <Property Name="Data28" Type="varbinary(max)" />
+          <Property Name="Data29" Type="varbinary(max)" />
+          <Property Name="Data30" Type="varbinary(max)" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar(max)" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar(max)" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_DeviceCurveLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Column1" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column2" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column3" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column4" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column5" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column6" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column7" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column8" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column9" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column10" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column11" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column12" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column13" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column14" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column15" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column16" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column17" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column18" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column19" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column20" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column21" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column22" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column23" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column24" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column25" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column26" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column27" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column28" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column29" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column30" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column31" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column32" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column33" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column34" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column35" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column36" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column37" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column38" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column39" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column40" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column41" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column42" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column43" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column44" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column45" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column46" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column47" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column48" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column49" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column50" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column51" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column52" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column53" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column54" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column55" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column56" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column57" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column58" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column59" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column60" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column61" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column62" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column63" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column64" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column65" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column66" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column67" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column68" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column69" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column70" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column71" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column72" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column73" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column74" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column75" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column76" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column77" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column78" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column79" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column80" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column81" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column82" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column83" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column84" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column85" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column86" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column87" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column88" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column89" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column90" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column91" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column92" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column93" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column94" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column95" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column96" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column97" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column98" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column99" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column100" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column101" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column102" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column103" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column104" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column105" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column106" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column107" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column108" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column109" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column110" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column111" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column112" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column113" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column114" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column115" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column116" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column117" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column118" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column119" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column120" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column121" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_DeviceMaintenances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="datetime" Nullable="false" />
+          <Property Name="Memo" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_Devices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceCode" Type="nvarchar(max)" />
+          <Property Name="DeviceName" Type="nvarchar(max)" />
+          <Property Name="IP" Type="nvarchar(max)" />
+          <Property Name="Port" Type="int" />
+          <Property Name="CtrlMode" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="InstallTime" Type="datetime" />
+          <Property Name="Memo" Type="nvarchar(max)" />
+          <Property Name="WorkMode" Type="int" />
+          <Property Name="SaveInterval" Type="int" />
+          <Property Name="CtrlNumber" Type="int" />
+          <Property Name="IsInited" Type="bit" Nullable="false" />
+          <Property Name="OutdoorFix" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterFix1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterFix2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BackFix1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BackFix2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FixWater1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FixWater2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsOnline" Type="bit" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar(max)" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar(max)" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="6" />
+        </EntityType>
+        <EntityType Name="T_History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="HistoryType" Type="int" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" />
+          <Property Name="RowNumber" Type="int" Nullable="false" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar(max)" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar(max)" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_SysSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SettingCode" Type="nvarchar(max)" />
+          <Property Name="SettingValue" Type="nvarchar(max)" />
+          <Property Name="Memo" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_TimeSpanSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="TimeSpanID" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="nvarchar(max)" />
+          <Property Name="EndTime" Type="nvarchar(max)" />
+          <Property Name="CurveCode" Type="int" Nullable="false" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginPwd" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="PwdErrorCount" Type="int" Nullable="false" />
+          <Property Name="LoginCount" Type="int" Nullable="false" />
+          <Property Name="RegisterTime" Type="datetime" />
+          <Property Name="LastLoginTime" Type="datetime" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ModifyId" Type="int" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyTime" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <Association Name="FK_dbo_Auth_Module_dbo_Auth_Module_ParentId">
+          <End Role="Auth_Module" Type="Self.Auth_Module" Multiplicity="0..1" />
+          <End Role="Auth_Module1" Type="Self.Auth_Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_Module1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId">
+          <End Role="Auth_Module" Type="Self.Auth_Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_ModulePermission" Type="Self.Auth_ModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_ModulePermission">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId">
+          <End Role="Auth_Permission" Type="Self.Auth_Permission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_ModulePermission" Type="Self.Auth_ModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_ModulePermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId">
+          <End Role="Auth_Module" Type="Self.Auth_Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleModulePermission" Type="Self.Auth_RoleModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleModulePermission">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId">
+          <End Role="Auth_Permission" Type="Self.Auth_Permission" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleModulePermission" Type="Self.Auth_RoleModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleModulePermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId">
+          <End Role="Auth_Role" Type="Self.Auth_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleModulePermission" Type="Self.Auth_RoleModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleModulePermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId">
+          <End Role="T_Areas" Type="Self.T_Areas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserArea" Type="Self.Authen_UserArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserArea">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserArea_dbo_T_Users_UserId">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserArea" Type="Self.Authen_UserArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserArea">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId">
+          <End Role="Auth_Role" Type="Self.Auth_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserRole" Type="Self.Authen_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserRole_dbo_T_Users_UserId">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserRole" Type="Self.Authen_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysConfig_OperateLog" Type="Self.SysConfig_OperateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysConfig_OperateLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_Areas_dbo_T_Areas_ParentId">
+          <End Role="T_Areas" Type="Self.T_Areas" Multiplicity="0..1" />
+          <End Role="T_Areas1" Type="Self.T_Areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_Areas1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_Datas_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_Datas" Type="Self.T_Datas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_Datas">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_DeviceCurveLibrary" Type="Self.T_DeviceCurveLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_DeviceCurveLibrary">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_DeviceMaintenances" Type="Self.T_DeviceMaintenances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_DeviceMaintenances">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_Devices_dbo_T_Areas_AreaId">
+          <End Role="T_Areas" Type="Self.T_Areas" Multiplicity="0..1" />
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_Devices">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_History_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_History" Type="Self.T_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_History">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IEHNCS_DBModelStoreContainer">
+          <EntitySet Name="Auth_Module" EntityType="Self.Auth_Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_ModulePermission" EntityType="Self.Auth_ModulePermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_Permission" EntityType="Self.Auth_Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_Role" EntityType="Self.Auth_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auth_RoleModulePermission" EntityType="Self.Auth_RoleModulePermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authen_UserArea" EntityType="Self.Authen_UserArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authen_UserRole" EntityType="Self.Authen_UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysConfig_OperateLog" EntityType="Self.SysConfig_OperateLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Areas" EntityType="Self.T_Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_CurveLibrary" EntityType="Self.T_CurveLibrary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Datas" EntityType="Self.T_Datas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_DeviceCurveLibrary" EntityType="Self.T_DeviceCurveLibrary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_DeviceMaintenances" EntityType="Self.T_DeviceMaintenances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Devices" EntityType="Self.T_Devices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_History" EntityType="Self.T_History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_SysSettings" EntityType="Self.T_SysSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_TimeSpanSettings" EntityType="Self.T_TimeSpanSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Users" EntityType="Self.T_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Auth_Module_dbo_Auth_Module_ParentId" Association="Self.FK_dbo_Auth_Module_dbo_Auth_Module_ParentId">
+            <End Role="Auth_Module" EntitySet="Auth_Module" />
+            <End Role="Auth_Module1" EntitySet="Auth_Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId" Association="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId">
+            <End Role="Auth_Module" EntitySet="Auth_Module" />
+            <End Role="Auth_ModulePermission" EntitySet="Auth_ModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId" Association="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId">
+            <End Role="Auth_Permission" EntitySet="Auth_Permission" />
+            <End Role="Auth_ModulePermission" EntitySet="Auth_ModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId" Association="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId">
+            <End Role="Auth_Module" EntitySet="Auth_Module" />
+            <End Role="Auth_RoleModulePermission" EntitySet="Auth_RoleModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId" Association="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId">
+            <End Role="Auth_Permission" EntitySet="Auth_Permission" />
+            <End Role="Auth_RoleModulePermission" EntitySet="Auth_RoleModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId" Association="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId">
+            <End Role="Auth_Role" EntitySet="Auth_Role" />
+            <End Role="Auth_RoleModulePermission" EntitySet="Auth_RoleModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId" Association="Self.FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId">
+            <End Role="T_Areas" EntitySet="T_Areas" />
+            <End Role="Authen_UserArea" EntitySet="Authen_UserArea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserArea_dbo_T_Users_UserId" Association="Self.FK_dbo_Authen_UserArea_dbo_T_Users_UserId">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="Authen_UserArea" EntitySet="Authen_UserArea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId" Association="Self.FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId">
+            <End Role="Auth_Role" EntitySet="Auth_Role" />
+            <End Role="Authen_UserRole" EntitySet="Authen_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserRole_dbo_T_Users_UserId" Association="Self.FK_dbo_Authen_UserRole_dbo_T_Users_UserId">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="Authen_UserRole" EntitySet="Authen_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId" Association="Self.FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="SysConfig_OperateLog" EntitySet="SysConfig_OperateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_Areas_dbo_T_Areas_ParentId" Association="Self.FK_dbo_T_Areas_dbo_T_Areas_ParentId">
+            <End Role="T_Areas" EntitySet="T_Areas" />
+            <End Role="T_Areas1" EntitySet="T_Areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_Datas_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_Datas_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_Datas" EntitySet="T_Datas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_DeviceCurveLibrary" EntitySet="T_DeviceCurveLibrary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_DeviceMaintenances" EntitySet="T_DeviceMaintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_Devices_dbo_T_Areas_AreaId" Association="Self.FK_dbo_T_Devices_dbo_T_Areas_AreaId">
+            <End Role="T_Areas" EntitySet="T_Areas" />
+            <End Role="T_Devices" EntitySet="T_Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_History_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_History_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_History" EntitySet="T_History" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IEHNCS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auth_Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LinkUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OrderSort" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsMenu" Type="Boolean" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Auth_Module1" Relationship="Self.FK_dbo_Auth_Module_dbo_Auth_Module_ParentId" FromRole="Auth_Module" ToRole="Auth_Module1" />
+          <NavigationProperty Name="Auth_Module2" Relationship="Self.FK_dbo_Auth_Module_dbo_Auth_Module_ParentId" FromRole="Auth_Module1" ToRole="Auth_Module" />
+          <NavigationProperty Name="Auth_ModulePermission" Relationship="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId" FromRole="Auth_Module" ToRole="Auth_ModulePermission" />
+          <NavigationProperty Name="Auth_RoleModulePermission" Relationship="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId" FromRole="Auth_Module" ToRole="Auth_RoleModulePermission" />
+        </EntityType>
+        <EntityType Name="Auth_ModulePermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="PermissionId" Type="Int32" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Auth_Module" Relationship="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId" FromRole="Auth_ModulePermission" ToRole="Auth_Module" />
+          <NavigationProperty Name="Auth_Permission" Relationship="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId" FromRole="Auth_ModulePermission" ToRole="Auth_Permission" />
+        </EntityType>
+        <EntityType Name="Auth_Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Auth_ModulePermission" Relationship="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId" FromRole="Auth_Permission" ToRole="Auth_ModulePermission" />
+          <NavigationProperty Name="Auth_RoleModulePermission" Relationship="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId" FromRole="Auth_Permission" ToRole="Auth_RoleModulePermission" />
+        </EntityType>
+        <EntityType Name="Auth_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OrderSort" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Auth_RoleModulePermission" Relationship="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId" FromRole="Auth_Role" ToRole="Auth_RoleModulePermission" />
+          <NavigationProperty Name="Authen_UserRole" Relationship="Self.FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId" FromRole="Auth_Role" ToRole="Authen_UserRole" />
+        </EntityType>
+        <EntityType Name="Auth_RoleModulePermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="PermissionId" Type="Int32" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Auth_Module" Relationship="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId" FromRole="Auth_RoleModulePermission" ToRole="Auth_Module" />
+          <NavigationProperty Name="Auth_Permission" Relationship="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId" FromRole="Auth_RoleModulePermission" ToRole="Auth_Permission" />
+          <NavigationProperty Name="Auth_Role" Relationship="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId" FromRole="Auth_RoleModulePermission" ToRole="Auth_Role" />
+        </EntityType>
+        <EntityType Name="Authen_UserArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="T_Areas" Relationship="Self.FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId" FromRole="Authen_UserArea" ToRole="T_Areas" />
+          <NavigationProperty Name="T_Users" Relationship="Self.FK_dbo_Authen_UserArea_dbo_T_Users_UserId" FromRole="Authen_UserArea" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="Authen_UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Auth_Role" Relationship="Self.FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId" FromRole="Authen_UserRole" ToRole="Auth_Role" />
+          <NavigationProperty Name="T_Users" Relationship="Self.FK_dbo_Authen_UserRole_dbo_T_Users_UserId" FromRole="Authen_UserRole" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="SysConfig_OperateLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogTime" Type="DateTime" Precision="3" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="T_Users" Relationship="Self.FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId" FromRole="SysConfig_OperateLog" ToRole="T_Users" />
+        </EntityType>
+        <EntityType Name="T_Areas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsLeaf" Type="Boolean" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="6" />
+          <NavigationProperty Name="Authen_UserArea" Relationship="Self.FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId" FromRole="T_Areas" ToRole="Authen_UserArea" />
+          <NavigationProperty Name="T_Areas1" Relationship="Self.FK_dbo_T_Areas_dbo_T_Areas_ParentId" FromRole="T_Areas" ToRole="T_Areas1" />
+          <NavigationProperty Name="T_Areas2" Relationship="Self.FK_dbo_T_Areas_dbo_T_Areas_ParentId" FromRole="T_Areas1" ToRole="T_Areas" />
+          <NavigationProperty Name="T_Devices" Relationship="Self.FK_dbo_T_Devices_dbo_T_Areas_AreaId" FromRole="T_Areas" ToRole="T_Devices" />
+        </EntityType>
+        <EntityType Name="T_CurveLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Column1" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column2" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column3" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column4" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column5" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column6" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column7" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column8" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column9" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column10" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column11" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column12" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column13" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column14" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column15" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column16" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column17" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column18" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column19" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column20" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column21" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column22" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column23" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column24" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column25" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column26" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column27" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column28" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column29" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column30" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column31" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column32" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column33" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column34" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column35" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column36" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column37" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column38" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column39" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column40" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column41" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column42" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column43" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column44" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column45" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column46" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column47" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column48" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column49" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column50" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column51" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column52" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column53" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column54" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column55" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column56" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column57" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column58" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column59" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column60" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column61" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column62" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column63" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column64" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column65" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column66" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column67" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column68" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column69" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column70" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column71" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column72" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column73" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column74" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column75" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column76" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column77" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column78" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column79" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column80" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column81" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column82" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column83" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column84" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column85" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column86" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column87" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column88" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column89" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column90" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column91" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column92" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column93" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column94" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column95" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column96" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column97" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column98" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column99" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column100" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column101" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column102" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column103" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column104" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column105" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column106" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column107" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column108" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column109" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column110" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column111" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column112" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column113" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column114" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column115" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column116" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column117" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column118" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column119" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column120" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column121" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="T_Datas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="DataTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OutdoorTemp" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterTemp1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterTemp2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BackWaterTemp1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BackWaterTemp2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FixWaterTemp1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FixWaterTemp2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Valve1" Type="Int32" />
+          <Property Name="Valve2" Type="Int32" />
+          <Property Name="WirelessStatus" Type="Int32" Nullable="false" />
+          <Property Name="WorkStatus" Type="Int32" Nullable="false" />
+          <Property Name="WaterNetStatus1" Type="Int32" />
+          <Property Name="WaterNetStatus2" Type="Int32" />
+          <Property Name="Data27" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Data28" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Data29" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Data30" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="T_Devices" Relationship="Self.FK_dbo_T_Datas_dbo_T_Devices_DeviceId" FromRole="T_Datas" ToRole="T_Devices" />
+        </EntityType>
+        <EntityType Name="T_DeviceCurveLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Column1" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column2" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column3" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column4" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column5" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column6" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column7" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column8" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column9" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column10" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column11" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column12" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column13" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column14" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column15" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column16" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column17" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column18" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column19" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column20" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column21" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column22" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column23" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column24" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column25" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column26" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column27" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column28" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column29" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column30" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column31" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column32" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column33" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column34" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column35" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column36" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column37" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column38" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column39" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column40" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column41" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column42" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column43" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column44" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column45" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column46" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column47" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column48" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column49" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column50" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column51" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column52" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column53" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column54" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column55" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column56" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column57" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column58" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column59" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column60" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column61" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column62" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column63" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column64" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column65" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column66" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column67" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column68" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column69" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column70" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column71" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column72" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column73" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column74" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column75" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column76" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column77" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column78" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column79" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column80" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column81" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column82" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column83" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column84" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column85" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column86" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column87" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column88" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column89" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column90" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column91" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column92" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column93" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column94" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column95" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column96" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column97" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column98" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column99" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column100" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column101" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column102" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column103" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column104" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column105" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column106" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column107" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column108" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column109" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column110" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column111" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column112" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column113" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column114" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column115" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column116" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column117" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column118" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column119" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column120" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Column121" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="T_Devices" Relationship="Self.FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId" FromRole="T_DeviceCurveLibrary" ToRole="T_Devices" />
+        </EntityType>
+        <EntityType Name="T_DeviceMaintenances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="MaintenanceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="T_Devices" Relationship="Self.FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId" FromRole="T_DeviceMaintenances" ToRole="T_Devices" />
+        </EntityType>
+        <EntityType Name="T_Devices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="CtrlMode" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="InstallTime" Type="DateTime" Precision="3" />
+          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkMode" Type="Int32" />
+          <Property Name="SaveInterval" Type="Int32" />
+          <Property Name="CtrlNumber" Type="Int32" />
+          <Property Name="IsInited" Type="Boolean" Nullable="false" />
+          <Property Name="OutdoorFix" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterFix1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SupplyWaterFix2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BackFix1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BackFix2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FixWater1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FixWater2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsOnline" Type="Boolean" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="6" />
+          <NavigationProperty Name="T_Areas" Relationship="Self.FK_dbo_T_Devices_dbo_T_Areas_AreaId" FromRole="T_Devices" ToRole="T_Areas" />
+          <NavigationProperty Name="T_Datas" Relationship="Self.FK_dbo_T_Datas_dbo_T_Devices_DeviceId" FromRole="T_Devices" ToRole="T_Datas" />
+          <NavigationProperty Name="T_DeviceCurveLibrary" Relationship="Self.FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId" FromRole="T_Devices" ToRole="T_DeviceCurveLibrary" />
+          <NavigationProperty Name="T_DeviceMaintenances" Relationship="Self.FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId" FromRole="T_Devices" ToRole="T_DeviceMaintenances" />
+          <NavigationProperty Name="T_History" Relationship="Self.FK_dbo_T_History_dbo_T_Devices_DeviceId" FromRole="T_Devices" ToRole="T_History" />
+        </EntityType>
+        <EntityType Name="T_History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="HistoryType" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RowNumber" Type="Int32" Nullable="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="T_Devices" Relationship="Self.FK_dbo_T_History_dbo_T_Devices_DeviceId" FromRole="T_History" ToRole="T_Devices" />
+        </EntityType>
+        <EntityType Name="T_SysSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SettingCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SettingValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="T_TimeSpanSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="TimeSpanID" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurveCode" Type="Int32" Nullable="false" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="T_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="PwdErrorCount" Type="Int32" Nullable="false" />
+          <Property Name="LoginCount" Type="Int32" Nullable="false" />
+          <Property Name="RegisterTime" Type="DateTime" Precision="3" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifyId" Type="Int32" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Authen_UserArea" Relationship="Self.FK_dbo_Authen_UserArea_dbo_T_Users_UserId" FromRole="T_Users" ToRole="Authen_UserArea" />
+          <NavigationProperty Name="Authen_UserRole" Relationship="Self.FK_dbo_Authen_UserRole_dbo_T_Users_UserId" FromRole="T_Users" ToRole="Authen_UserRole" />
+          <NavigationProperty Name="SysConfig_OperateLog" Relationship="Self.FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId" FromRole="T_Users" ToRole="SysConfig_OperateLog" />
+        </EntityType>
+        <Association Name="FK_dbo_Auth_Module_dbo_Auth_Module_ParentId">
+          <End Role="Auth_Module" Type="Self.Auth_Module" Multiplicity="0..1" />
+          <End Role="Auth_Module1" Type="Self.Auth_Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_Module1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId">
+          <End Role="Auth_Module" Type="Self.Auth_Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_ModulePermission" Type="Self.Auth_ModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_ModulePermission">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId">
+          <End Role="Auth_Module" Type="Self.Auth_Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleModulePermission" Type="Self.Auth_RoleModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleModulePermission">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId">
+          <End Role="Auth_Permission" Type="Self.Auth_Permission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_ModulePermission" Type="Self.Auth_ModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_ModulePermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId">
+          <End Role="Auth_Permission" Type="Self.Auth_Permission" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleModulePermission" Type="Self.Auth_RoleModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleModulePermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId">
+          <End Role="Auth_Role" Type="Self.Auth_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Auth_RoleModulePermission" Type="Self.Auth_RoleModulePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Auth_RoleModulePermission">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId">
+          <End Role="Auth_Role" Type="Self.Auth_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserRole" Type="Self.Authen_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId">
+          <End Role="T_Areas" Type="Self.T_Areas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserArea" Type="Self.Authen_UserArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserArea">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserArea_dbo_T_Users_UserId">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserArea" Type="Self.Authen_UserArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserArea">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Authen_UserRole_dbo_T_Users_UserId">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authen_UserRole" Type="Self.Authen_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authen_UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId">
+          <End Role="T_Users" Type="Self.T_Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysConfig_OperateLog" Type="Self.SysConfig_OperateLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysConfig_OperateLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_Areas_dbo_T_Areas_ParentId">
+          <End Role="T_Areas" Type="Self.T_Areas" Multiplicity="0..1" />
+          <End Role="T_Areas1" Type="Self.T_Areas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_Areas1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_Devices_dbo_T_Areas_AreaId">
+          <End Role="T_Areas" Type="Self.T_Areas" Multiplicity="0..1" />
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_Devices">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_Datas_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_Datas" Type="Self.T_Datas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_Datas">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_DeviceCurveLibrary" Type="Self.T_DeviceCurveLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_DeviceCurveLibrary">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_DeviceMaintenances" Type="Self.T_DeviceMaintenances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_DeviceMaintenances">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_T_History_dbo_T_Devices_DeviceId">
+          <End Role="T_Devices" Type="Self.T_Devices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_History" Type="Self.T_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Devices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="T_History">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IEDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auth_Module" EntityType="Self.Auth_Module" />
+          <EntitySet Name="Auth_ModulePermission" EntityType="Self.Auth_ModulePermission" />
+          <EntitySet Name="Auth_Permission" EntityType="Self.Auth_Permission" />
+          <EntitySet Name="Auth_Role" EntityType="Self.Auth_Role" />
+          <EntitySet Name="Auth_RoleModulePermission" EntityType="Self.Auth_RoleModulePermission" />
+          <EntitySet Name="Authen_UserArea" EntityType="Self.Authen_UserArea" />
+          <EntitySet Name="Authen_UserRole" EntityType="Self.Authen_UserRole" />
+          <EntitySet Name="SysConfig_OperateLog" EntityType="Self.SysConfig_OperateLog" />
+          <EntitySet Name="T_Areas" EntityType="Self.T_Areas" />
+          <EntitySet Name="T_CurveLibrary" EntityType="Self.T_CurveLibrary" />
+          <EntitySet Name="T_Datas" EntityType="Self.T_Datas" />
+          <EntitySet Name="T_DeviceCurveLibrary" EntityType="Self.T_DeviceCurveLibrary" />
+          <EntitySet Name="T_DeviceMaintenances" EntityType="Self.T_DeviceMaintenances" />
+          <EntitySet Name="T_Devices" EntityType="Self.T_Devices" />
+          <EntitySet Name="T_History" EntityType="Self.T_History" />
+          <EntitySet Name="T_SysSettings" EntityType="Self.T_SysSettings" />
+          <EntitySet Name="T_TimeSpanSettings" EntityType="Self.T_TimeSpanSettings" />
+          <EntitySet Name="T_Users" EntityType="Self.T_Users" />
+          <AssociationSet Name="FK_dbo_Auth_Module_dbo_Auth_Module_ParentId" Association="Self.FK_dbo_Auth_Module_dbo_Auth_Module_ParentId">
+            <End Role="Auth_Module" EntitySet="Auth_Module" />
+            <End Role="Auth_Module1" EntitySet="Auth_Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId" Association="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Module_ModuleId">
+            <End Role="Auth_Module" EntitySet="Auth_Module" />
+            <End Role="Auth_ModulePermission" EntitySet="Auth_ModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId" Association="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Module_ModuleId">
+            <End Role="Auth_Module" EntitySet="Auth_Module" />
+            <End Role="Auth_RoleModulePermission" EntitySet="Auth_RoleModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId" Association="Self.FK_dbo_Auth_ModulePermission_dbo_Auth_Permission_PermissionId">
+            <End Role="Auth_Permission" EntitySet="Auth_Permission" />
+            <End Role="Auth_ModulePermission" EntitySet="Auth_ModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId" Association="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Permission_PermissionId">
+            <End Role="Auth_Permission" EntitySet="Auth_Permission" />
+            <End Role="Auth_RoleModulePermission" EntitySet="Auth_RoleModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId" Association="Self.FK_dbo_Auth_RoleModulePermission_dbo_Auth_Role_RoleId">
+            <End Role="Auth_Role" EntitySet="Auth_Role" />
+            <End Role="Auth_RoleModulePermission" EntitySet="Auth_RoleModulePermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId" Association="Self.FK_dbo_Authen_UserRole_dbo_Auth_Role_RoleId">
+            <End Role="Auth_Role" EntitySet="Auth_Role" />
+            <End Role="Authen_UserRole" EntitySet="Authen_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId" Association="Self.FK_dbo_Authen_UserArea_dbo_T_Areas_AreaId">
+            <End Role="T_Areas" EntitySet="T_Areas" />
+            <End Role="Authen_UserArea" EntitySet="Authen_UserArea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserArea_dbo_T_Users_UserId" Association="Self.FK_dbo_Authen_UserArea_dbo_T_Users_UserId">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="Authen_UserArea" EntitySet="Authen_UserArea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Authen_UserRole_dbo_T_Users_UserId" Association="Self.FK_dbo_Authen_UserRole_dbo_T_Users_UserId">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="Authen_UserRole" EntitySet="Authen_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId" Association="Self.FK_dbo_SysConfig_OperateLog_dbo_T_Users_UserId">
+            <End Role="T_Users" EntitySet="T_Users" />
+            <End Role="SysConfig_OperateLog" EntitySet="SysConfig_OperateLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_Areas_dbo_T_Areas_ParentId" Association="Self.FK_dbo_T_Areas_dbo_T_Areas_ParentId">
+            <End Role="T_Areas" EntitySet="T_Areas" />
+            <End Role="T_Areas1" EntitySet="T_Areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_Devices_dbo_T_Areas_AreaId" Association="Self.FK_dbo_T_Devices_dbo_T_Areas_AreaId">
+            <End Role="T_Areas" EntitySet="T_Areas" />
+            <End Role="T_Devices" EntitySet="T_Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_Datas_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_Datas_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_Datas" EntitySet="T_Datas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_DeviceCurveLibrary_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_DeviceCurveLibrary" EntitySet="T_DeviceCurveLibrary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_DeviceMaintenances_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_DeviceMaintenances" EntitySet="T_DeviceMaintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_T_History_dbo_T_Devices_DeviceId" Association="Self.FK_dbo_T_History_dbo_T_Devices_DeviceId">
+            <End Role="T_Devices" EntitySet="T_Devices" />
+            <End Role="T_History" EntitySet="T_History" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IEHNCS_DBModelStoreContainer" CdmEntityContainer="IEDBContext">
+          <EntitySetMapping Name="Auth_Module">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Auth_Module">
+              <MappingFragment StoreEntitySet="Auth_Module">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="OrderSort" ColumnName="OrderSort" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_ModulePermission">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Auth_ModulePermission">
+              <MappingFragment StoreEntitySet="Auth_ModulePermission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_Permission">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Auth_Permission">
+              <MappingFragment StoreEntitySet="Auth_Permission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_Role">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Auth_Role">
+              <MappingFragment StoreEntitySet="Auth_Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderSort" ColumnName="OrderSort" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auth_RoleModulePermission">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Auth_RoleModulePermission">
+              <MappingFragment StoreEntitySet="Auth_RoleModulePermission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authen_UserArea">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Authen_UserArea">
+              <MappingFragment StoreEntitySet="Authen_UserArea">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authen_UserRole">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.Authen_UserRole">
+              <MappingFragment StoreEntitySet="Authen_UserRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysConfig_OperateLog">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.SysConfig_OperateLog">
+              <MappingFragment StoreEntitySet="SysConfig_OperateLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Areas">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_Areas">
+              <MappingFragment StoreEntitySet="T_Areas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsLeaf" ColumnName="IsLeaf" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_CurveLibrary">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_CurveLibrary">
+              <MappingFragment StoreEntitySet="T_CurveLibrary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+                <ScalarProperty Name="Column3" ColumnName="Column3" />
+                <ScalarProperty Name="Column4" ColumnName="Column4" />
+                <ScalarProperty Name="Column5" ColumnName="Column5" />
+                <ScalarProperty Name="Column6" ColumnName="Column6" />
+                <ScalarProperty Name="Column7" ColumnName="Column7" />
+                <ScalarProperty Name="Column8" ColumnName="Column8" />
+                <ScalarProperty Name="Column9" ColumnName="Column9" />
+                <ScalarProperty Name="Column10" ColumnName="Column10" />
+                <ScalarProperty Name="Column11" ColumnName="Column11" />
+                <ScalarProperty Name="Column12" ColumnName="Column12" />
+                <ScalarProperty Name="Column13" ColumnName="Column13" />
+                <ScalarProperty Name="Column14" ColumnName="Column14" />
+                <ScalarProperty Name="Column15" ColumnName="Column15" />
+                <ScalarProperty Name="Column16" ColumnName="Column16" />
+                <ScalarProperty Name="Column17" ColumnName="Column17" />
+                <ScalarProperty Name="Column18" ColumnName="Column18" />
+                <ScalarProperty Name="Column19" ColumnName="Column19" />
+                <ScalarProperty Name="Column20" ColumnName="Column20" />
+                <ScalarProperty Name="Column21" ColumnName="Column21" />
+                <ScalarProperty Name="Column22" ColumnName="Column22" />
+                <ScalarProperty Name="Column23" ColumnName="Column23" />
+                <ScalarProperty Name="Column24" ColumnName="Column24" />
+                <ScalarProperty Name="Column25" ColumnName="Column25" />
+                <ScalarProperty Name="Column26" ColumnName="Column26" />
+                <ScalarProperty Name="Column27" ColumnName="Column27" />
+                <ScalarProperty Name="Column28" ColumnName="Column28" />
+                <ScalarProperty Name="Column29" ColumnName="Column29" />
+                <ScalarProperty Name="Column30" ColumnName="Column30" />
+                <ScalarProperty Name="Column31" ColumnName="Column31" />
+                <ScalarProperty Name="Column32" ColumnName="Column32" />
+                <ScalarProperty Name="Column33" ColumnName="Column33" />
+                <ScalarProperty Name="Column34" ColumnName="Column34" />
+                <ScalarProperty Name="Column35" ColumnName="Column35" />
+                <ScalarProperty Name="Column36" ColumnName="Column36" />
+                <ScalarProperty Name="Column37" ColumnName="Column37" />
+                <ScalarProperty Name="Column38" ColumnName="Column38" />
+                <ScalarProperty Name="Column39" ColumnName="Column39" />
+                <ScalarProperty Name="Column40" ColumnName="Column40" />
+                <ScalarProperty Name="Column41" ColumnName="Column41" />
+                <ScalarProperty Name="Column42" ColumnName="Column42" />
+                <ScalarProperty Name="Column43" ColumnName="Column43" />
+                <ScalarProperty Name="Column44" ColumnName="Column44" />
+                <ScalarProperty Name="Column45" ColumnName="Column45" />
+                <ScalarProperty Name="Column46" ColumnName="Column46" />
+                <ScalarProperty Name="Column47" ColumnName="Column47" />
+                <ScalarProperty Name="Column48" ColumnName="Column48" />
+                <ScalarProperty Name="Column49" ColumnName="Column49" />
+                <ScalarProperty Name="Column50" ColumnName="Column50" />
+                <ScalarProperty Name="Column51" ColumnName="Column51" />
+                <ScalarProperty Name="Column52" ColumnName="Column52" />
+                <ScalarProperty Name="Column53" ColumnName="Column53" />
+                <ScalarProperty Name="Column54" ColumnName="Column54" />
+                <ScalarProperty Name="Column55" ColumnName="Column55" />
+                <ScalarProperty Name="Column56" ColumnName="Column56" />
+                <ScalarProperty Name="Column57" ColumnName="Column57" />
+                <ScalarProperty Name="Column58" ColumnName="Column58" />
+                <ScalarProperty Name="Column59" ColumnName="Column59" />
+                <ScalarProperty Name="Column60" ColumnName="Column60" />
+                <ScalarProperty Name="Column61" ColumnName="Column61" />
+                <ScalarProperty Name="Column62" ColumnName="Column62" />
+                <ScalarProperty Name="Column63" ColumnName="Column63" />
+                <ScalarProperty Name="Column64" ColumnName="Column64" />
+                <ScalarProperty Name="Column65" ColumnName="Column65" />
+                <ScalarProperty Name="Column66" ColumnName="Column66" />
+                <ScalarProperty Name="Column67" ColumnName="Column67" />
+                <ScalarProperty Name="Column68" ColumnName="Column68" />
+                <ScalarProperty Name="Column69" ColumnName="Column69" />
+                <ScalarProperty Name="Column70" ColumnName="Column70" />
+                <ScalarProperty Name="Column71" ColumnName="Column71" />
+                <ScalarProperty Name="Column72" ColumnName="Column72" />
+                <ScalarProperty Name="Column73" ColumnName="Column73" />
+                <ScalarProperty Name="Column74" ColumnName="Column74" />
+                <ScalarProperty Name="Column75" ColumnName="Column75" />
+                <ScalarProperty Name="Column76" ColumnName="Column76" />
+                <ScalarProperty Name="Column77" ColumnName="Column77" />
+                <ScalarProperty Name="Column78" ColumnName="Column78" />
+                <ScalarProperty Name="Column79" ColumnName="Column79" />
+                <ScalarProperty Name="Column80" ColumnName="Column80" />
+                <ScalarProperty Name="Column81" ColumnName="Column81" />
+                <ScalarProperty Name="Column82" ColumnName="Column82" />
+                <ScalarProperty Name="Column83" ColumnName="Column83" />
+                <ScalarProperty Name="Column84" ColumnName="Column84" />
+                <ScalarProperty Name="Column85" ColumnName="Column85" />
+                <ScalarProperty Name="Column86" ColumnName="Column86" />
+                <ScalarProperty Name="Column87" ColumnName="Column87" />
+                <ScalarProperty Name="Column88" ColumnName="Column88" />
+                <ScalarProperty Name="Column89" ColumnName="Column89" />
+                <ScalarProperty Name="Column90" ColumnName="Column90" />
+                <ScalarProperty Name="Column91" ColumnName="Column91" />
+                <ScalarProperty Name="Column92" ColumnName="Column92" />
+                <ScalarProperty Name="Column93" ColumnName="Column93" />
+                <ScalarProperty Name="Column94" ColumnName="Column94" />
+                <ScalarProperty Name="Column95" ColumnName="Column95" />
+                <ScalarProperty Name="Column96" ColumnName="Column96" />
+                <ScalarProperty Name="Column97" ColumnName="Column97" />
+                <ScalarProperty Name="Column98" ColumnName="Column98" />
+                <ScalarProperty Name="Column99" ColumnName="Column99" />
+                <ScalarProperty Name="Column100" ColumnName="Column100" />
+                <ScalarProperty Name="Column101" ColumnName="Column101" />
+                <ScalarProperty Name="Column102" ColumnName="Column102" />
+                <ScalarProperty Name="Column103" ColumnName="Column103" />
+                <ScalarProperty Name="Column104" ColumnName="Column104" />
+                <ScalarProperty Name="Column105" ColumnName="Column105" />
+                <ScalarProperty Name="Column106" ColumnName="Column106" />
+                <ScalarProperty Name="Column107" ColumnName="Column107" />
+                <ScalarProperty Name="Column108" ColumnName="Column108" />
+                <ScalarProperty Name="Column109" ColumnName="Column109" />
+                <ScalarProperty Name="Column110" ColumnName="Column110" />
+                <ScalarProperty Name="Column111" ColumnName="Column111" />
+                <ScalarProperty Name="Column112" ColumnName="Column112" />
+                <ScalarProperty Name="Column113" ColumnName="Column113" />
+                <ScalarProperty Name="Column114" ColumnName="Column114" />
+                <ScalarProperty Name="Column115" ColumnName="Column115" />
+                <ScalarProperty Name="Column116" ColumnName="Column116" />
+                <ScalarProperty Name="Column117" ColumnName="Column117" />
+                <ScalarProperty Name="Column118" ColumnName="Column118" />
+                <ScalarProperty Name="Column119" ColumnName="Column119" />
+                <ScalarProperty Name="Column120" ColumnName="Column120" />
+                <ScalarProperty Name="Column121" ColumnName="Column121" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Datas">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_Datas">
+              <MappingFragment StoreEntitySet="T_Datas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="DataTime" ColumnName="DataTime" />
+                <ScalarProperty Name="OutdoorTemp" ColumnName="OutdoorTemp" />
+                <ScalarProperty Name="SupplyWaterTemp1" ColumnName="SupplyWaterTemp1" />
+                <ScalarProperty Name="SupplyWaterTemp2" ColumnName="SupplyWaterTemp2" />
+                <ScalarProperty Name="BackWaterTemp1" ColumnName="BackWaterTemp1" />
+                <ScalarProperty Name="BackWaterTemp2" ColumnName="BackWaterTemp2" />
+                <ScalarProperty Name="FixWaterTemp1" ColumnName="FixWaterTemp1" />
+                <ScalarProperty Name="FixWaterTemp2" ColumnName="FixWaterTemp2" />
+                <ScalarProperty Name="Valve1" ColumnName="Valve1" />
+                <ScalarProperty Name="Valve2" ColumnName="Valve2" />
+                <ScalarProperty Name="WirelessStatus" ColumnName="WirelessStatus" />
+                <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
+                <ScalarProperty Name="WaterNetStatus1" ColumnName="WaterNetStatus1" />
+                <ScalarProperty Name="WaterNetStatus2" ColumnName="WaterNetStatus2" />
+                <ScalarProperty Name="Data27" ColumnName="Data27" />
+                <ScalarProperty Name="Data28" ColumnName="Data28" />
+                <ScalarProperty Name="Data29" ColumnName="Data29" />
+                <ScalarProperty Name="Data30" ColumnName="Data30" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DeviceCurveLibrary">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_DeviceCurveLibrary">
+              <MappingFragment StoreEntitySet="T_DeviceCurveLibrary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+                <ScalarProperty Name="Column3" ColumnName="Column3" />
+                <ScalarProperty Name="Column4" ColumnName="Column4" />
+                <ScalarProperty Name="Column5" ColumnName="Column5" />
+                <ScalarProperty Name="Column6" ColumnName="Column6" />
+                <ScalarProperty Name="Column7" ColumnName="Column7" />
+                <ScalarProperty Name="Column8" ColumnName="Column8" />
+                <ScalarProperty Name="Column9" ColumnName="Column9" />
+                <ScalarProperty Name="Column10" ColumnName="Column10" />
+                <ScalarProperty Name="Column11" ColumnName="Column11" />
+                <ScalarProperty Name="Column12" ColumnName="Column12" />
+                <ScalarProperty Name="Column13" ColumnName="Column13" />
+                <ScalarProperty Name="Column14" ColumnName="Column14" />
+                <ScalarProperty Name="Column15" ColumnName="Column15" />
+                <ScalarProperty Name="Column16" ColumnName="Column16" />
+                <ScalarProperty Name="Column17" ColumnName="Column17" />
+                <ScalarProperty Name="Column18" ColumnName="Column18" />
+                <ScalarProperty Name="Column19" ColumnName="Column19" />
+                <ScalarProperty Name="Column20" ColumnName="Column20" />
+                <ScalarProperty Name="Column21" ColumnName="Column21" />
+                <ScalarProperty Name="Column22" ColumnName="Column22" />
+                <ScalarProperty Name="Column23" ColumnName="Column23" />
+                <ScalarProperty Name="Column24" ColumnName="Column24" />
+                <ScalarProperty Name="Column25" ColumnName="Column25" />
+                <ScalarProperty Name="Column26" ColumnName="Column26" />
+                <ScalarProperty Name="Column27" ColumnName="Column27" />
+                <ScalarProperty Name="Column28" ColumnName="Column28" />
+                <ScalarProperty Name="Column29" ColumnName="Column29" />
+                <ScalarProperty Name="Column30" ColumnName="Column30" />
+                <ScalarProperty Name="Column31" ColumnName="Column31" />
+                <ScalarProperty Name="Column32" ColumnName="Column32" />
+                <ScalarProperty Name="Column33" ColumnName="Column33" />
+                <ScalarProperty Name="Column34" ColumnName="Column34" />
+                <ScalarProperty Name="Column35" ColumnName="Column35" />
+                <ScalarProperty Name="Column36" ColumnName="Column36" />
+                <ScalarProperty Name="Column37" ColumnName="Column37" />
+                <ScalarProperty Name="Column38" ColumnName="Column38" />
+                <ScalarProperty Name="Column39" ColumnName="Column39" />
+                <ScalarProperty Name="Column40" ColumnName="Column40" />
+                <ScalarProperty Name="Column41" ColumnName="Column41" />
+                <ScalarProperty Name="Column42" ColumnName="Column42" />
+                <ScalarProperty Name="Column43" ColumnName="Column43" />
+                <ScalarProperty Name="Column44" ColumnName="Column44" />
+                <ScalarProperty Name="Column45" ColumnName="Column45" />
+                <ScalarProperty Name="Column46" ColumnName="Column46" />
+                <ScalarProperty Name="Column47" ColumnName="Column47" />
+                <ScalarProperty Name="Column48" ColumnName="Column48" />
+                <ScalarProperty Name="Column49" ColumnName="Column49" />
+                <ScalarProperty Name="Column50" ColumnName="Column50" />
+                <ScalarProperty Name="Column51" ColumnName="Column51" />
+                <ScalarProperty Name="Column52" ColumnName="Column52" />
+                <ScalarProperty Name="Column53" ColumnName="Column53" />
+                <ScalarProperty Name="Column54" ColumnName="Column54" />
+                <ScalarProperty Name="Column55" ColumnName="Column55" />
+                <ScalarProperty Name="Column56" ColumnName="Column56" />
+                <ScalarProperty Name="Column57" ColumnName="Column57" />
+                <ScalarProperty Name="Column58" ColumnName="Column58" />
+                <ScalarProperty Name="Column59" ColumnName="Column59" />
+                <ScalarProperty Name="Column60" ColumnName="Column60" />
+                <ScalarProperty Name="Column61" ColumnName="Column61" />
+                <ScalarProperty Name="Column62" ColumnName="Column62" />
+                <ScalarProperty Name="Column63" ColumnName="Column63" />
+                <ScalarProperty Name="Column64" ColumnName="Column64" />
+                <ScalarProperty Name="Column65" ColumnName="Column65" />
+                <ScalarProperty Name="Column66" ColumnName="Column66" />
+                <ScalarProperty Name="Column67" ColumnName="Column67" />
+                <ScalarProperty Name="Column68" ColumnName="Column68" />
+                <ScalarProperty Name="Column69" ColumnName="Column69" />
+                <ScalarProperty Name="Column70" ColumnName="Column70" />
+                <ScalarProperty Name="Column71" ColumnName="Column71" />
+                <ScalarProperty Name="Column72" ColumnName="Column72" />
+                <ScalarProperty Name="Column73" ColumnName="Column73" />
+                <ScalarProperty Name="Column74" ColumnName="Column74" />
+                <ScalarProperty Name="Column75" ColumnName="Column75" />
+                <ScalarProperty Name="Column76" ColumnName="Column76" />
+                <ScalarProperty Name="Column77" ColumnName="Column77" />
+                <ScalarProperty Name="Column78" ColumnName="Column78" />
+                <ScalarProperty Name="Column79" ColumnName="Column79" />
+                <ScalarProperty Name="Column80" ColumnName="Column80" />
+                <ScalarProperty Name="Column81" ColumnName="Column81" />
+                <ScalarProperty Name="Column82" ColumnName="Column82" />
+                <ScalarProperty Name="Column83" ColumnName="Column83" />
+                <ScalarProperty Name="Column84" ColumnName="Column84" />
+                <ScalarProperty Name="Column85" ColumnName="Column85" />
+                <ScalarProperty Name="Column86" ColumnName="Column86" />
+                <ScalarProperty Name="Column87" ColumnName="Column87" />
+                <ScalarProperty Name="Column88" ColumnName="Column88" />
+                <ScalarProperty Name="Column89" ColumnName="Column89" />
+                <ScalarProperty Name="Column90" ColumnName="Column90" />
+                <ScalarProperty Name="Column91" ColumnName="Column91" />
+                <ScalarProperty Name="Column92" ColumnName="Column92" />
+                <ScalarProperty Name="Column93" ColumnName="Column93" />
+                <ScalarProperty Name="Column94" ColumnName="Column94" />
+                <ScalarProperty Name="Column95" ColumnName="Column95" />
+                <ScalarProperty Name="Column96" ColumnName="Column96" />
+                <ScalarProperty Name="Column97" ColumnName="Column97" />
+                <ScalarProperty Name="Column98" ColumnName="Column98" />
+                <ScalarProperty Name="Column99" ColumnName="Column99" />
+                <ScalarProperty Name="Column100" ColumnName="Column100" />
+                <ScalarProperty Name="Column101" ColumnName="Column101" />
+                <ScalarProperty Name="Column102" ColumnName="Column102" />
+                <ScalarProperty Name="Column103" ColumnName="Column103" />
+                <ScalarProperty Name="Column104" ColumnName="Column104" />
+                <ScalarProperty Name="Column105" ColumnName="Column105" />
+                <ScalarProperty Name="Column106" ColumnName="Column106" />
+                <ScalarProperty Name="Column107" ColumnName="Column107" />
+                <ScalarProperty Name="Column108" ColumnName="Column108" />
+                <ScalarProperty Name="Column109" ColumnName="Column109" />
+                <ScalarProperty Name="Column110" ColumnName="Column110" />
+                <ScalarProperty Name="Column111" ColumnName="Column111" />
+                <ScalarProperty Name="Column112" ColumnName="Column112" />
+                <ScalarProperty Name="Column113" ColumnName="Column113" />
+                <ScalarProperty Name="Column114" ColumnName="Column114" />
+                <ScalarProperty Name="Column115" ColumnName="Column115" />
+                <ScalarProperty Name="Column116" ColumnName="Column116" />
+                <ScalarProperty Name="Column117" ColumnName="Column117" />
+                <ScalarProperty Name="Column118" ColumnName="Column118" />
+                <ScalarProperty Name="Column119" ColumnName="Column119" />
+                <ScalarProperty Name="Column120" ColumnName="Column120" />
+                <ScalarProperty Name="Column121" ColumnName="Column121" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DeviceMaintenances">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_DeviceMaintenances">
+              <MappingFragment StoreEntitySet="T_DeviceMaintenances">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Devices">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_Devices">
+              <MappingFragment StoreEntitySet="T_Devices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceCode" ColumnName="DeviceCode" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="CtrlMode" ColumnName="CtrlMode" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="InstallTime" ColumnName="InstallTime" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="WorkMode" ColumnName="WorkMode" />
+                <ScalarProperty Name="SaveInterval" ColumnName="SaveInterval" />
+                <ScalarProperty Name="CtrlNumber" ColumnName="CtrlNumber" />
+                <ScalarProperty Name="IsInited" ColumnName="IsInited" />
+                <ScalarProperty Name="OutdoorFix" ColumnName="OutdoorFix" />
+                <ScalarProperty Name="SupplyWaterFix1" ColumnName="SupplyWaterFix1" />
+                <ScalarProperty Name="SupplyWaterFix2" ColumnName="SupplyWaterFix2" />
+                <ScalarProperty Name="BackFix1" ColumnName="BackFix1" />
+                <ScalarProperty Name="BackFix2" ColumnName="BackFix2" />
+                <ScalarProperty Name="FixWater1" ColumnName="FixWater1" />
+                <ScalarProperty Name="FixWater2" ColumnName="FixWater2" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_History">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_History">
+              <MappingFragment StoreEntitySet="T_History">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="HistoryType" ColumnName="HistoryType" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SysSettings">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_SysSettings">
+              <MappingFragment StoreEntitySet="T_SysSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SettingCode" ColumnName="SettingCode" />
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_TimeSpanSettings">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_TimeSpanSettings">
+              <MappingFragment StoreEntitySet="T_TimeSpanSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="TimeSpanID" ColumnName="TimeSpanID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="CurveCode" ColumnName="CurveCode" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Users">
+            <EntityTypeMapping TypeName="IEHNCS_DBModel.T_Users">
+              <MappingFragment StoreEntitySet="T_Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="LoginPwd" ColumnName="LoginPwd" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="PwdErrorCount" ColumnName="PwdErrorCount" />
+                <ScalarProperty Name="LoginCount" ColumnName="LoginCount" />
+                <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="ModifyId" ColumnName="ModifyId" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

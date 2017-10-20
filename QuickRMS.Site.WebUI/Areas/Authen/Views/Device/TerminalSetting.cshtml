@@ -1,0 +1,251 @@
+﻿@{
+    ViewBag.Title = ViewBag.CurrentTitle + "";
+
+}
+@section css{
+    @Styles.Render("~/bundles/css/jqueryui")
+}
+
+<div id="content-body" class="row">
+    <div class="col-lg-3">
+        @Html.Partial("_AreaDeviceTree")
+
+    </div>
+    <div class="col-lg-9">
+        <div>
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-list"></i></span>
+                    <h5>终端维护</h5>
+                </div>
+                <div class="widget-content">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#lsjl" aria-controls="lsjl" role="tab" data-toggle="tab">历史记录</a></li>
+                        <li role="presentation"><a href="#zdgzwh" aria-controls="zdgzwh" role="tab" data-toggle="tab">终端故障维护</a></li>
+                        <li role="presentation"><a href="#qxkwh" aria-controls="qxkwh" role="tab" data-toggle="tab">曲线库维护</a></li>
+
+                    </ul>
+
+
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active" id="lsjl">
+                            <div class="row">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label>类型：</label>
+                                        <select class="form-control" id="cmbHistoryType">
+                                            <option value="-1">-请选择-</option>
+                                            <option value="0">正常记录</option>
+                                            <option value="1">参数修改记录</option>
+                                            <option value="2">模式曲线修改记录</option>
+                                            <option value="3">温度曲线修改记录</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>记录号：</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="button" id="btnUpdateHistory" class="btn btn-primary" disabled="disabled" value="更新" />
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <fieldset class="contentArea">
+                                        <legend>历史记录</legend>
+                                        <table id="historyList" class="table table-bordered table-hover response-table">
+                                            <thead>
+                                                <tr>
+                                                    <td>行号</td>
+                                                    <td>记录类型</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-6" id="infocontainer1">
+                                    <fieldset class="contentArea">
+                                        <legend>详细信息</legend>
+                                        <div id="showinfo1"></div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane " id="zdgzwh">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <fieldset class="contentArea">
+                                        <legend>历史信息</legend>
+                                        <table id="historyInfo" class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <td>维护时间</td>
+                                                <td>备注</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                            </tbody>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-6">
+                                    <fieldset class="contentArea">
+                                        <legend>详细信息</legend>
+                                        <form>
+                                            <div class="form-group">
+                                                <label class="control-label">维护时间:</label>
+                                                <input class="form-control hasDatepicker" data-type="datepicker">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">备注:</label>
+                                                <textarea class="form-control"></textarea>
+
+                                            </div>
+                                        </form>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-lg-6">
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="btn btn-default" type="button" value="导出">
+                                    <input class="btn btn-default" type="button" value="添加">
+                                    <input class="btn btn-default" type="button" value="编辑">
+                                    <input class="btn btn-default" type="button" value="删除">
+                                    <input class="btn btn-default" type="button" value="保存">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane contentArea" id="qxkwh">
+                            <div class="row" id="dcl" style="overflow: auto;"></div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-lg-6">
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="btn btn-default" type="button" value="导入">
+                                    <input class="btn btn-default" type="button" value="导出Excel">
+                                    <input class="btn btn-default" type="button" value="添加">
+                                    <input class="btn btn-default" type="button" value="编辑">
+                                    <input class="btn btn-default" type="button" value="删除">
+                                    <input class="btn btn-default" type="button" value="保存">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+
+     
+    </div>
+</div>
+    @section scripts{
+        <script type="text/javascript">
+            var currentdNode;
+            Qrms.updatePageData = function (node) {
+                currentdNode = node;
+                if (node.deviceCode) {
+                    enableButton("btnUpdateHistory");
+                } else {
+                    disableButton("btnUpdateHistory");
+                }
+            };
+
+    $("#cmbHistoryType").on("change", function () {
+        if (!currentdNode)return;
+       
+        var id = currentdNode.id;
+        var type = $(this).find("option:selected").val();
+
+        if (!id || type == -1) {
+
+            $("#showinfo1").html("");
+            $("#historyList tbody").empty();
+            return;
+        }
+        $.isLoading({ text: "正在获取数据..." });
+        var dataUrl = "@Url.Action("GetDeviceHistories", "BaseDataApi")?rand=" + Math.random();
+                AjaxGet(dataUrl, { id: id,type:type }, function(res) {
+                    $.isLoading("hide");
+                    var data = res || [];
+                    console.log(data);
+                    $("#historyList tbody").empty();
+
+                    for (var i = 0; i < data.length; i++) {
+                        var ele = data[i];
+                        var opt = "<tr onclick='onShowInfo("+ele.Id+")'>";
+                        opt += "<td>" + ele.RowNumber + "</td>";
+                        opt += "<td>" + ele.HistoryTypeName + "</td>";
+                        opt += "</tr>";
+                        $("#historyList tbody").append(opt);
+                    }
+
+
+                }, function() {
+                    $.isLoading("hide");
+                });
+            });
+
+            function onShowInfo(id) {
+                $("#infocontainer1").isLoading({
+                    text: "正在加载...",
+                    position: "overlay"
+                });
+                var infoUrl = "DeviceHistoryInfo" + "/" + id;
+                AjaxHtml(infoUrl, {}, function (res) {
+                    $("#infocontainer1").isLoading("hide");
+                    $("#showinfo1").html(res);
+                });
+            }
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+                if (!currentdNode) return;
+                var id = currentdNode.id;
+                if (!id) {
+
+                    $("#showinfo1").html("");
+                    $("#historyList tbody").empty();
+                    return;
+                }
+                var $tab = $(e.target);
+                if ($tab.attr("aria-controls") === "zdgzwh") {
+                    $("#zdgzwh").isLoading({
+                        text: "正在加载...",
+                        position: "overlay"
+                    });
+                    var infoUrl = "DeviceCureList" + "/" + id;
+                    AjaxHtml(infoUrl, {}, function (res) {
+                        $("#zdgzwh").isLoading("hide");
+                        //$("#showinfo1").html(res);
+                    });
+                }
+                if ($tab.attr("aria-controls") === "qxkwh") {
+                    $("#qxkwh").isLoading({
+                        text: "正在加载...",
+                        position: "overlay"
+                    });
+                    var infoUrl1 = "DeviceCureList" + "/" + id;
+                    AjaxHtml(infoUrl1, {}, function (res) {
+                        $("#qxkwh").isLoading("hide");
+                        $("#dcl").html(res);
+                    });
+                }
+            });
+
+        </script>
+    }

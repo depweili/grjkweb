@@ -1,0 +1,103 @@
+﻿@using QuickRMS.Site.WebUI.Extension.MvcHelper
+@using QuickRMS.Site.Models.Authen.Area
+@model AreaModel
+
+@Html.HiddenFor(t=>t.ParentId)
+<div class="control-group">
+    <label class="control-label-form">
+        <label class="red">*</label>@Html.DisplayNameFor(t => t.Name) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Description) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Description, new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.ParentName) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.ParentName, new { @class = "form-control", disabled = "disabled" })
+    </div>
+</div>
+
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        <label class="red">*</label>@Html.DisplayNameFor(t => t.OrderSort) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.OrderSort, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.OrderSort)
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Enabled) :
+    </label>
+    <div class="controls">
+        @Html.CheckBoxFor(t => t.Enabled)
+    </div>
+</div>
+
+@Html.ScriptBlock(
+    @<script type="text/javascript">
+        $(function () {
+            $(".LinkUrl").autocomplete(
+                {
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "GET",
+                            url: "@Url.Action("GetModuleLinkUrl")",
+                            data: { "term": request.term },
+                            dataType: 'json',
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item.LinkUrl,
+                                        value: item.LinkUrl
+                                    }
+                                }));
+                            }
+                        });
+                    },
+                    minChars: 0,
+                    max: 10,
+                    autoFill: true,
+                    mustMatch: true,
+                    matchContains: true,
+                    change: function (event, ui) {
+                        var result = false;
+                        var source = $(this).val();
+                        $(".ui-autocomplete li").each(function () {
+                            if (source == $(this).text()) {
+                                result = true;
+                                return true;
+                            }
+                        });
+                        if (!result) {
+                            $(this).val('');
+                        }
+                    }
+                });
+        })
+    </script>
+    )

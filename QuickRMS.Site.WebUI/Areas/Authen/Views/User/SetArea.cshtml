@@ -1,0 +1,154 @@
+﻿@using QuickRMS.Site.WebUI.Extension.MvcHelper
+@model QuickRMS.Site.Models.Authen.User.UpdateUserModel
+@Html.HiddenFor(t => t.Id)
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-list"></i></span>
+        <h5>选择区域</h5>
+    </div>
+    <div class="widget-content">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="oTree"></div>
+            </div>
+            <div class="col-sm-6">
+                <form id="selectData" class="form-horizontal">
+                    @Html.HiddenFor(t => t.Id, new { @Name = "UserId" })
+                    <input type="hidden" id="AreaId" name="AreaId"/>
+                    <div class="form-group">
+                        <label class=""> 已选区域：</label>
+                        <input class="form-control" id="AreaName" name="AreaName" type="text" placeholder="未选" disabled="disabled"/>
+                    </div>
+                   
+                        <a class="btn btn-primary  ladda-button" id="SetUserOrgWp" onclick="SetUserOrgWp(this)" data-style="expand-left">添加</a>
+</form>
+</div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-group"></i></span>
+        <h5>已选区域</h5>
+    </div>
+    <div id="selectedData" class="widget-content">
+       
+    </div>
+</div>
+
+@Html.ScriptBlock(
+            @<script src="~/Plugins/treeview/bootstrap-treeview.min.js"></script>
+            )
+
+        @Html.ScriptBlock(
+
+        @<script type="text/javascript">
+            $(function () {
+                loadUserOWp();
+                var actionUrl = "@Url.Action("List")?rand=" + Math.random();
+                var treeData=@Html.Raw(Json.Encode(@ViewBag.OrgsTree));
+                console.log(treeData);
+                //var treeData = [
+                //    {
+                //        text: 'Parent 1',
+                //        id: '1',
+                //        nodes: [
+                //            {
+                //                text: 'Child 1',
+                //                id: '2',
+                //                 nodes: [
+                //                    {
+                //                        text: 'Grandchild 11111111111',
+                //                        id: '3'
+                //                    },
+                //                    {
+                //                        text: 'Grandchild 2',
+                //                        id: '4'
+                //                    }
+                //                ]
+                //            },
+                //            {
+                //                text: 'Child 2',
+                //                id: '5'
+                //            }
+                //        ]
+                //    },
+                //    {
+                //        text: 'Parent 2',
+                //        id: '2'
+                //    },
+                //    {
+                //        text: 'Parent 3',
+                //        id: '3'
+                //    },
+                //    {
+                //        text: 'Parent 4',
+                //        id: '4'
+                //    },
+                //    {
+                //        text: 'Parent 5',
+                //        id: '5'
+                //    }
+                //];
+                $('#oTree').treeview({
+                    data: treeData,
+                    onNodeSelected: function (event, data) {
+                       // console.log(data);
+                        $("#AreaId").val(data.id);
+                        $("#AreaName").val(data.text);
+                    }
+                });
+            });
+
+            function SetUserOrgWp(t) {
+                var l = Ladda.create(t);
+                l.start();
+               var actionUrl = "@Url.Action("Create","UserArea")?rand=" + Math.random();
+                PostForm("selectData", actionUrl,function(data) {
+                    console.log(data);
+                    loadUserOWp();
+                    l.stop();
+                },function() {
+                    l.stop();
+                });
+            }
+
+            function RemoveUserWp(t) {
+                var actionUrl = "@Url.Action("Delete", "UserArea")?rand=" + Math.random();
+
+                var container = $(t).parent().parent();
+
+                var AreaId = container.find("#item_AreaId").val();
+                var UserId = container.find("#item_UserId").val();
+                var WorkPositionId = container.find("#item_WorkPositionId").val();
+
+                var para = {
+                    AreaId: AreaId,
+                    UserId: UserId,
+                    WorkPositionId: WorkPositionId
+                };
+                var l = Ladda.create(t);
+                l.start();
+                AjaxPost(actionUrl,para,function(data) {
+                    loadUserOWp();
+                    l.stop();
+                },function() {
+                    l.stop();
+                });
+            }
+
+            function loadUserOWp() {
+                var paras = {
+                    uId: @Model.Id
+
+                };
+                var actionUrl = "@Url.Action("SelectedArea", "UserArea")?rand=" + Math.random();
+                AjaxHtml(actionUrl, paras, function(html) {
+                    console.log(html);
+                    $("#selectedData").html(html);
+                });
+            }
+        </script>
+    )

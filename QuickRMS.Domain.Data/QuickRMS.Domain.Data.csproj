@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{625B6CD5-9183-4F5D-90CB-E7C94250F890}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickRMS.Domain.Data</RootNamespace>
+    <AssemblyName>QuickRMS.Domain.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Initialize\DatabaseInitializer.cs" />
+    <Compile Include="Initialize\NonSystemTableSqlGenerator.cs" />
+    <Compile Include="MappingPartial\Authen\AreaMap.cs" />
+    <Compile Include="MappingPartial\Authen\ModuleMap.cs" />
+    <Compile Include="MappingPartial\Authen\ModulePermissionMap.cs" />
+    <Compile Include="MappingPartial\Authen\PermissionMap.cs" />
+    <Compile Include="MappingPartial\Authen\RoleMap.cs" />
+    <Compile Include="MappingPartial\Authen\RoleModulePermissionMap.cs" />
+    <Compile Include="MappingPartial\Authen\UserAreaMap.cs" />
+    <Compile Include="MappingPartial\Authen\UserMap.cs" />
+    <Compile Include="MappingPartial\Authen\UserRoleMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\CurveLibraryMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\DeviceCureLibraryMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\DeviceDataMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\DeviceMaintenanceMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\DeviceMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\HistoryMap.cs" />
+    <Compile Include="MappingPartial\DeviceInfo\ValvesMap.cs" />
+    <Compile Include="MappingPartial\SysConfig\SysSettingMap.cs" />
+    <Compile Include="MappingPartial\SysConfig\TimeSpanSettingMap.cs" />
+    <Compile Include="Mapping\Authen\AreaMap.cs" />
+    <Compile Include="Mapping\Authen\Configuration\AreaMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\ModuleMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\ModulePermissionMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\PermissionMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\RoleMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\RoleModulePermissionMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\UserAreaMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\UserMap.generated.cs" />
+    <Compile Include="Mapping\Authen\Configuration\UserRoleMap.generated.cs" />
+    <Compile Include="Mapping\Authen\ModuleMap.cs" />
+    <Compile Include="Mapping\Authen\ModulePermissionMap.cs" />
+    <Compile Include="Mapping\Authen\PermissionMap.cs" />
+    <Compile Include="Mapping\Authen\RoleMap.cs" />
+    <Compile Include="Mapping\Authen\RoleModulePermissionMap.cs" />
+    <Compile Include="Mapping\Authen\UserAreaMap.cs" />
+    <Compile Include="Mapping\Authen\UserMap.cs" />
+    <Compile Include="Mapping\Authen\UserRoleMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\CurveLibraryMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\DeviceCureLibraryMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\DeviceDataMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\DeviceMaintenanceMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\DeviceMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\HistoryMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\Configuration\ValvesMap.generated.cs" />
+    <Compile Include="Mapping\DeviceInfo\CurveLibraryMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\DeviceCureLibraryMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\DeviceDataMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\DeviceMaintenanceMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\DeviceMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\HistoryMap.cs" />
+    <Compile Include="Mapping\DeviceInfo\ValvesMap.cs" />
+    <Compile Include="Mapping\SysConfig\Configuration\SysSettingMap.generated.cs" />
+    <Compile Include="Mapping\SysConfig\Configuration\TimeSpanSettingMap.generated.cs" />
+    <Compile Include="Mapping\SysConfig\OperateLogMap.cs" />
+    <Compile Include="Mapping\SysConfig\Configuration\OperateLogMap.generated.cs" />
+    <Compile Include="Mapping\SysConfig\SysSettingMap.cs" />
+    <Compile Include="Mapping\SysConfig\TimeSpanSettingMap.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MappingPartial\SysConfig\OperateLogMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T4\EntityCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityCodeScript.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quick.Framework.EFData\Quick.Framework.EFData.csproj">
+      <Project>{e29f850e-3069-40fc-99ae-9720876b0187}</Project>
+      <Name>Quick.Framework.EFData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Quick.Framework.Tool\Quick.Framework.Tool.csproj">
+      <Project>{a9a5cdd3-ca9a-4952-a3de-0f107bbb826a}</Project>
+      <Name>Quick.Framework.Tool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickRMS.Domain.Models\QuickRMS.Domain.Models.csproj">
+      <Project>{c4722979-9db4-4c08-9c66-586f8d085d61}</Project>
+      <Name>QuickRMS.Domain.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="T4\EntityCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityCodeScript.cs</LastGenOutput>
+      <LastOutputs>
+..\Mapping\Authen\AreaMap.cs
+..\Mapping\Authen\Configuration\AreaMap.generated.cs
+..\Mapping\Authen\Configuration\ModuleMap.generated.cs
+..\Mapping\Authen\Configuration\ModulePermissionMap.generated.cs
+..\Mapping\Authen\Configuration\PermissionMap.generated.cs
+..\Mapping\Authen\Configuration\RoleMap.generated.cs
+..\Mapping\Authen\Configuration\RoleModulePermissionMap.generated.cs
+..\Mapping\Authen\Configuration\UserAreaMap.generated.cs
+..\Mapping\Authen\Configuration\UserMap.generated.cs
+..\Mapping\Authen\Configuration\UserRoleMap.generated.cs
+..\Mapping\Authen\ModuleMap.cs
+..\Mapping\Authen\ModulePermissionMap.cs
+..\Mapping\Authen\PermissionMap.cs
+..\Mapping\Authen\RoleMap.cs
+..\Mapping\Authen\RoleModulePermissionMap.cs
+..\Mapping\Authen\UserAreaMap.cs
+..\Mapping\Authen\UserMap.cs
+..\Mapping\Authen\UserRoleMap.cs
+..\Mapping\DeviceInfo\Configuration\CurveLibraryMap.generated.cs
+..\Mapping\DeviceInfo\Configuration\DeviceCureLibraryMap.generated.cs
+..\Mapping\DeviceInfo\Configuration\DeviceDataMap.generated.cs
+..\Mapping\DeviceInfo\Configuration\DeviceMaintenanceMap.generated.cs
+..\Mapping\DeviceInfo\Configuration\DeviceMap.generated.cs
+..\Mapping\DeviceInfo\Configuration\HistoryMap.generated.cs
+..\Mapping\DeviceInfo\Configuration\ValvesMap.generated.cs
+..\Mapping\DeviceInfo\CurveLibraryMap.cs
+..\Mapping\DeviceInfo\DeviceCureLibraryMap.cs
+..\Mapping\DeviceInfo\DeviceDataMap.cs
+..\Mapping\DeviceInfo\DeviceMaintenanceMap.cs
+..\Mapping\DeviceInfo\DeviceMap.cs
+..\Mapping\DeviceInfo\HistoryMap.cs
+..\Mapping\DeviceInfo\ValvesMap.cs
+..\Mapping\SysConfig\Configuration\OperateLogMap.generated.cs
+..\Mapping\SysConfig\Configuration\SysSettingMap.generated.cs
+..\Mapping\SysConfig\Configuration\TimeSpanSettingMap.generated.cs
+..\Mapping\SysConfig\OperateLogMap.cs
+..\Mapping\SysConfig\SysSettingMap.cs
+..\Mapping\SysConfig\TimeSpanSettingMap.cs
+.\EntityCodeScript.cs
+</LastOutputs>
+    </None>
+    <None Include="T4\Include\EntityMapTemplate.ttinclude" />
+    <None Include="T4\Include\EntityMapConfigurationTemplate.ttinclude" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

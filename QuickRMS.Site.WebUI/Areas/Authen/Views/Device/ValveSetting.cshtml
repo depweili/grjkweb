@@ -1,0 +1,240 @@
+﻿@{
+    ViewBag.Title = ViewBag.CurrentTitle + "";
+
+}
+@section css{
+    @Styles.Render("~/bundles/css/jqueryui")
+}
+
+<div id="content-body" class="row">
+    <div class="col-lg-3">
+        @Html.Partial("_AreaDeviceTree")
+
+    </div>
+    <div class="col-lg-9">
+        <div>
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-list"></i></span>
+                    <h5>阀门设置</h5>
+                </div>
+                <div class="widget-content contentArea">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#routeA" aria-controls="home" role="tab" data-toggle="tab">A通路</a></li>
+                        <li role="presentation"><a href="#routeB" aria-controls="profile" role="tab" data-toggle="tab">B通路</a></li>
+
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active" id="routeA">
+                            <form class="form-inline">
+                                <div class="row">
+                                    <fieldset>
+                                        <legend>转向选择</legend>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 正转
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 反转
+                                        </label>
+                                    </fieldset>
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <fieldset>
+                                        <legend>阀门设置</legend>
+                                     
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <fieldset>
+                                                    <legend>最大开度</legend>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" id="">%
+                                                        </div>
+                                                       
+                                                    </div>
+                                                </fieldset>
+                                           
+                                                <fieldset>
+                                                    <legend>最小关度</legend>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" id="">%
+                                                        </div>
+                                                      
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <legend>调整步进量</legend>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="">%
+                                                </div>
+                                             
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <legend>调整延时长度</legend>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="">秒
+                                                </div>
+                                              
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <legend>阀门控制路数</legend>
+
+
+                                            <select class="form-control" style="width: 100px;" id="">
+                                                <option value="1">A通路</option>
+                                                <option value="2">B通路</option>
+                                                <option value="1">A通路和B通路</option>
+                                            </select>
+                                               
+                                           
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+
+                                <div class="row" style="margin-top: 20px;">
+                                    <div class="col-lg-4 col-lg-offset-8">
+                                        <input class="btn btn-default" type="button" value="更新">
+                                        <input class="btn btn-default" type="button" value="保存并下发">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="routeB">
+                            <form class="form-inline">
+                                <div class="row">
+                                    <fieldset>
+                                        <legend>转向选择</legend>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 正转
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 反转
+                                        </label>
+                                    </fieldset>
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <fieldset>
+                                        <legend>阀门设置</legend>
+
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <fieldset>
+                                                    <legend>最大开度</legend>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" id="">%
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <legend>最小关度</legend>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" id="">%
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <legend>调整步进量</legend>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="">%
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <legend>调整延时长度</legend>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="">秒
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <fieldset>
+                                            <legend>阀门控制路数</legend>
+
+
+                                            <select class="form-control" style="width: 100px;" id="">
+                                                <option value="1">A通路</option>
+                                                <option value="2">B通路</option>
+                                                <option value="1">A通路和B通路</option>
+                                            </select>
+
+
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+
+                                <div class="row" style="margin-top: 20px;">
+                                    <div class="col-lg-4 col-lg-offset-8">
+                                        <input class="btn btn-default" type="button" value="更新">
+                                        <input class="btn btn-default" type="button" value="保存并下发">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+@section scripts{
+    <script type="text/javascript">
+
+    </script>
+}
