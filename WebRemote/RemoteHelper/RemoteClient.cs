@@ -5,6 +5,7 @@ using RemoteObjectLibrary;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
@@ -27,6 +28,12 @@ namespace RemoteHelper
         {
             try
             {
+                if (ConfigurationManager.AppSettings["IsTest"].ToString() == "true") {
+                    remoteCommand = new RemoteCommand();
+                    commandClient = new RemoteCommandClient();
+                    return; 
+                }
+
                 Reachability.ServerSinkProvider.StartWaitRedirectedMsg();
                 remoteCommand = new RemoteCommand();
 
@@ -144,7 +151,7 @@ namespace RemoteHelper
             RemoteResult res = null;
             for (int i = 0; i < 5; i++)
             {
-                var obj=DbHelperSQL.GetSingle(sql);
+                var obj = DbHelperSQL.GetSingle(sql);
 
                 if (obj != null)
                 {
@@ -157,6 +164,20 @@ namespace RemoteHelper
                 {
                     Thread.Sleep(500);
                 }
+
+                //var obj = DbHelperSQL.Query(sql);
+
+                //if (obj != null&&obj.Tables[0].Rows.Count>0)
+                //{
+                //    res = new RemoteResult();
+                //    res.Datas = (byte[])obj.Tables[0].Rows[0][0];
+                //    res.tag = guid;
+                //    break;
+                //}
+                //else
+                //{
+                //    Thread.Sleep(500);
+                //}
             }
             return res;
         }
@@ -197,19 +218,40 @@ namespace RemoteHelper
             {
                 return "设备号不可为空";
             }
-            var guid = Guid.NewGuid().ToString();
 
-            msg = SendCommand(datas, name, returnLength, devicecode, guid);
+            string testguid = string.Empty;
+            var cint = (int)name;
+            var testguidkey = "TestGuid" + cint.ToString();
+            var testguidcfg = ConfigurationManager.AppSettings[testguidkey];
+            if (testguidcfg != null) { testguid = testguidcfg.ToString(); }
+
+            string guid = null;
+
+            if (string.IsNullOrEmpty(testguid))
+            {
+                guid = Guid.NewGuid().ToString();
+
+                msg = SendCommand(datas, name, returnLength, devicecode, guid);
+            }
+            else
+            {
+                guid = testguid;
+            }
 
             if (string.IsNullOrEmpty(msg))
             {
                 res = GetRemoteResult(guid);
             }
 
-            if (res != null) {
+            if (res != null)
+            {
                 res.deviceCode = devicecode;
                 res.name = name;
                 res.senderUser = commandClient.Sender;
+            }
+            else
+            {
+                msg = "获取信息失败";
             }
 
             return msg;

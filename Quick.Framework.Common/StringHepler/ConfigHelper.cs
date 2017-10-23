@@ -22,10 +22,14 @@ namespace Quick.Framework.Common.ConfigHelper
             {
                 try
                 {
-                    objModel = ConfigurationManager.AppSettings[key]; 
+                    objModel = ConfigurationManager.AppSettings[key];
                     if (objModel != null)
-                    {                        
+                    {
                         //DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(180), TimeSpan.Zero);
+                    }
+                    else
+                    {
+                        return string.Empty;
                     }
                 }
                 catch

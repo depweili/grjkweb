@@ -19,10 +19,28 @@
     });
 }
 
+function initEvent() {
+    //阀门单选事件
+    $("input[name='valve']").on("change", function () {
+        rdoValveCheck();
+    });
+
+    //阀门全开
+    $("#btnOpenFull").on("click", function () {
+        $("#txtValveOpenValue").val(100);
+    });
+    $("#btnCloseFull").on("click", function () {
+        $("#txtValveOpenValue").val(0);
+    });
+
+    //阀门设置
+    //$("input[tag='spinner']").spinner({ min: 0, max: 100 });
+}
+
 //系统状态
 function initSystemState() {
 
-     showWeather("海淀");
+    showWeather("海淀");
 
     QR.cPageFunction = 1;
 
@@ -85,8 +103,6 @@ function initSystemState() {
                     if (cct) {
                         $("#lblControlChannel").text(cct);
                     }
-
-
                 }
 
 
@@ -400,8 +416,43 @@ function btnUpdateOutTemDataFunc(btn) {
     var dataUrl = "/BaseDataApi/UpdateOutTemData?rand=" + Math.random();
     AjaxPost(dataUrl,
         { scode: code, sid: id },
-        function () {
+        function (data) {
+            LoadDataFromDeviceData(data.AppendData);
             bootbox.alert('更新成功！');
+            $.isLoading("hide");
+        },
+        function () {
+            $.isLoading("hide");
+        });
+}
+
+
+//v1统一更新
+function btnUpdateDataFunc(btn) {
+    var currentdNode = Qrms.currentdNode;
+
+    if (!currentdNode) return;
+    var code = currentdNode.deviceCode;
+    var id = currentdNode.id;
+    //$(btn).isLoading({
+    //    text: "正在加载...",
+    //    position: "overlay"
+    //});
+    var dataUrl = "/BaseDataApi/UpdateData?rand=" + Math.random();
+    AjaxPost(dataUrl,
+        { scode: code, clientdata: {rdoMode1:true} },
+        function (data) {
+            //LoadDataFromDeviceData(data.AppendData);
+            console.log(data);
+            if (data.AppendData && data.AppendData != null) {
+                Qrms.currentParaData = data.AppendData;
+                DoAfterUpdateData();
+                bootbox.alert('更新成功！');
+            }
+            else {
+                bootbox.alert('更新失败！');
+            }
+            
             $.isLoading("hide");
         },
         function () {
@@ -591,3 +642,5 @@ function btnSaveWorkModeFunc(btn) {
         });
 }
 /******系统状态************/
+
+

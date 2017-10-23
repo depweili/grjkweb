@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Quick.Framework.Tool.Entity;
 using QuickRMS.Domain.Models.DeviceInfo;
+using Newtonsoft.Json;
 
 
 namespace QuickRMS.Domain.Models.Authen
@@ -41,9 +42,13 @@ namespace QuickRMS.Domain.Models.Authen
         public string ModifyBy { get; set; }
         public DateTime? ModifyTime { get; set; }
 
+        [JsonIgnore]
         public virtual Area ParentArea { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Area> ChildArea { get; set; }
+        [JsonIgnore]
         public virtual ICollection<UserArea> UserArea { get; set; }
+        [JsonIgnore]
 
         public virtual ICollection<Device> Devices { get; set; }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Quick.Framework.Tool.Entity;
+using Newtonsoft.Json;
 
 namespace QuickRMS.Domain.Models.DeviceInfo
 {
@@ -13,6 +14,7 @@ namespace QuickRMS.Domain.Models.DeviceInfo
         public int Code { get; set; }
         public string Name { get; set; }
 
+        [JsonIgnore]
         public virtual Device Device { get; set; }
 
         #region 列号

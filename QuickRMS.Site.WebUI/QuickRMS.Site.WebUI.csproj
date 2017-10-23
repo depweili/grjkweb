@@ -189,6 +189,7 @@
     <Compile Include="Common\AdminController.cs" />
     <Compile Include="Common\ConfigSettingHelper.cs" />
     <Compile Include="Common\ExcelHelper.cs" />
+    <Compile Include="Common\JsonNetResult.cs" />
     <Compile Include="Common\RouteObject.cs" />
     <Compile Include="Common\Utilities.cs" />
     <Compile Include="Controllers\Api\ApiTestController.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Content\admin\images\map\sbonline.png" />
     <Content Include="Content\admin\img\slider.png" />
     <Content Include="Content\admin\js\devicemanage.js" />
+    <Content Include="Content\admin\js\devicemanagefunc.js" />
     <Content Include="Content\admin\js\echarts.min.js" />
     <Content Include="Content\admin\font-awesome\css\font-awesome.css" />
     <Content Include="Content\admin\images\icon\details_close.png" />

@@ -736,6 +736,8 @@ function disableButton(btn) {
         Qrms.DeviceMapObjs = [];
         Qrms.Map = {};
 
+        Qrms.currentParaData = null;
+
 
         Qrms.cPageFunction = "";
         Qrms.cPageFunctions = {

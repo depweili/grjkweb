@@ -14,6 +14,8 @@ namespace QuickRMS.Core.Service
 
         OperationResult SyncTime(string scode);
 
+        OperationResult UpdateData(string scode, dynamic clientdata = null);
+
         OperationResult UpdateOutTemData(string scode);
 
         OperationResult UpdateWorkMode(string scode);

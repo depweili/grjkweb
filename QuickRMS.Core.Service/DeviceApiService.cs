@@ -23,7 +23,16 @@ namespace QuickRMS.Core.Service
         [Import]
         public IDeviceService DeviceService { get; set; }
 
+        public dynamic DealCommandResult(RemoteResult res, dynamic clientdata=null)
+        {
+            dynamic resobj = null;
 
+            //var service = new DeviceService();
+
+            resobj = DeviceService.DealCommandResult(res, clientdata);
+
+            return resobj;
+        }
 
         public OperationResult SyncTime(string scode)
         {
@@ -41,6 +50,15 @@ namespace QuickRMS.Core.Service
                     (byte)DateTime.Now.Second
                 }, CommandConst.ARM控制指令, 12, scode, out res);
 
+                if (string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+                else
+                {
+                    result.AppendData = DealCommandResult(res);
+                }
 
                 return result;
 
@@ -61,7 +79,28 @@ namespace QuickRMS.Core.Service
 
                 RemoteResult res = null;
                 string msg = RemoteClient.Instance.SendCommandAndGetResult(null, CommandConst.读取测量值, 35, scode, out res);
-                result.AppendData = res;
+                result.AppendData = DealCommandResult(res);
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+        public OperationResult UpdateData(string scode, dynamic clientdata = null)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+
+                RemoteResult res = null;
+                string msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)SettingType.整体参数 }, CommandConst.读取参数, 48, scode, out res);
+                result.AppendData = DealCommandResult(res, clientdata);
 
                 return result;
 

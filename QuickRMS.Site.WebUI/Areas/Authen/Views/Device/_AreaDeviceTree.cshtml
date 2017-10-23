@@ -62,6 +62,7 @@
                 onNodeSelected: function(event, data) {
                     console.log(data);
                     Qrms.currentdNode = data;
+                    Qrms.currentParaData = null;
                     if (typeof Qrms.updatePageData == "function") {
                         Qrms.updatePageData(data);
                     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,6 +70,7 @@ namespace Quick.Framework.Tool
         public static object GetValue(this object value, string propertyName)
         {
             return value.GetType().GetProperty(propertyName).GetValue(value, null);
-        }  
+        }
+
     }
 }

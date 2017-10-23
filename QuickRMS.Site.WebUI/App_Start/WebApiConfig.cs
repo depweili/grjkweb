@@ -24,6 +24,12 @@ namespace QuickRMS.Site.WebUI
             //只返回Json格式
             //var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             //config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+
+
+            //双向导航无法用此方法避免
+            //config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;
+            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

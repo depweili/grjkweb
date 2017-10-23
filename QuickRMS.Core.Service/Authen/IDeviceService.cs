@@ -7,6 +7,7 @@ using Quick.Framework.Tool;
 using QuickRMS.Domain.Models.DeviceInfo;
 using QuickRMS.Domain.Models.SysConfig;
 using QuickRMS.Site.Models.Device;
+using RemoteHelper;
 
 namespace QuickRMS.Core.Service.Authen
 {
@@ -30,6 +31,8 @@ namespace QuickRMS.Core.Service.Authen
 
         IQueryable<Valves> Valveses { get; }
         #endregion
+
+        dynamic DealCommandResult(RemoteResult res, dynamic clientdata=null);
 
         List<CurveLibrary> GetCurveLibraries();
 

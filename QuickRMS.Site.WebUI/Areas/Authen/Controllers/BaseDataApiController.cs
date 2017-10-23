@@ -142,6 +142,18 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             return Json(dd);
         }
 
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult UpdateData(string scode,dynamic clientdata=null)
+        {
+            //var scode = Request["scode"];
+
+            var dd = DeviceApiService.UpdateData(scode, clientdata);
+            return Json(dd);
+        }
+
+
         [AdminPermission(PermissionCustomMode.Ignore)]
         [HttpPost]
         public ActionResult UpdateWorkMode()

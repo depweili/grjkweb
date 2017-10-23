@@ -22,10 +22,10 @@ namespace QuickRMS.Domain.Data.Mapping.Authen
             // Properties 
             this.Property(r => r.Longitude).HasPrecision(12, 6);
             this.Property(r => r.Latitude).HasPrecision(12, 6);
-            this.Property(t => t.Name)
-                       .HasMaxLength(50);
-            this.Property(t => t.Code)
-                            .HasMaxLength(50);
+
+            this.Property(t => t.Name).HasMaxLength(50);
+            this.Property(t => t.Code).HasMaxLength(50);
+
             this.Property(t => t.Description)
                 .HasMaxLength(100);
 
@@ -38,9 +38,11 @@ namespace QuickRMS.Domain.Data.Mapping.Authen
             this.ToTable("T_Areas");
             this.Property(t => t.Id).HasColumnName("Id").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             
-				 this.Property(t => t.Code).HasColumnName("Code"); 
+				 //this.Property(t => t.Code).HasColumnName("Code");
+                 this.Property(t => t.Code).HasColumnName("AreaCode");
 		 		 this.Property(t => t.ParentId).HasColumnName("ParentId"); 
-		 		 this.Property(t => t.Name).HasColumnName("Name"); 
+		 		 //this.Property(t => t.Name).HasColumnName("Name");
+                 this.Property(t => t.Name).HasColumnName("AreaName"); 
 		 		 this.Property(t => t.Description).HasColumnName("Description"); 
 		 		 this.Property(t => t.IsLeaf).HasColumnName("IsLeaf"); 
 		 		 this.Property(t => t.CreateId).HasColumnName("CreateId"); 

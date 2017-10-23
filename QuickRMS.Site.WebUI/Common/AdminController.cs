@@ -10,6 +10,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -42,8 +43,10 @@ namespace QuickRMS.Site.WebUI.Common
 
                 //filterContext.Result = RedirectToAction("SignOut", "Login", new RouteValueDictionary(new { area = "Admin" }));
                 //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { area = "Common", controller = "Login", action = "SignOut" }));
-                filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.GatewayTimeout);
-                return;
+                
+                //暂时不进行用户检查
+                //filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.GatewayTimeout);
+                //return;
             }
             #endregion
             
@@ -80,5 +83,16 @@ namespace QuickRMS.Site.WebUI.Common
 				model.ModifyTime = DateTime.Now;
 			}
 		}
+
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonNetResult
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior
+            };
+        }
 	}
 }

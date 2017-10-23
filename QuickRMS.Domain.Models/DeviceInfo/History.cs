@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Quick.Framework.Tool.Entity;
+using Newtonsoft.Json;
 
 namespace QuickRMS.Domain.Models.DeviceInfo
 {
@@ -21,7 +22,7 @@ namespace QuickRMS.Domain.Models.DeviceInfo
         public int? ModifyId { get; set; }
         public string ModifyBy { get; set; }
         public DateTime? ModifyTime { get; set; }
-
+        [JsonIgnore]
         public virtual Device Device { get; set; }
     }
 }
