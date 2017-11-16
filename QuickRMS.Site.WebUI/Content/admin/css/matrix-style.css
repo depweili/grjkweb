@@ -677,7 +677,7 @@ div.DataTables_sort_wrapper span {
 /* Misc */
 .nopadding {
     padding: 0 !important;
-        width: 4em;
+        /*width: 4em;*/
 }
 
 .nopadding .table {

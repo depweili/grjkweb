@@ -34,24 +34,27 @@ namespace QuickRMS.Core.Service.Authen
 
         dynamic DealCommandResult(RemoteResult res, dynamic clientdata=null);
 
+        byte[] SaveDataAndGetCommand(DeviceParaDto data);
+
         List<CurveLibrary> GetCurveLibraries();
 
         List<TimeSpanSetting> GetTimeSpanList(int deviceId, int timeSpanId);
         List<DeviceMaintenanceModel> GetDeviceMaintenanceModels(int deviceId);
 
-        int UpdateOrCreateDeviceMaintenance(int deviceId, string memo,int mid);
+        int UpdateOrCreateDeviceMaintenance(int deviceId, string memo,int mid,DateTime date);
 
         int DeleteDeviceMaintenance(string[] mid);
 
         DeviceDataModel GetLastestData(int deviceId);
 
         List<DeviceCureLibraryModel> GetDeviceCureLibraryList(int deviceId);
+        List<DeviceCureLibraryDataModel> GetDeviceCureLibraryDataList(int deviceId);
         List<HistoryModel> GetHistoryModels(int deviceId, HistoryTypeCollect type);
 
 
         Valves GetValvesModel(int deviceId, string name);
         int UpdateValvesModel(Valves model);
 
-
+        double[,] GetDeviceCureData(int curid);
     }
 }

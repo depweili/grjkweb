@@ -68,11 +68,13 @@
     <Compile Include="Device\DeviceMaintenanceModel.cs" />
     <Compile Include="Device\DeviceModel.cs" />
     <Compile Include="Device\DeviceNodeModel.cs" />
+    <Compile Include="Device\DeviceParaDto.cs" />
     <Compile Include="Device\HistoryInfo1Model.cs" />
     <Compile Include="Device\HistoryInfo2Model.cs" />
     <Compile Include="Device\HistoryInfo3Model.cs" />
     <Compile Include="Device\HistoryInfo0Model.cs" />
     <Compile Include="Device\HistoryModel.cs" />
+    <Compile Include="Device\ValvesModel.cs" />
     <Compile Include="File\File.cs" />
     <Compile Include="File\FileType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

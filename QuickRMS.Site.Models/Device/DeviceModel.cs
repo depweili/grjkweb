@@ -10,7 +10,7 @@ namespace QuickRMS.Site.Models.Device
 {
     public class DeviceModel : EntityCommon
     {
-
+        public int Id { get; set; }
         public string DeviceCode { get; set; }
         public string DeviceName { get; set; }
         public string IP { get; set; }

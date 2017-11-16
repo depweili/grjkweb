@@ -98,10 +98,10 @@
                                     <div class="col-lg-2">水网1状态：</div>
                                     <div class="col-lg-1 nopadding" id="lblState1"></div>
                                     <div class="col-lg-5">                                      
-                                        <label class="label label-success" id="lblAutoWorkMode1">自动</label>
-                                        <label class="btn btn-default btn-sm" id="lblMaunalWorkMode1">手动</label>
-                                        <label class="btn btn-default btn-sm" id="lblCycle1">曲线</label>
-                                        <label class="btn btn-default btn-sm" id="lblTime1">时间</label>
+                                        <label class="label label-default" id="lblAutoWorkMode1">自动</label>
+                                        <label class="label label-default" id="lblMaunalWorkMode1">手动</label>
+                                        <label class="label label-default" id="lblCycle1">曲线</label>
+                                        <label class="label label-default" id="lblTime1">时间</label>
                                     </div>
 
                                 </div>
@@ -141,10 +141,10 @@
                                     <div class="col-lg-2">水网1状态：</div>
                                     <div class="col-lg-1 nopadding" id="lblState2"></div>
                                     <div class="col-lg-5">
-                                        <label class="btn btn-default btn-sm" id="lblAutoWorkMode2">自动</label>
-                                        <label class="btn btn-default btn-sm" id="lblManualWorkMode2">手动</label>
-                                        <label class="btn btn-default btn-sm" id="lblCycle2">曲线</label>
-                                        <label class="btn btn-default btn-sm" id="lblTime2">时间</label>
+                                        <label class="label label-default" id="lblAutoWorkMode2">自动</label>
+                                        <label class="label label-default" id="lblManualWorkMode2">手动</label>
+                                        <label class="label label-default" id="lblCycle2">曲线</label>
+                                        <label class="label label-default" id="lblTime2">时间</label>
                                     </div>
 
                                 </div>
@@ -158,14 +158,16 @@
                                 <div class="row">
 
                                     <div class="col-lg-2 form-ctrl-7 no-right-padding">操作模式：</div>
-                                    <div class="col-lg-3">
-                                        <label class="btn btn-default btn-sm" id="lblWorkState1">日常</label>
-                                        <label class="btn btn-default btn-sm" id="lblWorkState2">假日</label>
+                                    <div class="col-lg-2">
+                                        <label class="label label-default" id="lblWorkState1">日常</label>
+                                        <label class="label label-default" id="lblWorkState2">假日</label>
                                     </div>
-                                    @*<div class="col-lg-2 form-ctrl-7 no-right-padding">是否校阀：</div>
-                                        <div class="col-lg-1" id="lblCheckValve">
-                                            无校阀
-                                        </div>*@
+                                    <div class="col-lg-2 form-ctrl-7 no-right-padding">
+                                        <div style="display:none">是否校阀：</div>
+                                    </div>
+                                    <div class="col-lg-1" >
+                                        <div id="lblCheckValve" style="display:none">无校阀</div>
+                                    </div>
                                     <div class="col-lg-2 form-ctrl-9 no-right-padding">阀门控制路数：</div>
                                     <div class="col-lg-2" id="lblControlChannel">
                                         A通路
@@ -222,23 +224,21 @@
                                                         <h5>时间段列表</h5>
                                                     </div>
                                                     <div class="widget-content" style="height: 368px; overflow: auto;">
-                                                        <div class="row" style="margin-bottom: 15px; display: none;">
+                                                        <div class="row" style="margin-bottom: 15px; display: block;">
                                                             <div class="col-lg-4 col-lg-offset-8">
-                                                                <button type="button" class="btn btn-success" id="btnUpdate">从终端更新</button>
+                                                                <input type="button" class="btn btn-success" id="btnUpdateTimeSpan" onclick="btnUpdateTimeSpanFunc(this)" value="从终端更新" />
                                                             </div>
                                                         </div>
                                                         <table class="table table-bordered" id="timeSpanTable">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>上限</td>
-                                                                    <td>下限</td>
-                                                                    <td>曲线号</td>
-                                                                    <td>操作</td>
+                                                                    <th>上限</th>
+                                                                    <th>下限</th>
+                                                                    <th>曲线号</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody></tbody>
                                                         </table>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -397,9 +397,10 @@
                                     <div class="col-lg-4"></div>
                                     <div class="col-lg-4">
                                         @*<input class="btn btn-default" type="button" onclick="btnUpdateWorkModeFunc(this)" value="更新">*@
-                                        <input class="btn btn-default" type="button" onclick="btnUpdateDataFunc(this)" value="更新">
-                                        <input class="btn btn-default" type="button" onclick="btnSaveWorkModeFunc(this)" value="保存">
-                                        <input class="btn btn-default" type="button" onclick="btnSetWorkModeFunc(this)" value="下发">
+                                        <input class="btn btn-primary" type="button" onclick="btnUpdateDataFunc(this)" id="btnUpdateCS" value="更新">
+                                        <input class="btn btn-primary" type="button" onclick="btnSaveAndSendFunc(this)" value="保存并下发">
+                                        @*<input class="btn btn-default" type="button" onclick="btnSaveWorkModeFunc(this)" value="保存">
+                                        <input class="btn btn-default" type="button" onclick="btnSetWorkModeFunc(this)" value="下发">*@
                                     </div>
                                 </div>
 
@@ -411,6 +412,10 @@
                     <div>
 
                         <div class="widget-box">
+                            <div class="widget-title">
+                                <span class="icon"><i class="icon-list"></i></span>
+                                <h5>阀门设置</h5>
+                            </div>
 
                             <div class="widget-content contentArea">
                                 <ul class="nav nav-tabs" role="tablist">
@@ -428,10 +433,10 @@
                                                 <fieldset>
                                                     <legend>转向选择</legend>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 正转
+                                                        <input type="radio" name="rdoAsteering" value="0"> 正转
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 反转
+                                                        <input type="radio" name="rdoAsteering" value="1"> 反转
                                                     </label>
                                                 </fieldset>
                                             </div>
@@ -529,13 +534,11 @@
                                                     <fieldset>
                                                         <legend>阀门控制路数</legend>
 
-
-                                                        <select class="form-control" style="width: 135px;" id="">
+                                                        <select class="form-control" style="width: 140px;" id="cmbACtrlNumber">
                                                             <option value="1">A通路</option>
                                                             <option value="2">B通路</option>
-                                                            <option value="1">A通路和B通路</option>
+                                                            <option value="3">A通路和B通路</option>
                                                         </select>
-
 
                                                     </fieldset>
                                                 </div>
@@ -544,8 +547,9 @@
 
                                             <div class="row" style="margin-top: 20px;">
                                                 <div class="col-lg-4 col-lg-offset-8">
-                                                    <input class="btn btn-default" type="button" onclick="btnUpdateDataFunc(this)" value="更新">
-                                                    <input class="btn btn-default" type="button" value="保存并下发">
+                                                    <input class="btn btn-primary" type="button" onclick="btnUpdateDataFunc(this)" value="更新">
+                                                    <input class="btn btn-primary" type="button" onclick="btnSaveAndSendFunc(this)" value="保存并下发">
+
                                                 </div>
                                             </div>
 
@@ -558,10 +562,10 @@
                                                 <fieldset>
                                                     <legend>转向选择</legend>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 正转
+                                                        <input type="radio" name="rdoBsteering" value="0"> 正转
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 反转
+                                                        <input type="radio" name="rdoBsteering" value="1"> 反转
                                                     </label>
                                                 </fieldset>
                                             </div>
@@ -659,10 +663,10 @@
                                                         <legend>阀门控制路数</legend>
 
 
-                                                        <select class="form-control" style="width: 100px;" id="">
+                                                        <select class="form-control" style="width: 140px;" id="cmbBCtrlNumber">
                                                             <option value="1">A通路</option>
                                                             <option value="2">B通路</option>
-                                                            <option value="1">A通路和B通路</option>
+                                                            <option value="3">A通路和B通路</option>
                                                         </select>
 
 
@@ -673,8 +677,8 @@
 
                                             <div class="row" style="margin-top: 20px;">
                                                 <div class="col-lg-4 col-lg-offset-8">
-                                                    <input class="btn btn-default" type="button" value="更新">
-                                                    <input class="btn btn-default" type="button" value="保存并下发">
+                                                    <input class="btn btn-primary" type="button" onclick="btnUpdateDataFunc(this)" value="更新">
+                                                    <input class="btn btn-primary" type="button" onclick="btnSaveAndSendFunc(this)" value="保存并下发">
                                                 </div>
                                             </div>
 
@@ -691,7 +695,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="widget-box">
-
+                                <div class="widget-title">
+                                    <span class="icon"><i class="icon-list"></i></span>
+                                    <h5>温度修正</h5>
+                                </div>
                                 <div class="widget-content">
 
                                     <form class="form-inline contentArea">
@@ -699,45 +706,45 @@
                                         <div class="row" style="margin-bottom: 15px; padding: 0 150px;">
                                             <div class="col-lg-6">
                                                 <label class="">室外&nbsp;&nbsp;：</label>
-                                                <input type="text" class="form-control data-inputbox" id="inputEmail3"> ℃
+                                                <input type="text" class="form-control data-inputbox" id="nuOutdoor"/> @*℃*@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label class="control-label">定时&nbsp;&nbsp;：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <input type="text" class="form-control data-inputbox" id="nuSaveInterval" /> 
                                             </div>
                                         </div>
                                         <div class="row" style="margin-bottom: 60px; padding: 0 150px;">
                                             <div class="col-lg-6">
-                                                <label class="">供水A：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <label class="control-label">供水1：</label>
+                                                <input type="text" class="form-control data-inputbox" id="nuSup1" /> 
                                             </div>
                                             <div class="col-lg-6">
-                                                <label class="control-label">回水A：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <label class="control-label">回水1：</label>
+                                                <input type="text" class="form-control data-inputbox" id="nuBack1" /> 
                                             </div>
                                            
                                         </div>
 
                                         <div class="row" style="margin-bottom: 15px; padding: 0 150px;">
                                             <div class="col-lg-6">
-                                                <label class="control-label">热源1：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <label class="control-label">供水2：</label>
+                                                <input type="text" class="form-control data-inputbox" id="nuSup2" /> 
                                             </div>
                                             <div class="col-lg-6">
-                                                <label class="control-label">热源2：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <label class="control-label">回水2：</label>
+                                                <input type="text" class="form-control data-inputbox" id="nuBack2" /> 
                                             </div>
 
                                         </div>
 
                                         <div class="row" style="margin-bottom: 15px; padding: 0 150px;">
                                             <div class="col-lg-6">
-                                                <label class="control-label">供水B：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <label class="control-label">热源1：</label>
+                                                <input type="text" class="form-control data-inputbox" id="nuFix1" /> 
                                             </div>
                                             <div class="col-lg-6">
-                                                <label class="control-label">回水B：</label>
-                                                <input type="text" class="form-control data-inputbox"> ℃
+                                                <label class="control-label">热源2：</label>
+                                                <input type="text" class="form-control data-inputbox" id="nuFix2" /> 
                                             </div>
                                         </div>
                                         
@@ -746,8 +753,8 @@
                                         <div class="row" style="margin-top: 100px;">
 
                                             <div class="col-lg-4 col-lg-offset-6">
-                                                <input class="btn btn-default" type="button" value="保存">
-                                                <input class="btn btn-default" type="button" value="下发">
+                                                <input class="btn btn-primary" type="button" onclick="btnUpdateDataFunc(this)" value="更新">
+                                                <input class="btn btn-primary" type="button" onclick="btnSaveAndSendFunc(this)" value="保存并下发">
                                             </div>
 
                                         </div>
@@ -762,7 +769,10 @@
                 <div role="tabpanel" class="tab-pane" id="TerminalSetting">
                     <div>
                         <div class="widget-box">
-
+                            <div class="widget-title">
+                                <span class="icon"><i class="icon-list"></i></span>
+                                <h5>终端维护</h5>
+                            </div>
                             <div class="widget-content">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#lsjl" aria-controls="lsjl" role="tab" data-toggle="tab">历史记录</a></li>
@@ -790,10 +800,10 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>记录号：</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" class="form-control" id="nuRowNumber">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="button" id="btnUpdateHistory" class="btn btn-primary" disabled="disabled" value="更新" />
+                                                        <input type="button" id="btnUpdateHistory" class="btn btn-primary" disabled="disabled" onclick="btnUpdateHistoryFunc(this)" value="更新" />
                                                     </div>
                                                 </form>
                                             </div>
@@ -830,9 +840,9 @@
                                                     <table id="historyInfo" class="table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <td>选择</td>
-                                                                <td>维护时间</td>
-                                                                <td>备注</td>
+                                                                <th>选择</th>
+                                                                <th>维护时间</th>
+                                                                <th>备注</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -848,12 +858,13 @@
                                                         <input type="hidden" name="mid" value="" />
                                                         <div class="form-group">
                                                             <label class="control-label">维护时间:</label>
-                                                            <input class="form-control hasDatepicker" data-type="datepicker" readonly="readonly" value="@System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")">
+                                                            <input class="form-control" data-type="datepicker" name="maintenanceDate" @*readonly="readonly"*@ @*value="@System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")"*@ />
+                                                            @*<input id="mdate" data-type="datepicker" class="form-control" /> class="form-control hasDatepicker"*@
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="control-label">备注:</label>
-                                                            <textarea class="form-control" name="memo"></textarea>
+                                                            <textarea class="form-control" name="memo" ></textarea>
 
                                                         </div>
                                                     </form>
@@ -866,7 +877,7 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 @*<input class="btn btn-default" type="button" value="导出">*@
-                                                @*<input class="btn btn-default" type="button" value="添加">*@
+                                                <input class="btn btn-default" type="button" id="btnAddDM" value="添加">
                                                 @*<input class="btn btn-default" type="button" value="编辑">*@
                                                 <input class="btn btn-default" type="button" id="btnDeleteDM" onclick="btnDeleteDMFunc(this)" value="删除">
                                                 <input class="btn btn-default" type="button" id="btnSaveDeviceMaintenance" value="保存">
@@ -875,18 +886,151 @@
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane contentArea" id="qxkwh">
-                                        <div class="row" id="dcl" style="overflow: auto;"></div>
+                                        <div class="row" id="dcl" style="overflow: auto;">
+                                            <div class="col-lg-12">
+                                                <table class="table table-bordered" id="qxkTable" style="width:90%;height:400px" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="40px">曲线号</th>
+                                                            <th width="40px">名称</th>
+                                                            <th>-40</th>
+                                                            <th>-39.5</th>
+                                                            <th>-39</th>
+                                                            <th>-38.5</th>
+                                                            <th>-38</th>
+                                                            <th>-37.5</th>
+                                                            <th>-37</th>
+                                                            <th>-36.5</th>
+                                                            <th>-36</th>
+                                                            <th>-35.5</th>
+                                                            <th>-35</th>
+                                                            <th>-34.5</th>
+                                                            <th>-34</th>
+                                                            <th>-33.5</th>
+                                                            <th>-33</th>
+                                                            <th>-32.5</th>
+                                                            <th>-32</th>
+                                                            <th>-31.5</th>
+                                                            <th>-31</th>
+                                                            <th>-30.5</th>
+                                                            <th>-30</th>
+                                                            <th>-29.5</th>
+                                                            <th>-29</th>
+                                                            <th>-28.5</th>
+                                                            <th>-28</th>
+                                                            <th>-27.5</th>
+                                                            <th>-27</th>
+                                                            <th>-26.5</th>
+                                                            <th>-26</th>
+                                                            <th>-25.5</th>
+                                                            <th>-25</th>
+                                                            <th>-24.5</th>
+                                                            <th>-24</th>
+                                                            <th>-23.5</th>
+                                                            <th>-23</th>
+                                                            <th>-22.5</th>
+                                                            <th>-22</th>
+                                                            <th>-21.5</th>
+                                                            <th>-21</th>
+                                                            <th>-20.5</th>
+                                                            <th>-20</th>
+                                                            <th>-19.5</th>
+                                                            <th>-19</th>
+                                                            <th>-18.5</th>
+                                                            <th>-18</th>
+                                                            <th>-17.5</th>
+                                                            <th>-17</th>
+                                                            <th>-16.5</th>
+                                                            <th>-16</th>
+                                                            <th>-15.5</th>
+                                                            <th>-15</th>
+                                                            <th>-14.5</th>
+                                                            <th>-14</th>
+                                                            <th>-13.5</th>
+                                                            <th>-13</th>
+                                                            <th>-12.5</th>
+                                                            <th>-12</th>
+                                                            <th>-11.5</th>
+                                                            <th>-11</th>
+                                                            <th>-10.5</th>
+                                                            <th>-10</th>
+                                                            <th>-9.5</th>
+                                                            <th>-9</th>
+                                                            <th>-8.5</th>
+                                                            <th>-8</th>
+                                                            <th>-7.5</th>
+                                                            <th>-7</th>
+                                                            <th>-6.5</th>
+                                                            <th>-6</th>
+                                                            <th>-5.5</th>
+                                                            <th>-5</th>
+                                                            <th>-4.5</th>
+                                                            <th>-4</th>
+                                                            <th>-3.5</th>
+                                                            <th>-3</th>
+                                                            <th>-2.5</th>
+                                                            <th>-2</th>
+                                                            <th>-1.5</th>
+                                                            <th>-1</th>
+                                                            <th>-0.5</th>
+                                                            <th>0</th>
+                                                            <th>0.5</th>
+                                                            <th>1</th>
+                                                            <th>1.5</th>
+                                                            <th>2</th>
+                                                            <th>2.5</th>
+                                                            <th>3</th>
+                                                            <th>3.5</th>
+                                                            <th>4</th>
+                                                            <th>4.5</th>
+                                                            <th>5</th>
+                                                            <th>5.5</th>
+                                                            <th>6</th>
+                                                            <th>6.5</th>
+                                                            <th>7</th>
+                                                            <th>7.5</th>
+                                                            <th>8</th>
+                                                            <th>8.5</th>
+                                                            <th>9</th>
+                                                            <th>9.5</th>
+                                                            <th>10</th>
+                                                            <th>10.5</th>
+                                                            <th>11</th>
+                                                            <th>11.5</th>
+                                                            <th>12</th>
+                                                            <th>12.5</th>
+                                                            <th>13</th>
+                                                            <th>13.5</th>
+                                                            <th>14</th>
+                                                            <th>14.5</th>
+                                                            <th>15</th>
+                                                            <th>15.5</th>
+                                                            <th>16</th>
+                                                            <th>16.5</th>
+                                                            <th>17</th>
+                                                            <th>17.5</th>
+                                                            <th>18</th>
+                                                            <th>18.5</th>
+                                                            <th>19</th>
+                                                            <th>19.5</th>
+                                                            <th>20</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            
+                                        </div>
                                         <div class="row" style="margin-top: 15px;">
                                             <div class="col-lg-6">
-
                                             </div>
                                             <div class="col-lg-6">
+                                                <input class="btn btn-default" type="button" value="更新">
                                                 <input class="btn btn-default" type="button" value="导入">
                                                 <input class="btn btn-default" type="button" value="导出Excel">
-                                                <input class="btn btn-default" type="button" value="添加">
-                                                <input class="btn btn-default" type="button" value="编辑">
                                                 <input class="btn btn-default" type="button" value="删除">
                                                 <input class="btn btn-default" type="button" value="保存">
+                                                <input class="btn btn-default" type="button" value="保存并下发">
                                             </div>
                                         </div>
                                     </div>

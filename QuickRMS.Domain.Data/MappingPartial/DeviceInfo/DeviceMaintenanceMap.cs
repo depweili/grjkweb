@@ -26,7 +26,7 @@ namespace QuickRMS.Domain.Data.Mapping.DeviceInfo
             this.Property(t => t.Id).HasColumnName("Id").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             
 				 this.Property(t => t.DeviceId).HasColumnName("DeviceId"); 
-		 		 this.Property(t => t.MaintenanceDate).HasColumnName("MaintenanceDate"); 
+		 		 this.Property(t => t.MaintenanceDate).HasColumnName("MainDate"); 
 		 		 this.Property(t => t.Memo).HasColumnName("Memo"); 
 		 	
 		 		 this.Property(t => t.IsDeleted).HasColumnName("IsDeleted"); 

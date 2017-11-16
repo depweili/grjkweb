@@ -16,6 +16,8 @@ namespace QuickRMS.Core.Service
 
         OperationResult UpdateData(string scode, dynamic clientdata = null);
 
+        OperationResult SaveAndSendData(string scode, dynamic clientdata = null);
+
         OperationResult UpdateOutTemData(string scode);
 
         OperationResult UpdateWorkMode(string scode);
@@ -32,5 +34,9 @@ namespace QuickRMS.Core.Service
 
         OperationResult SetDeviceCurveLibrary(string scode, int sid);
 
+
+        OperationResult UpdateTimeSpan(string scode, int timespantype);
+
+        OperationResult UpdateHistory(string scode, int cmbHistoryType, int nuRowNumber);
     }
 }

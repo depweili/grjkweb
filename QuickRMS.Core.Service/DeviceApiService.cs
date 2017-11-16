@@ -50,7 +50,7 @@ namespace QuickRMS.Core.Service
                     (byte)DateTime.Now.Second
                 }, CommandConst.ARM控制指令, 12, scode, out res);
 
-                if (string.IsNullOrEmpty(msg))
+                if (!string.IsNullOrEmpty(msg))
                 {
                     result.ResultType = OperationResultType.Error;
                     result.Message = msg;
@@ -79,7 +79,17 @@ namespace QuickRMS.Core.Service
 
                 RemoteResult res = null;
                 string msg = RemoteClient.Instance.SendCommandAndGetResult(null, CommandConst.读取测量值, 35, scode, out res);
-                result.AppendData = DealCommandResult(res);
+                //result.AppendData = DealCommandResult(res);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+                else
+                {
+                    result.AppendData = DealCommandResult(res);
+                }
 
                 return result;
 
@@ -100,7 +110,18 @@ namespace QuickRMS.Core.Service
 
                 RemoteResult res = null;
                 string msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)SettingType.整体参数 }, CommandConst.读取参数, 48, scode, out res);
-                result.AppendData = DealCommandResult(res, clientdata);
+                
+                //result.AppendData = DealCommandResult(res, clientdata);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+                else
+                {
+                    result.AppendData = DealCommandResult(res, clientdata);
+                }
 
                 return result;
 
@@ -113,6 +134,152 @@ namespace QuickRMS.Core.Service
             }
         }
 
+
+        public OperationResult SaveAndSendData(string scode, dynamic clientdata = null)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+
+                RemoteResult res = null;
+
+                byte[] datas = DeviceService.SaveDataAndGetCommand(clientdata);
+                string msg = RemoteClient.Instance.SendCommandAndGetResult(datas, CommandConst.参数设定, 48, scode, out res);
+                //result.AppendData = DealCommandResult(res, clientdata);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+                else
+                {
+                    result.AppendData = DealCommandResult(res, clientdata);
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+        public OperationResult UpdateTimeSpan(string scode, int timespantype)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+
+                RemoteResult res = null;
+                TimeSpanType spanType = (TimeSpanType)timespantype;
+
+                string msg = string.Empty;
+
+                switch (spanType)
+                {
+                    case TimeSpanType.假日:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)SettingType.假日模式曲线设置 }, CommandConst.读取参数, 79, scode, out res);
+                        //SendCommand(new byte[] { (byte)SettingType.假日模式曲线设置 }, CommandConst.读取参数, 79);
+                        break;
+                    case TimeSpanType.周六:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)SettingType.周六模式曲线设置 }, CommandConst.读取参数, 79, scode, out res);
+                        break;
+                    case TimeSpanType.周日:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)SettingType.周日模式曲线设置 }, CommandConst.读取参数, 79, scode, out res);
+                        break;
+                    case TimeSpanType.工作日:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)SettingType.工作模式曲线设置 }, CommandConst.读取参数, 79, scode, out res);
+                        break;
+                    default:
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+                else
+                {
+                    result.AppendData = DealCommandResult(res, new { timespantype = timespantype });
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+
+
+        public OperationResult UpdateHistory(string scode,int cmbHistoryType,int nuRowNumber)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+                RemoteResult res = null;
+
+                string msg = string.Empty;
+
+                ushort tmpValue = (ushort)nuRowNumber;
+                byte hiByte = Utility.HiByte(tmpValue);
+                byte loByte = Utility.LoByte(tmpValue);
+                switch ((HistoryType)cmbHistoryType)
+                {
+                    case HistoryType.读取正常记录:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)HistoryType.读取正常记录, hiByte, loByte }, CommandConst.读取历史数据, 51, scode, out res);
+                        break;
+                    case HistoryType.读取参数修改记录:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)HistoryType.读取参数修改记录, hiByte, loByte }, CommandConst.读取历史数据, 65, scode, out res);
+                        break;
+                    case HistoryType.模式曲线修改记录:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)HistoryType.模式曲线修改记录, hiByte, loByte }, CommandConst.读取历史数据, 101, scode, out res);
+                        break;
+                    case HistoryType.温度曲线修改记录:
+                        msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { (byte)HistoryType.温度曲线修改记录, hiByte, loByte }, CommandConst.读取历史数据, 255, scode, out res);
+                        break;
+                    default:
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+                else
+                {
+                    result.AppendData = DealCommandResult(res, new { cmbHistoryType = cmbHistoryType, nuRowNumber = nuRowNumber });
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scode"></param>
+        /// <returns></returns>
         public OperationResult UpdateWorkMode(string scode)
         {
             OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");

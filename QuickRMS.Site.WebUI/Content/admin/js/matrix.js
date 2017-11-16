@@ -548,6 +548,7 @@ function AjaxPost(url, paras, success, error) {
         async: true,
         data: paras,
         cache: false,
+        //contentType:"application/json",
         dataType: "json",
         success: success,
         error: function () {
@@ -725,7 +726,97 @@ function disableButton(btn) {
     btn.attr("disabled","disabled");
 }
 
+function enableLabel(lbl) {
+    if (typeof lbl == "string") {
+        lbl = $("#" + lbl);
+    }
+    lbl.removeClass("label-default");
+    lbl.addClass("label-success");
+}
 
+function disableLabel(lbl) {
+    if (typeof lbl == "string") {
+        lbl = $("#" + lbl);
+    }
+    lbl.removeClass("label-success");
+    lbl.addClass("label-default");
+}
+
+function stringToBytes(str) {
+
+    var ch, st, re = []; 
+    for (var i = 0; i < str.length; i++ ) { 
+        ch = str.charCodeAt(i);  // get char  
+        st = [];                 // set up "stack"  
+
+        do {  
+            st.push( ch & 0xFF );  // push byte to stack  
+            ch = ch >> 8;          // shift value down by 1 byte  
+        }    
+
+        while ( ch );  
+        // add stack contents to result  
+        // done because chars have "wrong" endianness  
+        re = re.concat( st.reverse() ); 
+    }  
+    // return an array of bytes  
+    return re;  
+}
+
+function stringToBytes(str) {
+
+    var ch, st, re = [];
+    for (var i = 0; i < str.length; i++) {
+        ch = str.charCodeAt(i);  // get char  
+        st = [];                 // set up "stack"  
+
+        do {
+            st.push(ch & 0xFF);  // push byte to stack  
+            ch = ch >> 8;          // shift value down by 1 byte  
+        }
+
+        while (ch);
+        // add stack contents to result  
+        // done because chars have "wrong" endianness  
+        re = re.concat(st.reverse());
+    }
+    // return an array of bytes  
+    return re;
+}
+
+var _base64code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
+
+function base64ToBytes(str) {
+    var bitString = "";
+    var tail = 0;
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] != "=") {
+            var decode = _base64code.indexOf(str[i]).toString(2);
+            bitString += (new Array(7 - decode.length)).join("0") + decode;
+        } else {
+            tail++;
+        }
+    }
+    return bitString.substr(0, bitString.length - tail * 2);
+}
+
+var Utility = {
+    HiByte: function (nValue) {
+        return (nValue >> 8);
+    },
+
+    Low4Bit: function (nValue) {
+        return (nValue & 0x0F);
+    },
+
+    Hi4Bit: function (nValue) {
+        return (nValue >> 4);
+    },
+
+    GetIntegerSomeBit: function (resource, mask) {
+        return resource >> mask & 1;
+    }
+};
 
 (function(win) {
 

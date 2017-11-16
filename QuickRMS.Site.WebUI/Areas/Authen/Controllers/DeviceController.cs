@@ -294,8 +294,9 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         [AdminPermission(PermissionCustomMode.Ignore)]
         public ActionResult DeviceCureList(int id)
         {
-            var data = DeviceService.GetDeviceCureLibraryList(id);
-          return  PartialView(data);
+            var data = DeviceService.GetDeviceCureLibraryDataList(id);
+            return PartialView(data);
+            //return Json(data, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -309,10 +310,17 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         [AdminPermission(PermissionCustomMode.Ignore)]
         public ActionResult UpdateOrCreateDeviceMaintenance(int id)
         {
+            var date = DateTime.Now;
             var mid = Request["mid"].GetInt(0);
             var memo = Request["memo"];
-            
-            var data = DeviceService.UpdateOrCreateDeviceMaintenance(id,memo,mid);
+            var strdate = Request["maintenanceDate"];
+
+            if (string.IsNullOrEmpty(strdate))
+            {
+                date = strdate.GetDate();
+            }
+
+            var data = DeviceService.UpdateOrCreateDeviceMaintenance(id, memo, mid, date);
             
             return Json(data, JsonRequestBehavior.AllowGet);
         }

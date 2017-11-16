@@ -11,6 +11,8 @@ using QuickRMS.Core.Service.Authen;
 using QuickRMS.Domain.Models.DeviceInfo;
 using QuickRMS.Site.WebUI.Common;
 using QuickRMS.Site.WebUI.Extension.Filters;
+using QuickRMS.Site.Models.Device;
+using Newtonsoft.Json;
 
 namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
 {
@@ -51,6 +53,22 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
                  return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        public ActionResult GetDeviceCurLibraryDataList()
+        {
+            var id = Request["id"].GetInt(0);
+            var list = DeviceService.GetDeviceCureLibraryDataList(id);
+
+            //list.ForEach(r=> { r.Device = null; });
+            //var query = from q in list
+            //    select new
+            //    {
+            //        Text=q.Name,
+            //        Value=q.Code
+            //    };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
 
         [AdminPermission(PermissionCustomMode.Ignore)]
         public ActionResult GetTimeSpanList()
@@ -83,6 +101,15 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             var id = Request["id"].GetInt(0);
 
             var dd = DeviceCureLibraryService.GetDeviceCureLibraries(id);
+            return Json(dd, JsonRequestBehavior.AllowGet);
+        }
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        public ActionResult GetDeviceCurveData(int curid)
+        {
+            //var id = Request["id"].GetInt(0);
+
+            var dd = DeviceService.GetDeviceCureData(curid);
             return Json(dd, JsonRequestBehavior.AllowGet);
         }
 
@@ -142,18 +169,6 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             return Json(dd);
         }
 
-
-        [AdminPermission(PermissionCustomMode.Ignore)]
-        [HttpPost]
-        public ActionResult UpdateData(string scode,dynamic clientdata=null)
-        {
-            //var scode = Request["scode"];
-
-            var dd = DeviceApiService.UpdateData(scode, clientdata);
-            return Json(dd);
-        }
-
-
         [AdminPermission(PermissionCustomMode.Ignore)]
         [HttpPost]
         public ActionResult UpdateWorkMode()
@@ -181,6 +196,70 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             var scode = Request["scode"];
 
             var dd = DeviceApiService.UpdateFix(scode);
+            return Json(dd);
+        }
+
+
+        //new
+        /// <summary>
+        /// 更新整体参数
+        /// </summary>
+        /// <param name="scode"></param>
+        /// <param name="clientdata"></param>
+        /// <returns></returns>
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult UpdateData(string scode, dynamic clientdata = null)
+        {
+            //var scode = Request["scode"];
+
+            var dd = DeviceApiService.UpdateData(scode, clientdata);
+            return Json(dd);
+        }
+
+        /// <summary>
+        /// 保存下发整体参数
+        /// </summary>
+        /// <param name="scode"></param>
+        /// <param name="clientdata"></param>
+        /// <returns></returns>
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult SaveAndSendData(string scode, DeviceParaDto clientdata = null)
+        {
+            //var scode = Request["scode"];
+            var dd = DeviceApiService.SaveAndSendData(scode, clientdata);
+            return Json(dd);
+        }
+
+        /// <summary>
+        /// 更新时间段设置
+        /// </summary>
+        /// <param name="scode"></param>
+        /// <param name="clientdata"></param>
+        /// <returns></returns>
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult UpdateTimeSpan(string scode, int timespantype)
+        {
+            //var scode = Request["scode"];
+            var dd = DeviceApiService.UpdateTimeSpan(scode, timespantype);
+            return Json(dd);
+        }
+
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult UpdateHistory(string scode, int cmbHistoryType, int nuRowNumber)
+        //public ActionResult UpdateHistory(dynamic clientdata)
+        {
+            //var scode = Request["scode"];
+            //var scode = "88888888";
+
+            //var strName = Convert.ToString(clientdata.NAME);
+            //var ss = clientdata.NAME;
+            //dynamic data = JsonConvert.DeserializeObject(clientdata);
+            var dd = DeviceApiService.UpdateHistory(scode, cmbHistoryType, nuRowNumber);
             return Json(dd);
         }
 
