@@ -506,6 +506,11 @@
     <Content Include="Areas\Authen\Views\Device\DeviceHistoryInfo2.cshtml" />
     <Content Include="Areas\Authen\Views\Device\DeviceCureList.cshtml" />
     <Content Include="Areas\Authen\Views\Device\DeviceManage.cshtml" />
+    <Content Include="Areas\Authen\Views\Device\Index.cshtml" />
+    <Content Include="Areas\Authen\Views\Device\Create.cshtml" />
+    <Content Include="Areas\Authen\Views\Device\Edit.cshtml" />
+    <Content Include="Areas\Authen\Views\Device\List.cshtml" />
+    <Content Include="Areas\Authen\Views\Device\Search.cshtml" />
     <None Include="Properties\PublishProfiles\rms.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap3js\bootbox.min.js" />

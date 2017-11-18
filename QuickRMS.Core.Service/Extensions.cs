@@ -44,6 +44,14 @@ namespace QuickRMS.Core.Service
            return value.ToString();
        }
 
+       public static string GetDateString(this DateTime? value)
+       {
+           if (value == null)
+               return "";
+           var dt = value.Value;
+           return dt.ToString("yyyy-MM-dd");
+       }
+
        public static decimal? TryGetDecimal(this object value)
        {
            var str = value.GetString();

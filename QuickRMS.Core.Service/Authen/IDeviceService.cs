@@ -8,6 +8,7 @@ using QuickRMS.Domain.Models.DeviceInfo;
 using QuickRMS.Domain.Models.SysConfig;
 using QuickRMS.Site.Models.Device;
 using RemoteHelper;
+using QuickRMS.Site.Models.Authen.Device;
 
 namespace QuickRMS.Core.Service.Authen
 {
@@ -31,6 +32,19 @@ namespace QuickRMS.Core.Service.Authen
 
         IQueryable<Valves> Valveses { get; }
         #endregion
+
+
+        OperationResult Insert(DeviceViewModel model);
+
+        OperationResult Update(DeviceViewModel model);
+
+        /// <summary>
+        /// 逻辑删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        OperationResult Delete(int Id);
+
 
         dynamic DealCommandResult(RemoteResult res, dynamic clientdata=null);
 

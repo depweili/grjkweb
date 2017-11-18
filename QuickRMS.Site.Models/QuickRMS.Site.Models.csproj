@@ -47,6 +47,7 @@
     <Compile Include="AdminCommon\BreadCrumbModel.cs" />
     <Compile Include="AdminCommon\ButtonModel.cs" />
     <Compile Include="AdminCommon\ProfileModel.cs" />
+    <Compile Include="Authen\Device\DeviceViewModel.cs" />
     <Compile Include="Authen\Module\ModuleModel.cs" />
     <Compile Include="AdminCommon\SidebarMenuModel.cs" />
     <Compile Include="Authen\Area\AreaNodeModel.cs" />

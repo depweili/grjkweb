@@ -42,7 +42,7 @@ namespace QuickRMS.Site.WebUI
             RemotingConfiguration.Configure(configfilename);
 
 			//初始化DB
-            //DatabaseInitializer.Initialize();
+          //  DatabaseInitializer.Initialize();
         }
     }
 }

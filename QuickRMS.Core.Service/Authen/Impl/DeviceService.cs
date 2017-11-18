@@ -19,6 +19,7 @@ using IEHNCS.Common;
 using System.Reflection;
 using System.Dynamic;
 using System.Data;
+using QuickRMS.Site.Models.Authen.Device;
 
 namespace QuickRMS.Core.Service.Authen.Impl
 {
@@ -1241,6 +1242,58 @@ namespace QuickRMS.Core.Service.Authen.Impl
                 throw;
             }
             
+        }
+
+
+
+        public OperationResult Insert(DeviceViewModel model)
+        {
+            var entity = new Device
+            {
+                DeviceName = model.DeviceName,
+                DeviceCode = model.DeviceCode,
+                IP = model.IP,
+                Port = model.Port,
+                AreaId = model.AreaId,
+                InstallTime = model.InstallDate.GetDate(),
+                Memo = model.Memo,
+                IsInited = model.IsInited,
+                Longitude = model.Longitude,
+                Latitude = model.Latitude,
+                Company = model.Company,
+                Address = model.Address,
+            };
+            DeviceRepository.Insert(entity);
+            return new OperationResult(OperationResultType.Success, "添加成功");
+        }
+
+        public OperationResult Update(DeviceViewModel model)
+        {
+            var entity = Devices.First(t => t.Id == model.Id);          
+
+                entity.DeviceName = model.DeviceName;
+                entity.DeviceCode = model.DeviceCode;
+                entity.IP = model.IP;
+                entity.Port = model.Port;
+                entity.AreaId = model.AreaId;
+                entity.InstallTime = model.InstallDate.GetDate();
+                entity.Memo = model.Memo;
+                entity.IsInited = model.IsInited;
+                entity.Longitude = model.Longitude;
+                entity.Latitude = model.Latitude;
+                entity.Company = model.Company;
+                entity.Address = model.Address;
+
+            DeviceRepository.Update(entity);
+            return new OperationResult(OperationResultType.Success, "更新成功");
+        }
+
+        public OperationResult Delete(int Id)
+        {
+            var model = Devices.FirstOrDefault(t => t.Id == Id);
+            model.IsDeleted = true;
+            DeviceRepository.Update(model);
+            return new OperationResult(OperationResultType.Success, "删除成功");
         }
     }
 }

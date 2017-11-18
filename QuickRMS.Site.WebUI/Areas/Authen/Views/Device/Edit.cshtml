@@ -1,0 +1,105 @@
+﻿@using QuickRMS.Site.WebUI.Extension.MvcHelper
+@using QuickRMS.Site.Models.Authen.Device
+@model DeviceViewModel
+@Html.HiddenFor(t => t.Id)
+<div class="control-group">
+    <label class="control-label-form">
+        <label class="red">*</label>@Html.DisplayNameFor(t => t.DeviceCode) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.DeviceCode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DeviceCode)
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label-form">
+        <label class="red">*</label>@Html.DisplayNameFor(t => t.DeviceName) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.DeviceName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DeviceName)
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Port) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Port, new { @class = "form-control" })
+    </div>
+</div>
+
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.AreaId) :
+    </label>
+    <div class="controls">
+        @Html.DropDownListFor(t => t.AreaId, Model.AreaList, new { @class = "form-control" })
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.InstallTime) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.InstallDate, new { @class = "form-control", placeholder = "格式如：2017-06-01" })
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Longitude) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Longitude, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Latitude) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Latitude, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Company) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Company, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Address) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Address, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label-form">
+        @Html.DisplayNameFor(t => t.Memo) :
+    </label>
+    <div class="controls">
+        @Html.TextBoxFor(t => t.Memo, new { @class = "form-control" })
+    </div>
+</div>
+

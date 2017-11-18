@@ -14,6 +14,9 @@ using QuickRMS.Domain.Models.DeviceInfo;
 using QuickRMS.Site.Models.Device;
 using QuickRMS.Site.WebUI.Common;
 using QuickRMS.Site.WebUI.Extension.Filters;
+using QuickRMS.Site.Models.Authen.Device;
+using System.Linq.Expressions;
+using Quick.Framework.Tool;
 
 namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
 {
@@ -31,10 +34,219 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         [Import]
         public IHistoryService HistoryService { get; set; }
 
+         [AdminLayout]
         public ActionResult Index()
         {
-            return View();
+            DeviceViewModel model = new DeviceViewModel();
+            var areaList = AreaService.Areas.Where(r => r.IsDeleted == null || !r.IsDeleted.Value).ToList();
+
+            foreach (var area in areaList)
+            {
+                var item = new SelectListItem
+                {
+                    Text = area.Name,
+                    Value = area.Id.GetString()
+                };
+                model.Search.AreaList.Add(item);
+
+            }
+            return View(model);
         }
+
+
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        public ActionResult List(DataTableParameter param)
+        {
+            int total = DeviceService.Devices.Count(t => t.IsDeleted == null || t.IsDeleted.Value == false);
+          
+            //构建查询表达式
+            var expr = BuildSearchCriteria();
+
+            var filterResult = DeviceService.Devices.Where(expr).Select(t => new DeviceViewModel
+            {
+                DeviceCode = t.DeviceCode,
+                DeviceName = t.DeviceCode,
+                Port = t.Port,
+                AreaId = t.AreaId,
+                AreaName=(t.Area==null?"":t.Area.Name),
+                InstallTime = t.InstallTime,
+                Longitude = t.Longitude,
+                Latitude = t.Latitude,
+                Address = t.Address,
+                Company = t.Company,
+                Id = t.Id
+            }).OrderByDescending(t => t.Id).Skip(param.iDisplayStart).Take(param.iDisplayLength).ToList();
+
+            int sortId = param.iDisplayStart + 1;
+
+            var result = from c in filterResult
+                         select new[]
+                {
+                    sortId++.ToString(),
+                   c.DeviceCode,
+                   c.DeviceName,
+                    c.Port.GetString(),
+                    c.AreaName.GetString(),
+                    c.InstallTime.GetDateString(),
+                    c.Longitude.GetString(),
+                    c.Latitude.GetString(),
+                    c.Address,
+                    c.Company,
+                    c.Id.ToString()
+                };
+
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iDisplayStart = param.iDisplayStart,
+                iTotalRecords = total,
+                iTotalDisplayRecords = total,
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        #region 构建查询表达式
+
+        /// <summary>
+        /// 构建查询表达式
+        /// </summary>
+        /// <returns></returns>
+        private Expression<Func<Device, Boolean>> BuildSearchCriteria()
+        {
+            DynamicLambda<Device> bulider = new DynamicLambda<Device>();
+            Expression<Func<Device, Boolean>> expr = null;
+
+            if (!string.IsNullOrEmpty(Request["Name"]))
+            {
+                var data = Request["Name"].Trim();
+                Expression<Func<Device, Boolean>> tmp = t => t.DeviceName.Contains(data);
+                expr = bulider.BuildQueryAnd(expr, tmp);
+            }
+
+
+            Expression<Func<Device, Boolean>> tmpSolid = (t => t.IsDeleted == null || t.IsDeleted.Value == false);
+            expr = bulider.BuildQueryAnd(expr, tmpSolid);
+
+            return expr;
+        }
+
+        #endregion
+
+        public ActionResult Create(int? pId)
+        {
+            var model = new DeviceViewModel();
+            var areaList = AreaService.Areas.Where(r => r.IsDeleted == null || !r.IsDeleted.Value).ToList();
+          
+            foreach (var area in areaList)
+            {
+                var item = new SelectListItem
+                {
+                    Text = area.Name,
+                    Value = area.Id.GetString()
+                };
+                model.AreaList.Add(item);
+            }
+           
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        [AdminOperateLog]
+        public ActionResult Create(DeviceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                OperationResult result = DeviceService.Insert(model);
+                if (result.ResultType == OperationResultType.Success)
+                {
+                    return Json(result);
+                }
+                else
+                {
+                    return PartialView(model);
+                }
+            }
+            else
+            {
+                return PartialView(model);
+            }
+        }
+
+        public ActionResult Edit(int Id)
+        {
+            var model = new DeviceViewModel();
+            var entity = DeviceService.Devices.FirstOrDefault(t => t.Id == Id);
+            if (null != entity)
+            {
+                model = new DeviceViewModel
+                {
+                    Id = entity.Id,
+                    DeviceName = entity.DeviceName,
+                    DeviceCode = entity.DeviceCode,
+                    IP = entity.IP,
+                    Port = entity.Port,
+                    AreaId = entity.AreaId,
+                    InstallTime = entity.InstallTime,
+                    InstallDate=entity.InstallTime.GetDateString(),
+                    Memo = entity.Memo,
+                    IsInited = entity.IsInited,
+                    Longitude = entity.Longitude,
+                    Latitude = entity.Latitude,
+                    Company = entity.Company,
+                    Address = entity.Address,
+                };
+               
+
+            }
+
+            var areaList = AreaService.Areas.Where(r => r.IsDeleted == null || !r.IsDeleted.Value).ToList();
+
+            foreach (var area in areaList)
+            {
+                var item = new SelectListItem
+                {
+                    Text = area.Name,
+                    Value = area.Id.GetString()
+                };
+                if (area.Id == model.AreaId)
+                {
+                    item.Selected = true;
+                }
+                model.AreaList.Add(item);
+            }
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        [AdminOperateLog]
+        public ActionResult Edit(DeviceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                OperationResult result = DeviceService.Update(model);
+               
+                    return Json(result);
+               
+            }
+            else
+            {
+              
+                return PartialView(model);
+            }
+        }
+
+
+
+        [AdminOperateLog]
+        public ActionResult Delete(int Id)
+        {
+            OperationResult result = DeviceService.Delete(Id);
+            return Json(result);
+        }
+
 
         [AdminLayout]
         public ActionResult DeviceManage()

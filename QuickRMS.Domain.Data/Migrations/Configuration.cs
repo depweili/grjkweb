@@ -166,6 +166,7 @@ new Device { Id=22,DeviceCode="0",DeviceName="调试设备",IP="",Port=5003,Ctrl
                 new Module { Id = 4, ParentId = 1, Name = "用户管理", LinkUrl = "Authen/User/Index", Area = "Authen", Controller = "User", Action = "Index", Icon = "", Code = "2003", OrderSort = 4, Description = null, IsMenu = true, Enabled = true, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "admin", ModifyTime = DateTime.Now },
                 new Module { Id = 5, ParentId = 1, Name = "模块管理", LinkUrl = "Authen/Module/Index", Area = "Authen", Controller = "Module", Action = "Index", Icon = "", Code = "2004", OrderSort = 5, Description = null, IsMenu = true, Enabled = true, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "admin", ModifyTime = DateTime.Now },
                 new Module { Id = 6, ParentId = 1, Name = "权限管理", LinkUrl = "Authen/Permission/Index", Area = "Authen", Controller = "Permission", Action = "Index", Icon = "", Code = "2005", OrderSort = 6, Description = null, IsMenu = true, Enabled = true, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "admin", ModifyTime = DateTime.Now },
+                 new Module { Id = 22, ParentId = 1, Name = "设备管理", LinkUrl = "Authen/Device/Index", Area = "Authen", Controller = "Device", Action = "Index", Icon = "", Code = "2006", OrderSort = 7, Description = null, IsMenu = true, Enabled = true, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "admin", ModifyTime = DateTime.Now },
                
               
                 new Module { Id = 7, ParentId = null, Name = "系统应用", LinkUrl = null, Area = null, Controller = null, Action = null, Icon = "icon-cloud", Code = "30", OrderSort = 7, Description = null, IsMenu = true, Enabled = true, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "admin", ModifyTime = DateTime.Now },
@@ -274,7 +275,13 @@ new Device { Id=22,DeviceCode="0",DeviceName="调试设备",IP="",Port=5003,Ctrl
                  new ModulePermission { Id = 62, ModuleId = 19, PermissionId = 1, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
                 new ModulePermission { Id = 63, ModuleId = 21, PermissionId = 1, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
 
-             
+              new ModulePermission { Id = 64, ModuleId = 22, PermissionId = 1, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new ModulePermission { Id = 65, ModuleId = 22, PermissionId = 2, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new ModulePermission { Id = 66, ModuleId = 22, PermissionId = 3, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new ModulePermission { Id = 67, ModuleId = 22, PermissionId = 4, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new ModulePermission { Id = 68, ModuleId = 22, PermissionId = 7, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                 new ModulePermission { Id = 69, ModuleId = 22, PermissionId = 9, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+
             };
 
             DbSet<ModulePermission> modulePermissionsSet = context.Set<ModulePermission>();
@@ -352,6 +359,13 @@ new Device { Id=22,DeviceCode="0",DeviceName="调试设备",IP="",Port=5003,Ctrl
                 new RoleModulePermission { Id = 66, RoleId = 1, ModuleId = 21, PermissionId = 19, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
             
               
+                 new RoleModulePermission { Id = 67, RoleId = 1, ModuleId = 22, PermissionId = 1, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new RoleModulePermission { Id = 68, RoleId = 1, ModuleId = 22, PermissionId = 2, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new RoleModulePermission { Id = 69, RoleId = 1, ModuleId = 22, PermissionId = 3, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new RoleModulePermission { Id = 70, RoleId = 1, ModuleId = 22, PermissionId = 4, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new RoleModulePermission { Id = 71, RoleId = 1, ModuleId = 22, PermissionId = 7, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+                new RoleModulePermission { Id = 72, RoleId = 1, ModuleId = 22, PermissionId = 9, IsDeleted = false, CreateBy = "admin", CreateId = 1, CreateTime = DateTime.Now, ModifyId = 1, ModifyBy = "amdin", ModifyTime = DateTime.Now  },
+
             };
 
             DbSet<RoleModulePermission> roleModulePermissionSet = context.Set<RoleModulePermission>();
