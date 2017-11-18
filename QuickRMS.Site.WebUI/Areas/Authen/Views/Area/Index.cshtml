@@ -38,11 +38,11 @@
                 {
                     "sName": "Name",
                     "bSortable": false,
-                    "fnRender": function (oObj) {
-                        if (oObj.aData[3] == "") {
-                            return "<label class='th-label'>[ " + oObj.aData[1] + " ]</label>";
+                    "render": function (data, type, row) {
+                        if (row[3] == "") {
+                            return "<label class='th-label'>[ " + row[1] + " ]</label>";
                         } else {
-                            return oObj.aData[1];
+                            return row[1];
                         }
                     }
                 },
@@ -55,18 +55,18 @@
                 {
                     "sName": "Id",
                     "bSortable": false,
-                    "fnRender": function (oObj) {
+                    "render": function (data,type,row) {
                         var btnArray = "";
                         @{
-                               <text>btnArray += '<button type="submit" class="btn btn-success btn-normal" title="添加下级机构" onclick="AddChildOrg(' + oObj.aData[oObj.aData.length - 1] + ')"><span class="icon-plus"></span></button>'</text>
+                               <text>btnArray += '<button type="submit" class="btn btn-success btn-normal" title="添加下级机构" onclick="AddChildOrg(' +row[6] + ')"><span class="icon-plus"></span></button>'</text>
                            }
                         @if (editButton != null)
                             {
-                                <text>btnArray += '<button type="submit" class="btn btn-primary btn-normal" title="@editButton.Text" onclick="Edit(' + oObj.aData[oObj.aData.length - 1] + ')"><span class="@editButton.Icon"></span></button>'</text>
+                                <text>btnArray += '<button type="submit" class="btn btn-primary btn-normal" title="@editButton.Text" onclick="Edit(' + row[6] + ')"><span class="@editButton.Icon"></span></button>'</text>
                             }
                         @if (deleteButton != null)
                             {
-                                <text>btnArray += '<button type="submit" class="btn btn-danger btn-normal" title="@deleteButton.Text " onclick="Delete(' + oObj.aData[oObj.aData.length - 1] + ')"><span class="@deleteButton.Icon"></span></button>'</text>
+                                <text>btnArray += '<button type="submit" class="btn btn-danger btn-normal" title="@deleteButton.Text " onclick="Delete(' + row[6] + ')"><span class="@deleteButton.Icon"></span></button>'</text>
                             }
                         return btnArray;
                     }

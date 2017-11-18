@@ -34,8 +34,8 @@
                     {
                         "sName": "icon",
                         "bSortable": false,
-                        "fnRender": function (oObj) {
-                            return '<i class="' + oObj.aData[3] + '"></i>';
+                        "render": function (data, type, row) {
+                            return '<i class="' + row[3] + '"></i>';
                         }
                     },
                     { "sName": "OrderSort", "bSortable": false },
@@ -44,15 +44,15 @@
                     {
                         "sName": "Id",
                         "bSortable": false,
-                        "fnRender": function (oObj) {
+                        "render": function (data, type, row) {
                             var btnArray = "";
                             @if (editButton != null)
                             {
-                                <text>btnArray += '<button type="submit" class="btn btn-primary btn-normal" title="@editButton.Text" onclick="Edit(' + oObj.aData[oObj.aData.length - 1] + ')"><span class="@editButton.Icon"></span></button>'</text>
+                                <text>btnArray += '<button type="submit" class="btn btn-primary btn-normal" title="@editButton.Text" onclick="Edit(' + row[row.length - 1] + ')"><span class="@editButton.Icon"></span></button>'</text>
                             }
                             @if (deleteButton != null)
                             {
-                                <text>btnArray += '<button type="submit" class="btn btn-danger btn-normal" title="@deleteButton.Text" onclick="Delete(' + oObj.aData[oObj.aData.length - 1] + ')"><span class="@deleteButton.Icon"></span></button>'</text>
+                                <text>btnArray += '<button type="submit" class="btn btn-danger btn-normal" title="@deleteButton.Text" onclick="Delete(' + row[row.length - 1] + ')"><span class="@deleteButton.Icon"></span></button>'</text>
                             }
                             return btnArray;
                         }

@@ -88,11 +88,11 @@ namespace QuickRMS.Core.Service.Authen.Impl
         {
             var query = from a in Areas
                 join b in UserAreas on a.Id equals b.AreaId
-                where b.UserId == userId
+                where b.UserId == userId && (a.IsDeleted==null||!a.IsDeleted.Value)
                 select a;
 
             var areas = query.ToList();
-            var nodeList = Areas.OrderBy(r => r.Code).Select(r => new AreaDeviceNodeModel
+            var nodeList = Areas.Where(a => a.IsDeleted == null || !a.IsDeleted.Value).OrderBy(r => r.Code).Select(r => new AreaDeviceNodeModel
             {
                 Id = r.Id,
                 Text = r.Name,
@@ -111,7 +111,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
         }
         public List<AreaNodeModel> LoadAreasTree()
         {
-            var nodeList = Areas.OrderBy(r => r.Code).Select(r => new AreaNodeModel
+            var nodeList = Areas.Where(t => t.IsDeleted == null || t.IsDeleted.Value == false).OrderBy(r => r.Code).Select(r => new AreaNodeModel
             {
                 Id = r.Id,
                 Text = r.Name,

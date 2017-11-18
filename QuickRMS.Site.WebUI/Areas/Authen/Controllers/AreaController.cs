@@ -57,7 +57,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         [AdminPermission(PermissionCustomMode.Ignore)]
         public ActionResult List(DataTableParameter param)
         {
-            int total = AreaService.Areas.Count(t => t.IsDeleted == false);
+            int total = AreaService.Areas.Count(t => t.IsDeleted ==null||t.IsDeleted.Value == false);
 
             //构建查询表达式
             var expr = BuildSearchCriteria();
@@ -65,10 +65,11 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             var filterResult = AreaService.Areas.Where(expr).Select(t => new AreaModel
             {
                 Id = t.Id,
+                ParentId=t.ParentId,
                 Description = t.Description,
                 Name = t.Name,
                 ParentName = t.ParentArea != null ? t.ParentArea.Name : ""
-            }).OrderBy(t => t.Id).Skip(param.iDisplayStart).Take(param.iDisplayLength).ToList();
+            }).OrderBy(t => (t.ParentId??0)).Skip(param.iDisplayStart).Take(param.iDisplayLength).ToList();
 
             int sortId = param.iDisplayStart + 1;
 
@@ -104,6 +105,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         {
             DynamicLambda<Area> bulider = new DynamicLambda<Area>();
             Expression<Func<Area, Boolean>> expr = null;
+
             if (!string.IsNullOrEmpty(Request["Name"]))
             {
                 var data = Request["Name"].Trim();
@@ -111,8 +113,8 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
                 expr = bulider.BuildQueryAnd(expr, tmp);
             }
 
-            
-            Expression<Func<Area, Boolean>> tmpSolid = t => t.IsDeleted == false;
+
+            Expression<Func<Area, Boolean>> tmpSolid = (t => t.IsDeleted == null || t.IsDeleted.Value == false);
             expr = bulider.BuildQueryAnd(expr, tmpSolid);
 
             return expr;
@@ -219,7 +221,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         private void InitParentArea(AreaModel model)
         {
             var parentAreaData = AreaService.Areas.Where(
-                t => t.ParentId == null && t.IsDeleted == false)
+                t => t.ParentId == null && (t.IsDeleted == null || t.IsDeleted.Value == false))
                 .Select(t => new AreaModel
                 {
                     Id = t.Id,
