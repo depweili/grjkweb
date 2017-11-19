@@ -1,0 +1,111 @@
+﻿@using QuickRMS.Site.Models.Authen.Device
+@using QuickRMS.Site.Models.AdminCommon
+@model DeviceViewModel
+@{
+    ViewBag.Title = ViewBag.CurrentTitle + "";
+    var setButton = new ButtonModel();
+    var editButton = new ButtonModel();
+    var deleteButton = new ButtonModel();
+    setButton = ViewBag.setButton;
+    editButton = ViewBag.Edit;
+    deleteButton = ViewBag.Delete;
+}
+@section css{
+    @Styles.Render("~/bundles/css/jqueryui")
+}
+<div id="content-body" class="row">
+    <div class="col-lg-12">
+        <!--操作 -->
+        @Html.Partial("Search", Model.Search)
+
+        <!--列表-->
+        @Html.Partial("List")
+
+        <!--新增 & 编辑-->
+        @Html.Partial("_FormModal")
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        var oTable = null;
+
+        $(function () {
+            var actionUrl = "@Url.Action("List")?rand=" + Math.random();
+            var aoColumns = [
+                    { "sName": "SortId", "bSortable": false },
+                    {
+                        "sName": "DeviceCode",
+                        "bSortable": false,
+                    },
+                     { "sName": "DeviceName", "bSortable": false },
+                    { "sName": "Port", "bSortable": false },
+
+                    { "sName": "AreaId", "bSortable": false },
+
+                    { "sName": "InstallTime", "bSortable": false },
+                     { "sName": "Longitude", "bSortable": false },
+                      { "sName": "Latitude", "bSortable": false },
+                       { "sName": "Address", "bSortable": false },
+                        { "sName": "Company", "bSortable": false },
+                    {
+                        "sName": "Id",
+                        "bSortable": false,
+                        "render": function (data, type, row) {
+                            var btnArray = "";
+
+                            @if (true)
+                            {
+                                <text>btnArray += '<button type="submit" class="btn btn-primary btn-normal" title="编辑" onclick="Edit(' + row[row.length-1] + ')"><span class="icon-pencil"></span></button>'</text>
+                            }
+                            @if (true)
+                            {
+                                <text>btnArray += '<button type="submit" class="btn btn-danger btn-normal" title="删除" onclick="Delete(' + row[row.length - 1] + ')"><span class="icon-remove"></span></button>'</text>
+                            }
+                            return btnArray;
+                        }
+                    }
+            ];
+            //初始化表格
+            oTable = InitDatatables($(".data-table"), actionUrl, aoColumns, oTable);
+
+        });
+
+      
+
+        //查询
+        function Search() {
+            var filterdata = $(".search-form").serialize();
+            oTable.fnReloadAjax("@Url.Action("List")?rand=" + Math.random() + "&" + filterdata);
+        }
+
+        //新增
+        function Create() {
+            var actionUrl = "@Url.Action("Create")";
+            var param = {};
+            ShowModal(actionUrl, param, "新增设备");
+        }
+
+        //编辑
+        function Edit(id) {
+            var actionUrl = "@Url.Action("Edit")";
+            var param = { Id: id }
+            ShowModal(actionUrl, param, "编辑设备");
+        }
+
+        //保存
+        function Save() {
+            SaveModal(oTable);
+        }
+
+        //删除
+        function Delete(id) {
+            var actionUrl = "@Url.Action("Delete")";
+            var param = { Id: id }
+            DeleteRecord(actionUrl, param, oTable);
+        }
+
+      
+    </script>
+}

@@ -16,9 +16,9 @@
 
             <div class="form-group">
                 <div class="search-group">
-                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.Name)</label>
+                    <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.DeviceCode)</label>
                     <div class="col-sm-2 search-input">
-                        @Html.TextBoxFor(t => t.Name, new { @class = "form-control" })
+                        @Html.TextBoxFor(t => t.DeviceCode, new { @class = "form-control" })
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@
                 <div class="search-group">
                     <label class="control-label col-sm-2">@Html.DisplayNameFor(t => t.AreaList)</label>
                     <div class="col-sm-2 search-input">
-                        @Html.DropDownListFor(t => t.Enabled, Model.AreaList, new { @class = "form-control" })
+                        @Html.DropDownListFor(t => t.AreaList, Model.AreaList, new { @class = "form-control" })
                     </div>
                 </div>
             </div>

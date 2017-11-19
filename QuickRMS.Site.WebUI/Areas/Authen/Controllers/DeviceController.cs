@@ -117,6 +117,13 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             DynamicLambda<Device> bulider = new DynamicLambda<Device>();
             Expression<Func<Device, Boolean>> expr = null;
 
+            if (!string.IsNullOrEmpty(Request["DeviceCode"]))
+            {
+                var data = Request["DeviceCode"].Trim();
+                Expression<Func<Device, Boolean>> tmp = t => t.DeviceCode.Contains(data);
+                expr = bulider.BuildQueryAnd(expr, tmp);
+            }
+
             if (!string.IsNullOrEmpty(Request["Name"]))
             {
                 var data = Request["Name"].Trim();
@@ -124,6 +131,15 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
                 expr = bulider.BuildQueryAnd(expr, tmp);
             }
 
+            if (!string.IsNullOrEmpty(Request["AreaList"]))
+            {
+                var data = Request["AreaList"].GetInt(0);
+                if (data > 0)
+                {
+                    Expression<Func<Device, Boolean>> tmp = t => t.AreaId==data;
+                    expr = bulider.BuildQueryAnd(expr, tmp);
+                }
+            }
 
             Expression<Func<Device, Boolean>> tmpSolid = (t => t.IsDeleted == null || t.IsDeleted.Value == false);
             expr = bulider.BuildQueryAnd(expr, tmpSolid);

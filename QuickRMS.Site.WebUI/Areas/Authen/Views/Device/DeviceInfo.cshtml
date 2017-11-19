@@ -18,16 +18,24 @@
 
             <div class="col-lg-6  no-right-padding">所属区域：<label class="nopadding">@Model.Area.Name</label></div>
             
-            <div class="col-lg-6  no-right-padding">安装位置：<label class="nopadding">@Model.Address</label></div>
+            <div class="col-lg-6  no-right-padding">所属公司：<label class="nopadding">@Model.Company</label></div>
            
         </div>
 
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">安装时间：<label class="nopadding">@Model.InstallTime</label></div>
+            <div class="col-lg-6  no-right-padding">更新时间：<label class="nopadding">@Model.InstallTime</label></div>
            
             <div class="col-lg-6  no-right-padding">备注：<label class="nopadding">@Model.Memo</label></div>
            
+        </div>
+
+        <div class="row show-grid">
+
+            <div class="col-lg-12  no-right-padding">安装位置：<label class="nopadding">@Model.Address</label></div>
+
+          
+
         </div>
 
     </div>
@@ -36,7 +44,7 @@
 <div class="widget-box" style=" width: 360px;">
     <div class="widget-title">
         <span class="icon"><i class="icon-list"></i></span>
-        <h5>温度修正</h5>
+        <h5>运行状态</h5>
     </div>
     <div class="widget-content">
         <div class="row show-grid">

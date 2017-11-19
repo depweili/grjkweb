@@ -23,6 +23,7 @@
                 <li role="presentation"><a href="#ValveSetting" aria-controls="settings" role="tab" data-toggle="tab">阀门设置</a></li>
                 <li role="presentation"><a href="#TemperatureSetting" aria-controls="messages" role="tab" data-toggle="tab">温度修正</a></li>
                 <li role="presentation"><a href="#TerminalSetting" aria-controls="settings" role="tab" data-toggle="tab">终端维护</a></li>
+                <li role="presentation"><a href="#DeviceMapView" aria-controls="settings" role="tab" data-toggle="tab">设备地图</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -1043,7 +1044,24 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div role="tabpanel" class="tab-pane" id="DeviceMapView">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <span class="icon"><i class="icon-list"></i></span>
+                            <h5>设备地图</h5>
+                        </div>
+                        <div class="widget-content">
+                            <div class="row">
+                                <div id="devicemap" style="height: 650px; width: 100%"></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
 
         </div>
 
@@ -1054,6 +1072,7 @@
 
 @section scripts{
 @Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FkNoQ2rrpBoTNF4v3KYPFfKZx5nHw8ke"></script>
     <script src="/Content/admin/js/devicemanage.js"></script>
     <script src="/Content/admin/js/devicemanagefunc.js"></script>
     <script type="text/javascript">
@@ -1095,4 +1114,98 @@
         initSystemState();
         initEvent();
     </script>
+<script type="text/javascript">
+
+    // 百度地图API功能
+    Qrms.Map = new BMap.Map("devicemap");
+    var point = new BMap.Point(116.404, 39.915);
+    Qrms.Map.centerAndZoom(point, 5);
+
+
+    var top_left_control = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_TOP_LEFT }); // 左上角，添加比例尺
+    var top_left_navigation = new BMap.NavigationControl(); //左上角，添加默认缩放平移控件
+    var top_right_navigation = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL });
+
+    Qrms.Map.addControl(top_left_control);
+    Qrms.Map.addControl(top_left_navigation);
+    Qrms.Map.addControl(top_right_navigation);
+
+
+    Qrms.updateMap = function () {
+        var map = Qrms.Map;
+        var dos = Qrms.DeviceObjs || [];
+
+        Qrms.DeviceMapObjs = [];
+        map.clearOverlays();
+
+        var sbofflin = new BMap.Icon("/content/admin/images/map/sboffline.png", new BMap.Size(32, 32));
+        var sbonline = new BMap.Icon("/content/admin/images/map/sbonline.png", new BMap.Size(32, 32));
+
+        for (var i = 0; i < dos.length; i++) {
+            var lng = dos[i].longitude;
+            var lat = dos[i].latitude;
+            if (lng && lat) {
+                var pt = new BMap.Point(lng, lat);
+                var myIcon = dos[i].isOnline ? sbonline : sbofflin;
+
+                var marker = new BMap.Marker(pt, { icon: myIcon });
+                marker.did = dos[i].id;
+                Qrms.DeviceMapObjs.push(marker);
+
+
+                marker.addEventListener("click", openDeviceInfoWindow);
+
+                map.addOverlay(marker);
+            }
+        }
+
+
+    };
+
+
+    QR.cPageFunction = 100;
+    var currentNode;
+    Qrms.updatePageData = function (node) {
+        currentNode = node;
+
+        if (node.deviceCode) {
+            openDeviceInfoWindow();
+
+        } else {
+            var lng = node.longitude;
+            var lat = node.latitude;
+            if (lng && lat) {
+                var point = new BMap.Point(lng, lat);
+                Qrms.Map.centerAndZoom(point, 13);
+            }
+        }
+    }
+
+    function getCurrentMarker() {
+        if (!currentNode) return null;
+        for (var i = 0; i < Qrms.DeviceMapObjs.length; i++) {
+            var o = Qrms.DeviceMapObjs[i];
+            if (o.did == currentNode.id) {
+                return o;
+            }
+        }
+    }
+
+    function openDeviceInfoWindow(m) {
+        var cn = m ? m.target : getCurrentMarker();
+        var $this = cn;
+        console.log(m);
+        var lng = cn.longitude;
+        var lat = cn.latitude;
+        var point = new BMap.Point(lng, lat);
+        var path = "DeviceInfo/" + (cn.did || 0);
+        var infoUrl = path + "?rand=" + Math.random();
+        AjaxHtml(infoUrl, {}, function (res) {
+            var sContent = res;
+            var infoWindow = new BMap.InfoWindow(sContent);
+            $this.openInfoWindow(infoWindow);
+        });
+    }
+</script>
+
 }

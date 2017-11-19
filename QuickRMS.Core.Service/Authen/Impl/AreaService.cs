@@ -67,7 +67,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
             var entity = Areas.First(t => t.Id == model.Id);
             entity.Name = model.Name;
             entity.Description = model.Description;
-            
+            entity.ParentId = model.ParentId;
 
             AreaRepository.Update(entity);
             return new OperationResult(OperationResultType.Success, "更新成功");

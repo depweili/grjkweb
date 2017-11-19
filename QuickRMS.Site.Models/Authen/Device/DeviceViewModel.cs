@@ -84,7 +84,7 @@ namespace QuickRMS.Site.Models.Authen.Device
         public string Name { get; set; }
 
         [Display(Name = "设备编码")]
-        public bool Enabled { get; set; }
+        public string DeviceCode { get; set; }
 
          [Display(Name = "所属区划")]
         public List<SelectListItem> AreaList { get; set; }

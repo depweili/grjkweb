@@ -174,9 +174,25 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
                     Description = entity.Description,
                     ParentName = (entity.ParentArea == null ? "" : (entity.ParentArea.Name))
                 };
-                InitParentArea(model);
+               // InitParentArea(model);
 
             }
+            var areaList = AreaService.Areas.Where(r => r.IsDeleted == null || !r.IsDeleted.Value).ToList();
+
+            foreach (var area in areaList)
+            {
+                var item = new SelectListItem
+                {
+                    Text = area.Name,
+                    Value = area.Id.ToString()
+                };
+                if (area.Id == model.ParentId)
+                {
+                    item.Selected = true;
+                }
+                model.AreaList.Add(item);
+            }
+
             return PartialView(model);
         }
 

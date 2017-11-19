@@ -15,7 +15,11 @@ namespace QuickRMS.Site.Models.Authen.Area
         {
             Search = new SearchModel();
             Enabled = true;
+            AreaList = new List<SelectListItem>() {
+                new SelectListItem { Text = "---选择区划---", Value = ""}, 
+            };
         }
+        public List<SelectListItem> AreaList { get; set; }
 
         public int Id { get; set; }
 
@@ -27,7 +31,7 @@ namespace QuickRMS.Site.Models.Authen.Area
         [Display(Name = "机构描述")]
         public string Description { get; set; }
 
-       
+        [Display(Name = "上级机构")]
         public int? ParentId { get; set; }
 
         [Display(Name = "上级机构")]

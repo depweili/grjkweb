@@ -3,7 +3,6 @@
 @model AreaModel
 
 @Html.HiddenFor(t=>t.Id)
-@Html.HiddenFor(t => t.ParentId)
 <div class="control-group">
     <label class="control-label-form">
         <label class="red">*</label>@Html.DisplayNameFor(t => t.Name) :
@@ -24,18 +23,14 @@
     </div>
 </div>
 
-
-
 <div class="control-group">
     <label class="control-label-form">
-        @Html.DisplayNameFor(t => t.ParentName) :
+        @Html.DisplayNameFor(t => t.ParentId) :
     </label>
     <div class="controls">
-        @Html.TextBoxFor(t => t.ParentName, new { @class = "form-control", disabled = "disabled" })
+        @Html.DropDownListFor(t => t.ParentId, Model.AreaList, new { @class = "form-control" })
     </div>
 </div>
-
-
 
 
 <div class="control-group">
