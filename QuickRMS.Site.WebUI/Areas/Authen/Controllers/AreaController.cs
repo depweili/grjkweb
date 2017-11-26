@@ -25,7 +25,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
     {
 
         //
-        // GET: /Authen/Area/
+        // GET: /试试
 
         #region 属性
 
