@@ -303,7 +303,100 @@ function initTemperatureSetting() {
     Qrms.updatePageData = null;
 }
 
+//设备地图
+function iniDeviceMap() {
+    // 百度地图API功能
+    Qrms.Map = new BMap.Map("devicemap");
+    var point = new BMap.Point(116.404, 39.915);
+    Qrms.Map.centerAndZoom(point, 5);
 
+
+    var top_left_control = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_TOP_LEFT }); // 左上角，添加比例尺
+    var top_left_navigation = new BMap.NavigationControl(); //左上角，添加默认缩放平移控件
+    var top_right_navigation = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL });
+
+    Qrms.Map.addControl(top_left_control);
+    Qrms.Map.addControl(top_left_navigation);
+    Qrms.Map.addControl(top_right_navigation);
+
+
+    Qrms.updateMap = function () {
+        var map = Qrms.Map;
+        var dos = Qrms.DeviceObjs || [];
+
+        Qrms.DeviceMapObjs = [];
+        map.clearOverlays();
+
+        var sbofflin = new BMap.Icon("/content/admin/images/map/sboffline.png", new BMap.Size(32, 32));
+        var sbonline = new BMap.Icon("/content/admin/images/map/sbonline.png", new BMap.Size(32, 32));
+
+        for (var i = 0; i < dos.length; i++) {
+            var lng = dos[i].longitude;
+            var lat = dos[i].latitude;
+            if (lng && lat) {
+                var pt = new BMap.Point(lng, lat);
+                var myIcon = dos[i].isOnline ? sbonline : sbofflin;
+
+                var marker = new BMap.Marker(pt, { icon: myIcon });
+                marker.did = dos[i].id;
+                Qrms.DeviceMapObjs.push(marker);
+
+
+                marker.addEventListener("click", openDeviceInfoWindow);
+
+                map.addOverlay(marker);
+            }
+        }
+
+
+    };
+
+
+    Qrms.updateMap();
+
+    var currentNode;
+    Qrms.updatePageData = function (node) {
+        currentNode = node;
+
+        if (node.deviceCode) {
+            openDeviceInfoWindow();
+
+        } else {
+            var lng = node.longitude;
+            var lat = node.latitude;
+            if (lng && lat) {
+                var point = new BMap.Point(lng, lat);
+                Qrms.Map.centerAndZoom(point, 13);
+            }
+        }
+    }
+
+    function getCurrentMarker() {
+        if (!currentNode) return null;
+        for (var i = 0; i < Qrms.DeviceMapObjs.length; i++) {
+            var o = Qrms.DeviceMapObjs[i];
+            if (o.did == currentNode.id) {
+                return o;
+            }
+        }
+    }
+
+    function openDeviceInfoWindow(m) {
+        var cn = m ? m.target : getCurrentMarker();
+        var $this = cn;
+        console.log(m);
+        var lng = cn.longitude;
+        var lat = cn.latitude;
+        var point = new BMap.Point(lng, lat);
+        var path = "DeviceInfo/" + (cn.did || 0);
+        var infoUrl = path + "?rand=" + Math.random();
+        AjaxHtml(infoUrl, {}, function (res) {
+            var sContent = res;
+            var infoWindow = new BMap.InfoWindow(sContent);
+            $this.openInfoWindow(infoWindow);
+        });
+    }
+}
 
 //终端维护
 function initTerminalSetting() {

@@ -194,7 +194,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
                     n.Nodes = LoadChildAreaDeviceNodes(n, allNodes);
                     var id = n.Id;
                     var devices = (from q in Devices
-                                   where q.AreaId == id
+                                   where q.AreaId == id&&(q.IsDeleted==null||q.IsDeleted==false)
                                    select new AreaDeviceNodeModel
                                    {
                                        Text = q.DeviceName,

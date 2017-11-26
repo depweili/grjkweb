@@ -1255,7 +1255,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
                 IP = model.IP,
                 Port = model.Port,
                 AreaId = model.AreaId,
-                InstallTime = model.InstallDate.GetDate(),
+                InstallTime = model.InstallDate.TryGetDate(),
                 Memo = model.Memo,
                 IsInited = model.IsInited,
                 Longitude = model.Longitude,
@@ -1264,6 +1264,54 @@ namespace QuickRMS.Core.Service.Authen.Impl
                 Address = model.Address,
             };
             DeviceRepository.Insert(entity);
+
+
+            if (entity.Id > 0)
+            {
+               var vA=  new Valves()
+                {
+                    DeviceId = entity.Id,
+                    Name = "A",
+                    CtrlInterval = 0,
+                    CurrentValue = 0,
+                    MaxStep = 0,
+                    MaxValue = 0,
+                    MinValue = 0,
+                    SetValue = 0,
+                    Steering = 0,
+                    Step1 = 0,
+                    Step2 = 0,
+                    Step3 = 0,
+                    Step4 = 0,
+                    Step5 = 0,
+                    WorkBy = 0,
+                    WorkMode = 0
+                };
+               ValvesRepository.Insert(vA);
+
+               var vB = new Valves()
+               {
+                   DeviceId = entity.Id,
+                   Name = "B",
+                   CtrlInterval = 0,
+                   CurrentValue = 0,
+                   MaxStep = 0,
+                   MaxValue = 0,
+                   MinValue = 0,
+                   SetValue = 0,
+                   Steering = 0,
+                   Step1 = 0,
+                   Step2 = 0,
+                   Step3 = 0,
+                   Step4 = 0,
+                   Step5 = 0,
+                   WorkBy = 0,
+                   WorkMode = 0
+               };
+               ValvesRepository.Insert(vB);
+            }
+
+
             return new OperationResult(OperationResultType.Success, "添加成功");
         }
 
@@ -1276,7 +1324,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
                 entity.IP = model.IP;
                 entity.Port = model.Port;
                 entity.AreaId = model.AreaId;
-                entity.InstallTime = model.InstallDate.GetDate();
+                entity.InstallTime = model.InstallDate.TryGetDate();
                 entity.Memo = model.Memo;
                 entity.IsInited = model.IsInited;
                 entity.Longitude = model.Longitude;
