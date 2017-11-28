@@ -96,6 +96,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
             {
                 Id = r.Id,
                 Text = r.Name,
+               
                 AreaName=r.Name,
                 Longitude = r.Longitude,
                 Latitude = r.Latitude,
@@ -208,7 +209,8 @@ namespace QuickRMS.Core.Service.Authen.Impl
                                        Icon = "glyphicon glyphicon-blackboard",
                                        CtrlNumber = q.CtrlNumber??0,
                                        Longitude = q.Longitude,
-                                       Latitude = q.Latitude,
+                                       Latitude = q.Latitude
+                                    
                                        //Tags = new List<string> { q.Id }
                                    }).ToList();
                     if (devices.Count > 0)

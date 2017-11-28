@@ -25,7 +25,7 @@
     $(function () {
       
                 var treeDataUrl="@Url.Action("AreaDeviceTree")?rand=" + Math.random();
-              
+        var nodeCount = 0;
         function getAllNodes(nodes) {
             var result = [];
             for (var i = 0; i < nodes.length; i++) {
@@ -39,13 +39,55 @@
             return result;
         }
 
+        function updateTree() {
+            AjaxGet(treeDataUrl, {}, function (data) {
+                var d = $.parseJSON(data) || [];
+                Qrms.DeviceObjs = [];
+                var allnodes = getAllNodes(d);
+                nodeCount = Qrms.nodeCount=d.length;
+                for (var i = 0; i < nodeCount; i++) {
+
+                    if (allnodes[i].deviceCode) {
+                        Qrms.DeviceObjs.push(allnodes[i]);
+
+                    }
+                }
+
+                if (QR.cPageFunction === 100) {
+                    Qrms.updateMap();
+
+                }
+                QR.Notice("设备上线通知：", "8888设备上线了！");
+
+
+                //console.log(data);
+                $('#oTree').treeview({
+                    data: data,
+                    onNodeSelected: function (event, data) {
+                        console.log(data);
+                        Qrms.currentdNode = data;
+                        Qrms.currentParaData = null;
+                        if (typeof Qrms.updatePageData == "function") {
+                            Qrms.updatePageData(data);
+                        }
+
+                    }
+                });
+            }, function () {
+                console.log("error...");
+            });
+        }
+
         AjaxGet(treeDataUrl, {}, function (data) {
             var d = $.parseJSON(data) || [];
             Qrms.DeviceObjs = [];
+            Qrms.TreeDeviceNodes = [];
             var allnodes = getAllNodes(d);
-            for (var i = 0; i < allnodes.length; i++) {
+            Qrms.nodeCount= allnodes.length
+            for (var i = 0; i < Qrms.nodeCount; i++) {
                
                 if (allnodes[i].deviceCode) {
+                    allnodes[i].nodeId = i;                    
                     Qrms.DeviceObjs.push(allnodes[i]);
 
                 }
@@ -55,10 +97,11 @@
                 Qrms.updateMap();
 
             }
-            
-            //console.log(data);
+
+          
+            console.log(d);
             $('#oTree').treeview({
-                data: data,
+                data: d,
                 onNodeSelected: function(event, data) {
                     console.log(data);
                     Qrms.currentdNode = data;
@@ -69,9 +112,15 @@
 
                 }
             });
+           
+            //
+           
+
         },function() {
             console.log("error...");
         });
+
+      
 
 
       

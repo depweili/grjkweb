@@ -829,6 +829,38 @@ var Utility = {
 
         Qrms.currentParaData = null;
 
+        Qrms.Notice=function(title,msg){
+            $.notify({
+                icon: 'glyphicon glyphicon-bell',
+                title: title,
+                message: msg
+            },{
+                // settings
+                element: 'body',
+                position: null,
+                type: "info",
+                allow_dismiss: true,
+                newest_on_top: false,
+                showProgressbar: false,
+                placement: {
+                    from: "bottom",
+                    align: "right"
+                },
+                offset: 20,
+                spacing: 10,
+                z_index: 1031,
+                delay: 5000,
+                timer: 1000,
+                url_target: '_blank',
+                mouse_over: null,
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                icon_type: 'class'
+	
+            });
+        }
 
         Qrms.cPageFunction = "";
         Qrms.cPageFunctions = {
