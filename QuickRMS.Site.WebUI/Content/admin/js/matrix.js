@@ -829,7 +829,7 @@ var Utility = {
 
         Qrms.currentParaData = null;
 
-        Qrms.Notice=function(title,msg){
+        Qrms.Notice=function(title,msg,type){
             $.notify({
                 icon: 'glyphicon glyphicon-bell',
                 title: title,
@@ -838,7 +838,7 @@ var Utility = {
                 // settings
                 element: 'body',
                 position: null,
-                type: "info",
+                type: type,
                 allow_dismiss: true,
                 newest_on_top: false,
                 showProgressbar: false,
@@ -849,7 +849,7 @@ var Utility = {
                 offset: 20,
                 spacing: 10,
                 z_index: 1031,
-                delay: 5000,
+                delay: 10000,
                 timer: 1000,
                 url_target: '_blank',
                 mouse_over: null,

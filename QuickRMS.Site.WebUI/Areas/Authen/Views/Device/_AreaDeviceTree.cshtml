@@ -39,44 +39,70 @@
             return result;
         }
 
-        function updateTree() {
+        setInterval("updateTree()", 10000);
+
+        window.updateTree=function() {
             AjaxGet(treeDataUrl, {}, function (data) {
                 var d = $.parseJSON(data) || [];
-                Qrms.DeviceObjs = [];
+                deviceObjs = [];
                 var allnodes = getAllNodes(d);
-                nodeCount = Qrms.nodeCount=d.length;
+                nodeCount = allnodes.length;
                 for (var i = 0; i < nodeCount; i++) {
 
-                    if (allnodes[i].deviceCode) {
-                        Qrms.DeviceObjs.push(allnodes[i]);
-
+                    if (allnodes[i].deviceCode) {                        
+                        deviceObjs.push(allnodes[i]);
                     }
                 }
 
-                if (QR.cPageFunction === 100) {
-                    Qrms.updateMap();
+                //更新节点颜色和发送通知
+                for (var i = 0; i < Qrms.DeviceObjs.length; i++) {
+                    var newValue;
+                    var oldValue = Qrms.DeviceObjs[i];
+                    var msg, color, notice;
+                    $.each(deviceObjs, function (i, t) {
+                        if (t.deviceCode == oldValue.deviceCode) {
+                            newValue = t;
+                        }
+                    });
+                    if (newValue.isOnline != oldValue.isOnline) {
+                        oldValue.isOnline = newValue.isOnline;
+                        if (newValue.isOnline) {
+                            msg = oldValue.deviceCode + "设备上线了！"
+                            color = "blue";
+                            notice = "info";
 
+                        } else {
+                            var msg = oldValue.deviceCode + "设备下线了！"
+                            color = "";
+                            notice = "warning";
+                        }
+                        QR.Notice("设备状态通知：", msg, notice);
+                        $("#oTree").treeview("editNode", [oldValue.nodeId, { color: color }]);
+                    }
                 }
-                QR.Notice("设备上线通知：", "8888设备上线了！");
+               
+              
 
 
                 //console.log(data);
-                $('#oTree').treeview({
-                    data: data,
-                    onNodeSelected: function (event, data) {
-                        console.log(data);
-                        Qrms.currentdNode = data;
-                        Qrms.currentParaData = null;
-                        if (typeof Qrms.updatePageData == "function") {
-                            Qrms.updatePageData(data);
-                        }
+                //$('#oTree').treeview({
+                //    data: data,
+                //    onNodeSelected: function (event, data) {
+                //        console.log(data);
+                //        Qrms.currentdNode = data;
+                //        Qrms.currentParaData = null;
+                //        if (typeof Qrms.updatePageData == "function") {
+                //            Qrms.updatePageData(data);
+                //        }
 
-                    }
-                });
+                //    }
+                //});
             }, function () {
                 console.log("error...");
             });
         }
+
+
 
         AjaxGet(treeDataUrl, {}, function (data) {
             var d = $.parseJSON(data) || [];
