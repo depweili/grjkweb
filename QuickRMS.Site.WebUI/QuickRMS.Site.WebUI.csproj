@@ -276,6 +276,10 @@
     <Content Include="Files\temp\TextFile1.txt" />
     <Content Include="Plugins\bootstrap-notify\bootstrap-notify.js" />
     <Content Include="Plugins\bootstrap-notify\bootstrap-notify.min.js" />
+    <Content Include="Plugins\treeview01\bootstrap-treeview.css" />
+    <Content Include="Plugins\treeview01\bootstrap-treeview.js" />
+    <Content Include="Plugins\treeview01\bootstrap-treeview.min.css" />
+    <Content Include="Plugins\treeview01\bootstrap-treeview.min.js" />
     <Content Include="Plugins\metroui\css\metro-colors.css" />
     <Content Include="Plugins\metroui\css\metro-colors.min.css" />
     <Content Include="Plugins\metroui\css\metro-icons.css" />
@@ -396,6 +400,8 @@
     <Content Include="Plugins\ladda\ladda.min.js" />
     <Content Include="Plugins\ladda\spin.js" />
     <Content Include="Plugins\ladda\spin.min.js" />
+    <Content Include="Plugins\treeview\bootstrap-treeview.css" />
+    <Content Include="Plugins\treeview\bootstrap-treeview.js" />
     <Content Include="Plugins\treeview\bootstrap-treeview.min.css" />
     <Content Include="Plugins\treeview\bootstrap-treeview.min.js" />
     <Content Include="Plugins\treeview\jqtree.css" />
