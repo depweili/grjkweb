@@ -377,6 +377,62 @@ namespace QuickRMS.Core.Service.Authen.Impl
             return result;
         }
 
+        public string AddTimeSpan(int deviceId, int timespantype, string StartTime, string EndTime, int CurveCode)
+        {
+            string msg = string.Empty;
+            try
+            {
+                TimeSpanSetting model = new TimeSpanSetting();
+                model.TimeSpanID = timespantype;
+                model.DeviceId = deviceId;
+                model.CurveCode = CurveCode;
+                model.EndTime = EndTime;
+                model.StartTime = StartTime;
+                model.Flag = 0;
+                var check = TimeSpanSettingRepository.Insert(model);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return msg;
+        }
+
+        public string SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode)
+        {
+            string msg = string.Empty;
+            try
+            {
+                TimeSpanSetting model = TimeSpanSettingRepository.GetByKey(timespanid);
+                model.CurveCode = CurveCode;
+                model.EndTime = EndTime;
+                model.StartTime = StartTime;
+                var check = TimeSpanSettingRepository.Update(model);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return msg;
+        }
+
+        public string DeleteTimeSpan(int timespanid)
+        {
+            string msg = string.Empty;
+            try
+            {
+                var check = TimeSpanSettingRepository.Delete(timespanid,true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return msg;
+        }
+
 
         public int UpdateOrCreateDeviceMaintenance(int deviceId, string memo,int mid,DateTime date)
         {

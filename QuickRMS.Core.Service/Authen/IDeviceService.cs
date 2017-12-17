@@ -70,5 +70,11 @@ namespace QuickRMS.Core.Service.Authen
         int UpdateValvesModel(Valves model);
 
         double[,] GetDeviceCureData(int curid);
+
+        string AddTimeSpan(int deviceid, int timespantype, string StartTime, string EndTime, int CurveCode);
+
+        string SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode);
+
+        string DeleteTimeSpan(int timespanid);
     }
 }

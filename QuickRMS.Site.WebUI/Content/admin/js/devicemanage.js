@@ -835,9 +835,11 @@ function btnSetTimeSpanFunc(btn) {
         function () {
             $.isLoading("hide");
             bootbox.alert('更新成功！');
+            $(btn).isLoading("hide");
         },
         function () {
             $.isLoading("hide");
+            $(btn).isLoading("hide");
         });
 }
 
@@ -915,6 +917,120 @@ function getTimeSpanList(deviceId, spanTimeId) {
         $.isLoading("hide");
     });
 }
+
+//新增时间段
+function btnAddSpanFunc(btn) {
+    var currentdNode = Qrms.currentdNode;
+
+    if (!currentdNode) return;
+    var code = currentdNode.deviceCode;
+    var id = currentdNode.id;
+    var tst = $("input[name='rdoTimePeriodMode']:checked").val();
+    //$(btn).isLoading({
+    //    text: "正在加载...",
+    //    position: "overlay"
+    //});
+    var dataUrl = "/BaseDataApi/AddTimeSpan?rand=" + Math.random();
+
+    AjaxPost(dataUrl,
+        { deviceid: id, timespantype: tst, StartTime: $("#topPeriod").val(), EndTime: $("#bottomPeriod").val(), CurveCode: $("#DeviceCurLibraryList").val() },
+        function (data) {
+            //LoadDataFromDeviceData(data.AppendData);
+            console.log(data);
+            if (data.ResultType == 0) {
+                //Qrms.currentParaData = data.AppendData;
+                //DoAfterUpdateData();
+                getTimeSpanList(id, tst);
+                bootbox.alert('添加成功！');
+            }
+            else {
+                bootbox.alert('添加失败！');
+            }
+
+            $.isLoading("hide");
+        },
+        function () {
+            bootbox.alert('执行失败！');
+            $.isLoading("hide");
+        });
+}
+
+function btnSaveSpanFunc(btn) {
+    var currentdNode = Qrms.currentdNode;
+
+    if (!currentdNode) return;
+    var code = currentdNode.deviceCode;
+    var id = currentdNode.id;
+    var tstable = $('#timeSpanTable').DataTable();
+    var rowdata = tstable.row('.selected').data();
+    var tsid = rowdata.Id;
+    var tst = $("input[name='rdoTimePeriodMode']:checked").val();
+    //$(btn).isLoading({
+    //    text: "正在加载...",
+    //    position: "overlay"
+    //});
+    var dataUrl = "/BaseDataApi/SaveTimeSpan?rand=" + Math.random();
+
+    AjaxPost(dataUrl,
+        { timespanid: tsid, StartTime: $("#topPeriod").val(), EndTime: $("#bottomPeriod").val(), CurveCode: $("#DeviceCurLibraryList").val() },
+        function (data) {
+            //LoadDataFromDeviceData(data.AppendData);
+            console.log(data);
+            if (data.ResultType == 0) {
+                //Qrms.currentParaData = data.AppendData;
+                //DoAfterUpdateData();
+                getTimeSpanList(id, tst);
+                bootbox.alert('修改成功！');
+            }
+            else {
+                bootbox.alert('修改失败！');
+            }
+
+            $.isLoading("hide");
+        },
+        function () {
+            bootbox.alert('执行失败！');
+            $.isLoading("hide");
+        });
+}
+
+function btnDeleteSpanFunc(btn) {
+    var currentdNode = Qrms.currentdNode;
+
+    if (!currentdNode) return;
+    var code = currentdNode.deviceCode;
+    var id = currentdNode.id;
+    var tst = $("input[name='rdoTimePeriodMode']:checked").val();
+
+    var tstable = $('#timeSpanTable').DataTable();
+    var rowdata = tstable.row('.selected').data();
+    var tsid = rowdata.Id;
+
+    var dataUrl = "/BaseDataApi/DeleteTimeSpan?rand=" + Math.random();
+
+    AjaxPost(dataUrl,
+        { timespanid: tsid },
+        function (data) {
+            //LoadDataFromDeviceData(data.AppendData);
+            console.log(data);
+            if (data.ResultType == 0) {
+                //Qrms.currentParaData = data.AppendData;
+                //DoAfterUpdateData();
+                getTimeSpanList(id, tst);
+                bootbox.alert('修改成功！');
+            }
+            else {
+                bootbox.alert('修改失败！');
+            }
+
+            $.isLoading("hide");
+        },
+        function () {
+            bootbox.alert('执行失败！');
+            $.isLoading("hide");
+        });
+}
+
 
 
 //模式设置 保存下发

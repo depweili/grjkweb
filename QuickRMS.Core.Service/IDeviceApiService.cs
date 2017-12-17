@@ -38,5 +38,11 @@ namespace QuickRMS.Core.Service
         OperationResult UpdateTimeSpan(string scode, int timespantype);
 
         OperationResult UpdateHistory(string scode, int cmbHistoryType, int nuRowNumber);
+
+        OperationResult AddTimeSpan(int deviceid, int timespantype, string StartTime, string EndTime, int CurveCode);
+
+        OperationResult SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode);
+
+        OperationResult DeleteTimeSpan(int timespanid);
     }
 }

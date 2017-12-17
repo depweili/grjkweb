@@ -220,6 +220,85 @@ namespace QuickRMS.Core.Service
         }
 
 
+        public OperationResult AddTimeSpan(int deviceid, int timespantype, string StartTime, string EndTime, int CurveCode)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+                string msg = string.Empty;
+
+                msg = DeviceService.AddTimeSpan(deviceid, timespantype, StartTime, EndTime, CurveCode);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+        public OperationResult SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+                string msg = string.Empty;
+
+                msg = DeviceService.SaveTimeSpan(timespanid, StartTime, EndTime, CurveCode);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+        public OperationResult DeleteTimeSpan(int timespanid)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+                string msg = string.Empty;
+
+                msg = DeviceService.DeleteTimeSpan(timespanid);
+
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = msg;
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+
 
         public OperationResult UpdateHistory(string scode,int cmbHistoryType,int nuRowNumber)
         {
@@ -394,7 +473,7 @@ namespace QuickRMS.Core.Service
                     mintute2 = byte.Parse(endTime.Substring(3, 2));
                     //arr[i * 5 + 1] = hour1;
                     //arr[i * 5 + 2] = mintute1;
-                    arr[i * 3 + 3] = (byte)Utility.SetIntegerSomeBit(6, byte.Parse(row1.CurveCode.ToString()), row1.Flag.GetInt(0) == 1);
+                    arr[i * 3 + 3] = (byte)Utility.SetIntegerSomeBit(6, byte.Parse(rowi.CurveCode.ToString()), rowi.Flag.GetInt(0) == 1);
                     arr[i * 3 + 4] = hour2;
                     arr[i * 3 + 5] = mintute2;
                 }

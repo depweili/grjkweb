@@ -263,5 +263,30 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             return Json(dd);
         }
 
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult AddTimeSpan(int deviceid, int timespantype, string StartTime, string EndTime, int CurveCode)
+        {
+            var dd = DeviceApiService.AddTimeSpan(deviceid, timespantype, StartTime, EndTime, CurveCode);
+            return Json(dd);
+        }
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode)
+        {
+            var dd = DeviceApiService.SaveTimeSpan(timespanid, StartTime, EndTime, CurveCode);
+            return Json(dd);
+        }
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult DeleteTimeSpan(int timespanid)
+        {
+            var dd = DeviceApiService.DeleteTimeSpan(timespanid);
+            return Json(dd);
+        }
+
     }
 }
