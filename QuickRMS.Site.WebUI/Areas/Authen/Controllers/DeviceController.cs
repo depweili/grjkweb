@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -313,12 +312,13 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             return View();
         }
 
-         [AdminPermission(PermissionCustomMode.Ignore)]
+        [AdminPermission(PermissionCustomMode.Ignore)]
         public ActionResult DeviceInfo(int id)
         {
-             var model=new Device();
-             model = DeviceService.Devices.FirstOrDefault(r => r.Id == id);
-             return PartialView(model);
+            var model = new DeviceMapViewModel();
+            model.Device = DeviceService.Devices.FirstOrDefault(r => r.Id == id);
+            model.DeviceData = DeviceService.DeviceDatas.Where(r => r.DeviceId == id).OrderByDescending(rr => rr.DataTime).FirstOrDefault();
+            return PartialView(model);
         }
 
         [AdminPermission(PermissionCustomMode.Ignore)]

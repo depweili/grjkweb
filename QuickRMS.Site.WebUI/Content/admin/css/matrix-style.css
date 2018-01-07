@@ -679,6 +679,9 @@ div.DataTables_sort_wrapper span {
     padding: 0 !important;
         /*width: 4em;*/
 }
+.value-box{
+    width: 4em !important;
+}
 
 .nopadding .table {
     margin-bottom: 0;

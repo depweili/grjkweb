@@ -67,6 +67,7 @@
     <Compile Include="Device\DeviceCureLibraryModel.cs" />
     <Compile Include="Device\DeviceDataModel.cs" />
     <Compile Include="Device\DeviceMaintenanceModel.cs" />
+    <Compile Include="Device\DeviceMapViewModel.cs" />
     <Compile Include="Device\DeviceModel.cs" />
     <Compile Include="Device\DeviceNodeModel.cs" />
     <Compile Include="Device\DeviceParaDto.cs" />
@@ -82,6 +83,10 @@
     <Compile Include="SysConfig\OperateLog\OperateLogModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Quick.Framework.Tool\Quick.Framework.Tool.csproj">
+      <Project>{a9a5cdd3-ca9a-4952-a3de-0f107bbb826a}</Project>
+      <Name>Quick.Framework.Tool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Quick.Site.Common\Quick.Site.Common.csproj">
       <Project>{9a72f17f-3008-458f-a764-59c986639b8e}</Project>
       <Name>Quick.Site.Common</Name>

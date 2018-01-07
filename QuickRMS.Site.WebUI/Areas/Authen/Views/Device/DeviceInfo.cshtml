@@ -1,4 +1,8 @@
-﻿@model QuickRMS.Domain.Models.DeviceInfo.Device
+﻿@model QuickRMS.Site.Models.Device.DeviceMapViewModel
+@{
+    var Device = Model.Device;
+    var Datas = Model.DeviceData;
+}
 <div class="widget-box" style=" width: 360px;">
     <div class="widget-title">
         <span class="icon"><i class="icon-list"></i></span>
@@ -7,33 +11,33 @@
     <div class="widget-content">
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">ID：<label class="nopadding">@Model.DeviceCode</label></div>
+            <div class="col-lg-6  no-right-padding">ID：<label class="nopadding">@Device.DeviceCode</label></div>
             
 
-            <div class="col-lg-6  no-right-padding">名称：<label class="nopadding">@Model.DeviceName</label></div>
+            <div class="col-lg-6  no-right-padding">名称：<label class="nopadding">@Device.DeviceName</label></div>
           
 
         </div>
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">所属区域：<label class="nopadding">@Model.Area.Name</label></div>
+            <div class="col-lg-6  no-right-padding">所属区域：<label class="nopadding">@Device.Area.Name</label></div>
             
-            <div class="col-lg-6  no-right-padding">所属公司：<label class="nopadding">@Model.Company</label></div>
+            <div class="col-lg-6  no-right-padding">所属公司：<label class="nopadding">@Device.Company</label></div>
            
         </div>
 
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">更新时间：<label class="nopadding">@Model.InstallTime</label></div>
+            <div class="col-lg-6  no-right-padding">更新时间：<label class="nopadding">@Datas.DataTime</label></div>
            
-            <div class="col-lg-6  no-right-padding">备注：<label class="nopadding">@Model.Memo</label></div>
+            <div class="col-lg-6  no-right-padding">备注：<label class="nopadding">@Device.Memo</label></div>
            
         </div>
 
         <div class="row show-grid">
 
-            <div class="col-lg-12  no-right-padding">安装位置：<label class="nopadding">@Model.Address</label></div>
-
+            <div class="col-lg-6  no-right-padding">当前状态：<label class="nopadding">@Device.IsOnline?"在线":"离线"</label></div>
+            <div class="col-lg-6  no-right-padding">安装位置：<label class="nopadding">@Device.Address</label></div>
           
 
         </div>
@@ -49,30 +53,30 @@
     <div class="widget-content">
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">室外：<label class="nopadding">@Model.OutdoorFix</label></div>
+            <div class="col-lg-6  no-right-padding">室外：<label class="nopadding">@Device.OutdoorFix</label></div>
            
-            <div class="col-lg-6  no-right-padding">供水1：<label class="nopadding">@Model.SupplyWaterFix1</label></div>
+            <div class="col-lg-6  no-right-padding">供水1：<label class="nopadding">@Device.SupplyWaterFix1</label></div>
             
         </div>
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">回水1：<label class="nopadding">@Model.BackFix1</label></div>
+            <div class="col-lg-6  no-right-padding">回水1：<label class="nopadding">@Device.BackFix1</label></div>
            
-            <div class="col-lg-6  no-right-padding">热源1：<label class="nopadding">@Model.FixWater1</label></div>
-            
-        </div>
-
-        <div class="row show-grid">
-
-            <div class="col-lg-6  no-right-padding">供水2：<label class="nopadding">@Model.SupplyWaterFix2</label></div>
-           
-            <div class="col-lg-6  no-right-padding">回水2：<label class="nopadding">@Model.BackFix2</label></div>
+            <div class="col-lg-6  no-right-padding">热源1：<label class="nopadding">@Device.FixWater1</label></div>
             
         </div>
 
         <div class="row show-grid">
 
-            <div class="col-lg-6  no-right-padding">热源2：<label class="nopadding">@Model.FixWater2</label></div>
+            <div class="col-lg-6  no-right-padding">供水2：<label class="nopadding">@Device.SupplyWaterFix2</label></div>
+           
+            <div class="col-lg-6  no-right-padding">回水2：<label class="nopadding">@Device.BackFix2</label></div>
+            
+        </div>
+
+        <div class="row show-grid">
+
+            <div class="col-lg-6  no-right-padding">热源2：<label class="nopadding">@Device.FixWater2</label></div>
            
       
         </div>

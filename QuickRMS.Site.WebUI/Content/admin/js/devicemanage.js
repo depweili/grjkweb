@@ -2,7 +2,8 @@
     var day;
     win.tick = function () {
         if (!day) {
-            day = new Date(ServerTime);
+            var date = ServerTime.replace(new RegExp(/-/gm), "/")
+            day = new Date(date);
         }
         day.setSeconds(day.getSeconds() + 1);
         //console.log(day);

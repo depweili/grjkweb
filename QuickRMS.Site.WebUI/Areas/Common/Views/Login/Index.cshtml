@@ -100,7 +100,7 @@
                         data: formData,
                         success: function (result) {
                             if (result.ResultType == 0) {
-                                location.href = "@Url.Action("Index", "Dashboard", new { Area = "Common" })";
+                                location.href = "@Url.Action("DeviceManage", "Device", new { Area = "Authen" })";
                             } else {
                                 bootbox.alert(result.Message);
                             }
