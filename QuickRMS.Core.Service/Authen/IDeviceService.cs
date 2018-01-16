@@ -9,6 +9,7 @@ using QuickRMS.Domain.Models.SysConfig;
 using QuickRMS.Site.Models.Device;
 using RemoteHelper;
 using QuickRMS.Site.Models.Authen.Device;
+using System.Data;
 
 namespace QuickRMS.Core.Service.Authen
 {
@@ -76,5 +77,7 @@ namespace QuickRMS.Core.Service.Authen
         string SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode);
 
         string DeleteTimeSpan(int timespanid);
+
+        OperationResult UploadDeviceCurveLibraries(DataTable dt,int deviceId);
     }
 }

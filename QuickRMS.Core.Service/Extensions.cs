@@ -63,6 +63,17 @@ namespace QuickRMS.Core.Service
            return null;
        }
 
+       public static decimal GetDecimal(this object value)
+       {
+           var str = value.GetString();
+           decimal ret = 0;
+           bool isParsed = decimal.TryParse(str, out ret);
+
+           if (isParsed)
+               return ret;
+           return 0m;
+       }
+
        public static int GetInt(this object value,int defVal)
        {
            var str = value.GetString();
