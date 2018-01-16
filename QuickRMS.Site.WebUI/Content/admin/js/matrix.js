@@ -622,11 +622,26 @@ function SubmitInsurance(actionUrl, param, oTable) {
     });
 }
 
-function Export2Excel(path, editState) {
+function Export2Excel(path, did) {
+    var currentdNode = Qrms.currentdNode;
+    if (!currentdNode) {
+        bootbox.alert('请先选择设备！');
+        return;
 
-    var filterdata = $(".search-form").serialize();
-    var e = editState || "";
-    filterdata += "&EditState=" + e;
+    };
+    var id = currentdNode.id;
+
+    filterdata = "&deviceId=" + id;
+    var url = path + "?" + filterdata;
+    window.open(url);
+
+} 
+
+function Export2ExcelTem(path, did) {
+    
+    var id = 0;
+
+    filterdata = "&deviceId=" + id;
     var url = path + "?" + filterdata;
     window.open(url);
 

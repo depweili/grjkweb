@@ -8,6 +8,6 @@ namespace QuickRMS.Site.Models.File
 {
     public enum FileType
     {
-        水险单=1,其它险单=2
+        设备曲线库=1
     }
 }

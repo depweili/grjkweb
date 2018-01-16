@@ -16,6 +16,11 @@ using QuickRMS.Site.WebUI.Extension.Filters;
 using QuickRMS.Site.Models.Authen.Device;
 using System.Linq.Expressions;
 using Quick.Framework.Tool;
+using System.Web;
+using QuickRMS.Site.Models.File;
+using NPOI.XSSF.UserModel;
+using System.IO;
+using NPOI.SS.UserModel;
 
 namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
 {
@@ -528,6 +533,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         }
 
 
+
         [AdminPermission(PermissionCustomMode.Ignore)]
         public ActionResult DeviceMaintenances(int id)
         {
@@ -594,6 +600,239 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             var data = DeviceService.UpdateValvesModel(model);
 
             return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+          [AdminPermission(PermissionCustomMode.Ignore)]
+        public ActionResult UpLoad()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        public ActionResult UpLoad(HttpPostedFileBase fileData)
+        {
+            try
+            {
+                var result = new OperationResult(OperationResultType.Success);
+                if (ModelState.IsValid)
+                {
+                    if (fileData != null && fileData.ContentLength > 0)
+                    {
+                        var insurance = new FileManageModel
+                        {
+                            FileName = System.IO.Path.GetFileName(fileData.FileName),
+                            FileType = FileType.设备曲线库,
+                            ContentType = fileData.ContentType
+                        };
+                       
+                        ExcelHelper excelHelper = new ExcelHelper();
+                        var dt = excelHelper.ImportExcelFileToDatatable(fileData.InputStream);
+                        result = DeviceService.UploadDeviceCurveLibraries(dt, 0);//不传入设备id，取excel列
+                        var fileName = Guid.NewGuid().ToString();
+                        string filePath = string.Format(@"{0}Files/temp/{1}.xlsx",
+                            AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                        excelHelper.RenderDataTableToExcelFile(dt, filePath);
+                        result.AppendData = string.Format(@"/Files/temp/{0}.xlsx", fileName);
+                    }
+
+
+                    return Json(result);
+                }
+                var error = new OperationResult(OperationResultType.Error);
+                return Json(error);
+            }
+            catch (Exception ex)
+            {
+                var result = new OperationResult(OperationResultType.Error);
+                result.Message = ex.Message;
+                return Json(result);
+            }
+
+        }
+
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        public FileResult GetMiFileStream()
+        {
+            string filePath = AppDomain.CurrentDomain.BaseDirectory + "Files/templates/设备曲线库.xlsx";
+
+            //构建查询表达式
+            var deviceId = Request["deviceId"].GetInt(0);
+            var device = DeviceService.Devices.FirstOrDefault(r => r.Id == deviceId);
+
+
+            XSSFWorkbook workBook;
+            using (var fs = new FileStream(filePath, FileMode.Open))
+            {
+                workBook = new XSSFWorkbook(fs);
+            }
+
+            var sheet = workBook.GetSheetAt(0);
+
+            var rowStart = 1;
+            if (device != null)
+            {
+                var deviceCode = device.DeviceCode;
+
+                var filterResult = DeviceService.GetDeviceCureLibraryDataList(deviceId);
+
+
+                foreach (var lp in filterResult)
+                {
+                    IRow row = sheet.CreateRow(rowStart);
+
+                    #region 字段赋值
+                    row.CreateCell(0).SetCellValue(rowStart.ToString());
+                    row.CreateCell(1).SetCellValue(deviceCode);
+                    row.CreateCell(2).SetCellValue(lp.Code);
+                    row.CreateCell(3).SetCellValue(lp.Name);
+
+                    row.CreateCell(4).SetCellValue(lp.Column1.GetString());
+                    row.CreateCell(5).SetCellValue(lp.Column2.GetString());
+                    row.CreateCell(6).SetCellValue(lp.Column3.GetString());
+                    row.CreateCell(7).SetCellValue(lp.Column4.GetString());
+                    row.CreateCell(8).SetCellValue(lp.Column5.GetString());
+                    row.CreateCell(9).SetCellValue(lp.Column6.GetString());
+                    row.CreateCell(10).SetCellValue(lp.Column7.GetString());
+                    row.CreateCell(11).SetCellValue(lp.Column8.GetString());
+                    row.CreateCell(12).SetCellValue(lp.Column9.GetString());
+                    row.CreateCell(13).SetCellValue(lp.Column10.GetString());
+                    row.CreateCell(14).SetCellValue(lp.Column11.GetString());
+                    row.CreateCell(15).SetCellValue(lp.Column12.GetString());
+                    row.CreateCell(16).SetCellValue(lp.Column13.GetString());
+                    row.CreateCell(17).SetCellValue(lp.Column14.GetString());
+                    row.CreateCell(18).SetCellValue(lp.Column15.GetString());
+                    row.CreateCell(19).SetCellValue(lp.Column16.GetString());
+                    row.CreateCell(20).SetCellValue(lp.Column17.GetString());
+                    row.CreateCell(21).SetCellValue(lp.Column18.GetString());
+                    row.CreateCell(22).SetCellValue(lp.Column19.GetString());
+                    row.CreateCell(23).SetCellValue(lp.Column20.GetString());
+                    row.CreateCell(24).SetCellValue(lp.Column21.GetString());
+                    row.CreateCell(25).SetCellValue(lp.Column22.GetString());
+                    row.CreateCell(26).SetCellValue(lp.Column23.GetString());
+                    row.CreateCell(27).SetCellValue(lp.Column24.GetString());
+                    row.CreateCell(28).SetCellValue(lp.Column25.GetString());
+                    row.CreateCell(29).SetCellValue(lp.Column26.GetString());
+                    row.CreateCell(30).SetCellValue(lp.Column27.GetString());
+                    row.CreateCell(31).SetCellValue(lp.Column28.GetString());
+                    row.CreateCell(32).SetCellValue(lp.Column29.GetString());
+                    row.CreateCell(33).SetCellValue(lp.Column30.GetString());
+                    row.CreateCell(34).SetCellValue(lp.Column31.GetString());
+                    row.CreateCell(35).SetCellValue(lp.Column32.GetString());
+                    row.CreateCell(36).SetCellValue(lp.Column33.GetString());
+                    row.CreateCell(37).SetCellValue(lp.Column34.GetString());
+                    row.CreateCell(38).SetCellValue(lp.Column35.GetString());
+                    row.CreateCell(39).SetCellValue(lp.Column36.GetString());
+                    row.CreateCell(40).SetCellValue(lp.Column37.GetString());
+                    row.CreateCell(41).SetCellValue(lp.Column38.GetString());
+                    row.CreateCell(42).SetCellValue(lp.Column39.GetString());
+                    row.CreateCell(43).SetCellValue(lp.Column40.GetString());
+                    row.CreateCell(44).SetCellValue(lp.Column41.GetString());
+                    row.CreateCell(45).SetCellValue(lp.Column42.GetString());
+                    row.CreateCell(46).SetCellValue(lp.Column43.GetString());
+                    row.CreateCell(47).SetCellValue(lp.Column44.GetString());
+                    row.CreateCell(48).SetCellValue(lp.Column45.GetString());
+                    row.CreateCell(49).SetCellValue(lp.Column46.GetString());
+                    row.CreateCell(50).SetCellValue(lp.Column47.GetString());
+                    row.CreateCell(51).SetCellValue(lp.Column48.GetString());
+                    row.CreateCell(52).SetCellValue(lp.Column49.GetString());
+                    row.CreateCell(53).SetCellValue(lp.Column50.GetString());
+                    row.CreateCell(54).SetCellValue(lp.Column51.GetString());
+                    row.CreateCell(55).SetCellValue(lp.Column52.GetString());
+                    row.CreateCell(56).SetCellValue(lp.Column53.GetString());
+                    row.CreateCell(57).SetCellValue(lp.Column54.GetString());
+                    row.CreateCell(58).SetCellValue(lp.Column55.GetString());
+                    row.CreateCell(59).SetCellValue(lp.Column56.GetString());
+                    row.CreateCell(60).SetCellValue(lp.Column57.GetString());
+                    row.CreateCell(61).SetCellValue(lp.Column58.GetString());
+                    row.CreateCell(62).SetCellValue(lp.Column59.GetString());
+                    row.CreateCell(63).SetCellValue(lp.Column60.GetString());
+                    row.CreateCell(64).SetCellValue(lp.Column61.GetString());
+                    row.CreateCell(65).SetCellValue(lp.Column62.GetString());
+                    row.CreateCell(66).SetCellValue(lp.Column63.GetString());
+                    row.CreateCell(67).SetCellValue(lp.Column64.GetString());
+                    row.CreateCell(68).SetCellValue(lp.Column65.GetString());
+                    row.CreateCell(69).SetCellValue(lp.Column66.GetString());
+                    row.CreateCell(70).SetCellValue(lp.Column67.GetString());
+                    row.CreateCell(71).SetCellValue(lp.Column68.GetString());
+                    row.CreateCell(72).SetCellValue(lp.Column69.GetString());
+                    row.CreateCell(73).SetCellValue(lp.Column70.GetString());
+                    row.CreateCell(74).SetCellValue(lp.Column71.GetString());
+                    row.CreateCell(75).SetCellValue(lp.Column72.GetString());
+                    row.CreateCell(76).SetCellValue(lp.Column73.GetString());
+                    row.CreateCell(77).SetCellValue(lp.Column74.GetString());
+                    row.CreateCell(78).SetCellValue(lp.Column75.GetString());
+                    row.CreateCell(79).SetCellValue(lp.Column76.GetString());
+                    row.CreateCell(80).SetCellValue(lp.Column77.GetString());
+                    row.CreateCell(81).SetCellValue(lp.Column78.GetString());
+                    row.CreateCell(82).SetCellValue(lp.Column79.GetString());
+                    row.CreateCell(83).SetCellValue(lp.Column80.GetString());
+                    row.CreateCell(84).SetCellValue(lp.Column81.GetString());
+                    row.CreateCell(85).SetCellValue(lp.Column82.GetString());
+                    row.CreateCell(86).SetCellValue(lp.Column83.GetString());
+                    row.CreateCell(87).SetCellValue(lp.Column84.GetString());
+                    row.CreateCell(88).SetCellValue(lp.Column85.GetString());
+                    row.CreateCell(89).SetCellValue(lp.Column86.GetString());
+                    row.CreateCell(90).SetCellValue(lp.Column87.GetString());
+                    row.CreateCell(91).SetCellValue(lp.Column88.GetString());
+                    row.CreateCell(92).SetCellValue(lp.Column89.GetString());
+                    row.CreateCell(93).SetCellValue(lp.Column90.GetString());
+                    row.CreateCell(94).SetCellValue(lp.Column91.GetString());
+                    row.CreateCell(95).SetCellValue(lp.Column92.GetString());
+                    row.CreateCell(96).SetCellValue(lp.Column93.GetString());
+                    row.CreateCell(97).SetCellValue(lp.Column94.GetString());
+                    row.CreateCell(98).SetCellValue(lp.Column95.GetString());
+                    row.CreateCell(99).SetCellValue(lp.Column96.GetString());
+                    row.CreateCell(100).SetCellValue(lp.Column97.GetString());
+                    row.CreateCell(101).SetCellValue(lp.Column98.GetString());
+                    row.CreateCell(102).SetCellValue(lp.Column99.GetString());
+                    row.CreateCell(103).SetCellValue(lp.Column100.GetString());
+                    row.CreateCell(104).SetCellValue(lp.Column101.GetString());
+                    row.CreateCell(105).SetCellValue(lp.Column102.GetString());
+                    row.CreateCell(106).SetCellValue(lp.Column103.GetString());
+                    row.CreateCell(107).SetCellValue(lp.Column104.GetString());
+                    row.CreateCell(108).SetCellValue(lp.Column105.GetString());
+                    row.CreateCell(109).SetCellValue(lp.Column106.GetString());
+                    row.CreateCell(110).SetCellValue(lp.Column107.GetString());
+                    row.CreateCell(111).SetCellValue(lp.Column108.GetString());
+                    row.CreateCell(112).SetCellValue(lp.Column109.GetString());
+                    row.CreateCell(113).SetCellValue(lp.Column110.GetString());
+                    row.CreateCell(114).SetCellValue(lp.Column111.GetString());
+                    row.CreateCell(115).SetCellValue(lp.Column112.GetString());
+                    row.CreateCell(116).SetCellValue(lp.Column113.GetString());
+                    row.CreateCell(117).SetCellValue(lp.Column114.GetString());
+                    row.CreateCell(118).SetCellValue(lp.Column115.GetString());
+                    row.CreateCell(119).SetCellValue(lp.Column116.GetString());
+                    row.CreateCell(120).SetCellValue(lp.Column117.GetString());
+                    row.CreateCell(121).SetCellValue(lp.Column118.GetString());
+                    row.CreateCell(122).SetCellValue(lp.Column119.GetString());
+                    row.CreateCell(123).SetCellValue(lp.Column120.GetString());
+                    row.CreateCell(124).SetCellValue(lp.Column121.GetString());
+
+
+
+                    #endregion
+
+                    rowStart++;
+                }
+            }
+
+            var ms = new MemoryStream();
+
+            //ms.Seek(0, SeekOrigin.Begin);
+            using (var exportData = new MemoryStream())
+            {
+                workBook.Write(exportData);
+                string strdate = DateTime.Now.ToString("yyyyMMddhhmmss");//
+                byte[] bytes = exportData.ToArray();
+                return File(bytes, "application/vnd.ms-excel", strdate + "设备曲线库.xlsx");
+            }
+
+
+
+
         }
     }
 }

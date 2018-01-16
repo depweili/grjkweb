@@ -1399,5 +1399,217 @@ namespace QuickRMS.Core.Service.Authen.Impl
             DeviceRepository.Update(model);
             return new OperationResult(OperationResultType.Success, "删除成功");
         }
+
+
+
+
+        public OperationResult UploadDeviceCurveLibraries(DataTable dt, int deviceId)
+        {
+            if (dt == null || dt.Rows.Count <= 1)
+                return new OperationResult(OperationResultType.ParamError, "导入格式错误");
+            var hasError = false;
+           
+            for (var i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i == 0) continue;
+                var dataRow = dt.Rows[i];                             
+               var ret = UpLoadMiYwRow(dataRow,i);
+                if (ret != OperationResultType.Success)
+                {
+                    hasError = true;
+                }
+            }
+            if (hasError)
+            {
+                return new OperationResult(OperationResultType.Warning, "导入出现错误");
+            }
+            else
+            {
+                return new OperationResult(OperationResultType.Success, "导入全部成功");
+            }
+        }
+
+        private OperationResultType UpLoadMiYwRow(DataRow dataRow,int rownum)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(dataRow[1].GetString()) || string.IsNullOrEmpty(dataRow[2].GetString()))
+                {
+                    dataRow["Result"] = UpLoadMessage.RequiredError;
+                    return OperationResultType.Error;
+                }
+                var deviceCode = dataRow[1].GetString();
+                var device = Devices.FirstOrDefault(r => r.DeviceCode == deviceCode);
+                if (device == null)
+                {
+                    dataRow["Result"] = "设备编码不存在";
+                    return OperationResultType.Error;
+                }
+                if (rownum == 1)
+                {
+                    //全部删除
+                    DeviceCureLibraryRepository.Delete(r => r.DeviceId == device.Id);
+                }
+
+                #region 生成数据对象
+                DeviceCureLibrary ywMi = new DeviceCureLibrary
+                {
+                    DeviceId = device.Id,
+                    Code = dataRow[2].GetInt(0),
+                    Name = dataRow[3].GetString(),
+
+                    Column1 = dataRow[4].GetDecimal(),
+                    Column2 = dataRow[5].GetDecimal(),
+                    Column3 = dataRow[6].GetDecimal(),
+                    Column4 = dataRow[7].GetDecimal(),
+                    Column5 = dataRow[8].GetDecimal(),
+                    Column6 = dataRow[9].GetDecimal(),
+                    Column7 = dataRow[10].GetDecimal(),
+                    Column8 = dataRow[11].GetDecimal(),
+                    Column9 = dataRow[12].GetDecimal(),
+                    Column10 = dataRow[13].GetDecimal(),
+                    Column11 = dataRow[14].GetDecimal(),
+                    Column12 = dataRow[15].GetDecimal(),
+                    Column13 = dataRow[16].GetDecimal(),
+                    Column14 = dataRow[17].GetDecimal(),
+                    Column15 = dataRow[18].GetDecimal(),
+                    Column16 = dataRow[19].GetDecimal(),
+                    Column17 = dataRow[20].GetDecimal(),
+                    Column18 = dataRow[21].GetDecimal(),
+                    Column19 = dataRow[22].GetDecimal(),
+                    Column20 = dataRow[23].GetDecimal(),
+                    Column21 = dataRow[24].GetDecimal(),
+                    Column22 = dataRow[25].GetDecimal(),
+                    Column23 = dataRow[26].GetDecimal(),
+                    Column24 = dataRow[27].GetDecimal(),
+                    Column25 = dataRow[28].GetDecimal(),
+                    Column26 = dataRow[29].GetDecimal(),
+                    Column27 = dataRow[30].GetDecimal(),
+                    Column28 = dataRow[31].GetDecimal(),
+                    Column29 = dataRow[32].GetDecimal(),
+                    Column30 = dataRow[33].GetDecimal(),
+                    Column31 = dataRow[34].GetDecimal(),
+                    Column32 = dataRow[35].GetDecimal(),
+                    Column33 = dataRow[36].GetDecimal(),
+                    Column34 = dataRow[37].GetDecimal(),
+                    Column35 = dataRow[38].GetDecimal(),
+                    Column36 = dataRow[39].GetDecimal(),
+                    Column37 = dataRow[40].GetDecimal(),
+                    Column38 = dataRow[41].GetDecimal(),
+                    Column39 = dataRow[42].GetDecimal(),
+                    Column40 = dataRow[43].GetDecimal(),
+                    Column41 = dataRow[44].GetDecimal(),
+                    Column42 = dataRow[45].GetDecimal(),
+                    Column43 = dataRow[46].GetDecimal(),
+                    Column44 = dataRow[47].GetDecimal(),
+                    Column45 = dataRow[48].GetDecimal(),
+                    Column46 = dataRow[49].GetDecimal(),
+                    Column47 = dataRow[50].GetDecimal(),
+                    Column48 = dataRow[51].GetDecimal(),
+                    Column49 = dataRow[52].GetDecimal(),
+                    Column50 = dataRow[53].GetDecimal(),
+                    Column51 = dataRow[54].GetDecimal(),
+                    Column52 = dataRow[55].GetDecimal(),
+                    Column53 = dataRow[56].GetDecimal(),
+                    Column54 = dataRow[57].GetDecimal(),
+                    Column55 = dataRow[58].GetDecimal(),
+                    Column56 = dataRow[59].GetDecimal(),
+                    Column57 = dataRow[60].GetDecimal(),
+                    Column58 = dataRow[61].GetDecimal(),
+                    Column59 = dataRow[62].GetDecimal(),
+                    Column60 = dataRow[63].GetDecimal(),
+                    Column61 = dataRow[64].GetDecimal(),
+                    Column62 = dataRow[65].GetDecimal(),
+                    Column63 = dataRow[66].GetDecimal(),
+                    Column64 = dataRow[67].GetDecimal(),
+                    Column65 = dataRow[68].GetDecimal(),
+                    Column66 = dataRow[69].GetDecimal(),
+                    Column67 = dataRow[70].GetDecimal(),
+                    Column68 = dataRow[71].GetDecimal(),
+                    Column69 = dataRow[72].GetDecimal(),
+                    Column70 = dataRow[73].GetDecimal(),
+                    Column71 = dataRow[74].GetDecimal(),
+                    Column72 = dataRow[75].GetDecimal(),
+                    Column73 = dataRow[76].GetDecimal(),
+                    Column74 = dataRow[77].GetDecimal(),
+                    Column75 = dataRow[78].GetDecimal(),
+                    Column76 = dataRow[79].GetDecimal(),
+                    Column77 = dataRow[80].GetDecimal(),
+                    Column78 = dataRow[81].GetDecimal(),
+                    Column79 = dataRow[82].GetDecimal(),
+                    Column80 = dataRow[83].GetDecimal(),
+                    Column81 = dataRow[84].GetDecimal(),
+                    Column82 = dataRow[85].GetDecimal(),
+                    Column83 = dataRow[86].GetDecimal(),
+                    Column84 = dataRow[87].GetDecimal(),
+                    Column85 = dataRow[88].GetDecimal(),
+                    Column86 = dataRow[89].GetDecimal(),
+                    Column87 = dataRow[90].GetDecimal(),
+                    Column88 = dataRow[91].GetDecimal(),
+                    Column89 = dataRow[92].GetDecimal(),
+                    Column90 = dataRow[93].GetDecimal(),
+                    Column91 = dataRow[94].GetDecimal(),
+                    Column92 = dataRow[95].GetDecimal(),
+                    Column93 = dataRow[96].GetDecimal(),
+                    Column94 = dataRow[97].GetDecimal(),
+                    Column95 = dataRow[98].GetDecimal(),
+                    Column96 = dataRow[99].GetDecimal(),
+                    Column97 = dataRow[100].GetDecimal(),
+                    Column98 = dataRow[101].GetDecimal(),
+                    Column99 = dataRow[102].GetDecimal(),
+                    Column100 = dataRow[103].GetDecimal(),
+                    Column101 = dataRow[104].GetDecimal(),
+                    Column102 = dataRow[105].GetDecimal(),
+                    Column103 = dataRow[106].GetDecimal(),
+                    Column104 = dataRow[107].GetDecimal(),
+                    Column105 = dataRow[108].GetDecimal(),
+                    Column106 = dataRow[109].GetDecimal(),
+                    Column107 = dataRow[110].GetDecimal(),
+                    Column108 = dataRow[111].GetDecimal(),
+                    Column109 = dataRow[112].GetDecimal(),
+                    Column110 = dataRow[113].GetDecimal(),
+                    Column111 = dataRow[114].GetDecimal(),
+                    Column112 = dataRow[115].GetDecimal(),
+                    Column113 = dataRow[116].GetDecimal(),
+                    Column114 = dataRow[117].GetDecimal(),
+                    Column115 = dataRow[118].GetDecimal(),
+                    Column116 = dataRow[119].GetDecimal(),
+                    Column117 = dataRow[120].GetDecimal(),
+                    Column118 = dataRow[121].GetDecimal(),
+                    Column119 = dataRow[122].GetDecimal(),
+                    Column120 = dataRow[123].GetDecimal(),
+                    Column121 = dataRow[124].GetDecimal(),
+
+
+                    IsDeleted = null
+
+                };
+
+                #endregion
+
+                OperationResult result = new OperationResult(OperationResultType.Success);
+
+
+                DeviceCureLibraryRepository.Insert(ywMi);
+
+                if (result.ResultType == OperationResultType.Success)
+                {
+                    dataRow["Result"] = UpLoadMessage.AddSuccess;
+                }
+                else
+                {
+                    dataRow["Result"] = result.Message;
+                }
+
+
+                return result.ResultType;
+            }
+            catch (Exception ex)
+            {
+                dataRow["Result"] = ex.Message;
+                return OperationResultType.Error;
+            }
+
+        }
     }
 }

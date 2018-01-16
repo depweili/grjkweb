@@ -48,6 +48,13 @@ function initEvent() {
         var tst = $("input[name='rdoTimePeriodMode']:checked").val();
         getTimeSpanList(id, tst);
     });
+
+    //导入曲线库
+    $("#uploadDeviceCurveLibrary").on("click",function(){
+        var actionUrl = "UpLoad";
+        var param = {};
+        ShowFileForm(actionUrl, param, "导入设备曲线库", true);
+    });
 }
 
 //系统状态

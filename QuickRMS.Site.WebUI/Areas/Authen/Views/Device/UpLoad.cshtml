@@ -1,0 +1,47 @@
+﻿@using QuickRMS.Site.WebUI.Extension.MvcHelper
+
+
+<input id="file-0a" type="file" name="fileData" multiple data-max-file-count="1">
+
+<div  class="alert alert-success" style="display: none;" id="msgFileload" role="alert"></div>
+
+
+@Html.ScriptBlock(@<script src="~/Plugins/fileinput/fileinput.min.js"></script>)
+@Html.ScriptBlock(@<script src="~/Plugins/fileinput/fileinput_locale_zh.js"></script>)
+
+@Html.ScriptBlock(@<script type="text/javascript">
+                       $(function() {
+                           $("#file-0a").fileinput({
+                               language: 'zh',
+                               uploadUrl: "@Url.Action("UpLoad")", 
+                               allowedFileExtensions: ['xlsx'],
+                               overwriteInitial: false,
+                               maxFileSize: 1000,
+                               maxFilesNum: 10,
+                               //allowedFileTypes: ['image', 'video', 'flash'],
+                               slugCallback: function(filename) {
+                                   return filename.replace('(', '_').replace(']', '_');
+                               }
+                           });
+
+                           $('#file-0a').on('filepreupload', function (event, data, previewId, index) {
+                               console.log('File pre upload triggered');
+                               $.isLoading({ text: "正在上传，请耐心等待。" });
+                           });
+
+                           $('#file-0a').on('fileuploaded', function (event, data, previewId, index) {
+                               $.isLoading("hide");
+                               var ret = $.parseJSON(data.jqXHR.responseText);
+                               var msg = "<strong>";
+                               msg += ret.Message + "</strong>";
+                               //"{"ResultType":0,"Message":"导入全部成功","LogMessage":null,"AppendData":"../Files/temp/cd713578-cf74-476c-aeb5-8862dca49ae8.xlsx"}"
+                               console.log(ret);
+                               if (ret.ResultType !== 0 && ret.AppendData && ret.AppendData.length>0) {
+                                   msg += " <a class='alert-link' target='_blank' href='" + ret.AppendData + "'>查看详细信息</a>";
+                               }
+                               $("#msgFileload").show().html(msg);
+                           });
+                           $('#file-0a').on('fileselect', function (event, numFiles, label) {
+                               $("#msgFileload").hide().html("");
+                           });
+                       });    </script>)

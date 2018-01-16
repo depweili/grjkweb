@@ -78,7 +78,9 @@
     <Compile Include="Device\HistoryModel.cs" />
     <Compile Include="Device\ValvesModel.cs" />
     <Compile Include="File\File.cs" />
+    <Compile Include="File\FileManageModel.cs" />
     <Compile Include="File\FileType.cs" />
+    <Compile Include="File\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysConfig\OperateLog\OperateLogModel.cs" />
   </ItemGroup>
