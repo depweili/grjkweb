@@ -560,156 +560,160 @@ function initTerminalSetting() {
 
         //曲线库
         //var infoUrl1 = "DeviceCureList" + "/" + id;   AjaxHtml
-        var infoUrl1 = "/BaseDataApi/GetDeviceCurLibraryDataList?rand=" + Math.random();
-        AjaxGet(infoUrl1,
-            { id: id },
-            function (res) {
-                $("#TerminalSetting").isLoading("hide");
-                //$("#dcl").html(res);
-
-                var data = res || [];
-
-                var qxkTable = $('#qxkTable').DataTable({
-                    destroy: true,
-                    bPaginate: false,
-                    bLengthChange: false,
-                    bFilter: false,
-                    bInfo: false,
-                    ordering: false,
-                    AutoWidth: true,
-                    scrollY: 400,
-                    scrollX: true,
-
-                    data: data,
-                    columns: [
-                    { data: "Code", Width: "10%" },
-                    { data: "Name", Width: "10%" },
-                    { data: "Column1" },
-                    { data: "Column2" },
-                    { data: "Column3" },
-                    { data: "Column4" },
-                    { data: "Column5" },
-                    { data: "Column6" },
-                    { data: "Column7" },
-                    { data: "Column8" },
-                    { data: "Column9" },
-                    { data: "Column10" },
-                    { data: "Column11" },
-                    { data: "Column12" },
-                    { data: "Column13" },
-                    { data: "Column14" },
-                    { data: "Column15" },
-                    { data: "Column16" },
-                    { data: "Column17" },
-                    { data: "Column18" },
-                    { data: "Column19" },
-                    { data: "Column20" },
-                    { data: "Column21" },
-                    { data: "Column22" },
-                    { data: "Column23" },
-                    { data: "Column24" },
-                    { data: "Column25" },
-                    { data: "Column26" },
-                    { data: "Column27" },
-                    { data: "Column28" },
-                    { data: "Column29" },
-                    { data: "Column30" },
-                    { data: "Column31" },
-                    { data: "Column32" },
-                    { data: "Column33" },
-                    { data: "Column34" },
-                    { data: "Column35" },
-                    { data: "Column36" },
-                    { data: "Column37" },
-                    { data: "Column38" },
-                    { data: "Column39" },
-                    { data: "Column40" },
-                    { data: "Column41" },
-                    { data: "Column42" },
-                    { data: "Column43" },
-                    { data: "Column44" },
-                    { data: "Column45" },
-                    { data: "Column46" },
-                    { data: "Column47" },
-                    { data: "Column48" },
-                    { data: "Column49" },
-                    { data: "Column50" },
-                    { data: "Column51" },
-                    { data: "Column52" },
-                    { data: "Column53" },
-                    { data: "Column54" },
-                    { data: "Column55" },
-                    { data: "Column56" },
-                    { data: "Column57" },
-                    { data: "Column58" },
-                    { data: "Column59" },
-                    { data: "Column60" },
-                    { data: "Column61" },
-                    { data: "Column62" },
-                    { data: "Column63" },
-                    { data: "Column64" },
-                    { data: "Column65" },
-                    { data: "Column66" },
-                    { data: "Column67" },
-                    { data: "Column68" },
-                    { data: "Column69" },
-                    { data: "Column70" },
-                    { data: "Column71" },
-                    { data: "Column72" },
-                    { data: "Column73" },
-                    { data: "Column74" },
-                    { data: "Column75" },
-                    { data: "Column76" },
-                    { data: "Column77" },
-                    { data: "Column78" },
-                    { data: "Column79" },
-                    { data: "Column80" },
-                    { data: "Column81" },
-                    { data: "Column82" },
-                    { data: "Column83" },
-                    { data: "Column84" },
-                    { data: "Column85" },
-                    { data: "Column86" },
-                    { data: "Column87" },
-                    { data: "Column88" },
-                    { data: "Column89" },
-                    { data: "Column90" },
-                    { data: "Column91" },
-                    { data: "Column92" },
-                    { data: "Column93" },
-                    { data: "Column94" },
-                    { data: "Column95" },
-                    { data: "Column96" },
-                    { data: "Column97" },
-                    { data: "Column98" },
-                    { data: "Column99" },
-                    { data: "Column100" },
-                    { data: "Column101" },
-                    { data: "Column102" },
-                    { data: "Column103" },
-                    { data: "Column104" },
-                    { data: "Column105" },
-                    { data: "Column106" },
-                    { data: "Column107" },
-                    { data: "Column108" },
-                    { data: "Column109" },
-                    { data: "Column110" },
-                    { data: "Column111" },
-                    { data: "Column112" },
-                    { data: "Column113" },
-                    { data: "Column114" },
-                    { data: "Column115" },
-                    { data: "Column116" },
-                    { data: "Column117" },
-                    { data: "Column118" },
-                    { data: "Column119" },
-                    { data: "Column120" },
-                    { data: "Column121" }
-
-                    ]
-                });
-            });
+        getGetDeviceCurLibraryDataList(id);
     };
+}
+
+function getGetDeviceCurLibraryDataList(id) {
+    var infoUrl1 = "/BaseDataApi/GetDeviceCurLibraryDataList?rand=" + Math.random();
+    AjaxGet(infoUrl1,
+        { id: id },
+        function (res) {
+            $("#TerminalSetting").isLoading("hide");
+            //$("#dcl").html(res);
+
+            var data = res || [];
+
+            var qxkTable = $('#qxkTable').DataTable({
+                destroy: true,
+                bPaginate: false,
+                bLengthChange: false,
+                bFilter: false,
+                bInfo: false,
+                ordering: false,
+                AutoWidth: true,
+                scrollY: 400,
+                scrollX: true,
+
+                data: data,
+                columns: [
+                { data: "Code", Width: "10%" },
+                { data: "Name", Width: "10%" },
+                { data: "Column1" },
+                { data: "Column2" },
+                { data: "Column3" },
+                { data: "Column4" },
+                { data: "Column5" },
+                { data: "Column6" },
+                { data: "Column7" },
+                { data: "Column8" },
+                { data: "Column9" },
+                { data: "Column10" },
+                { data: "Column11" },
+                { data: "Column12" },
+                { data: "Column13" },
+                { data: "Column14" },
+                { data: "Column15" },
+                { data: "Column16" },
+                { data: "Column17" },
+                { data: "Column18" },
+                { data: "Column19" },
+                { data: "Column20" },
+                { data: "Column21" },
+                { data: "Column22" },
+                { data: "Column23" },
+                { data: "Column24" },
+                { data: "Column25" },
+                { data: "Column26" },
+                { data: "Column27" },
+                { data: "Column28" },
+                { data: "Column29" },
+                { data: "Column30" },
+                { data: "Column31" },
+                { data: "Column32" },
+                { data: "Column33" },
+                { data: "Column34" },
+                { data: "Column35" },
+                { data: "Column36" },
+                { data: "Column37" },
+                { data: "Column38" },
+                { data: "Column39" },
+                { data: "Column40" },
+                { data: "Column41" },
+                { data: "Column42" },
+                { data: "Column43" },
+                { data: "Column44" },
+                { data: "Column45" },
+                { data: "Column46" },
+                { data: "Column47" },
+                { data: "Column48" },
+                { data: "Column49" },
+                { data: "Column50" },
+                { data: "Column51" },
+                { data: "Column52" },
+                { data: "Column53" },
+                { data: "Column54" },
+                { data: "Column55" },
+                { data: "Column56" },
+                { data: "Column57" },
+                { data: "Column58" },
+                { data: "Column59" },
+                { data: "Column60" },
+                { data: "Column61" },
+                { data: "Column62" },
+                { data: "Column63" },
+                { data: "Column64" },
+                { data: "Column65" },
+                { data: "Column66" },
+                { data: "Column67" },
+                { data: "Column68" },
+                { data: "Column69" },
+                { data: "Column70" },
+                { data: "Column71" },
+                { data: "Column72" },
+                { data: "Column73" },
+                { data: "Column74" },
+                { data: "Column75" },
+                { data: "Column76" },
+                { data: "Column77" },
+                { data: "Column78" },
+                { data: "Column79" },
+                { data: "Column80" },
+                { data: "Column81" },
+                { data: "Column82" },
+                { data: "Column83" },
+                { data: "Column84" },
+                { data: "Column85" },
+                { data: "Column86" },
+                { data: "Column87" },
+                { data: "Column88" },
+                { data: "Column89" },
+                { data: "Column90" },
+                { data: "Column91" },
+                { data: "Column92" },
+                { data: "Column93" },
+                { data: "Column94" },
+                { data: "Column95" },
+                { data: "Column96" },
+                { data: "Column97" },
+                { data: "Column98" },
+                { data: "Column99" },
+                { data: "Column100" },
+                { data: "Column101" },
+                { data: "Column102" },
+                { data: "Column103" },
+                { data: "Column104" },
+                { data: "Column105" },
+                { data: "Column106" },
+                { data: "Column107" },
+                { data: "Column108" },
+                { data: "Column109" },
+                { data: "Column110" },
+                { data: "Column111" },
+                { data: "Column112" },
+                { data: "Column113" },
+                { data: "Column114" },
+                { data: "Column115" },
+                { data: "Column116" },
+                { data: "Column117" },
+                { data: "Column118" },
+                { data: "Column119" },
+                { data: "Column120" },
+                { data: "Column121" }
+
+                ]
+            });
+        });
 }
 
 function onShowInfo(id) {
@@ -1299,5 +1303,83 @@ function btnUpdateHistoryFunc(btn) {
         function () {
             bootbox.alert('执行失败！');
             $.isLoading("hide");
+        });
+}
+
+//更新曲线库
+function btnUpdateDeviceCurveLibraryFunc(btn) {
+    var currentdNode = Qrms.currentdNode;
+
+    if (!currentdNode) return;
+    var code = currentdNode.deviceCode;
+    var id = currentdNode.id;
+
+    $(btn).isLoading({
+        text: "正在执行...",
+        position: "overlay"
+    });
+    var dataUrl = "/BaseDataApi/UpdateDeviceCurveLibrary?rand=" + Math.random();
+
+    AjaxPost(dataUrl,
+        { scode: code },
+        function (data) {
+            //LoadDataFromDeviceData(data.AppendData);
+            console.log(data);
+            $(btn).isLoading("hide");
+            if (data.ResultType == 0) {
+                $.isLoading("hide");
+                getGetDeviceCurLibraryDataList(id);
+                bootbox.alert('更新成功！');
+                $(btn).isLoading("hide");
+            }
+            else {
+                $.isLoading("hide");
+                bootbox.alert('更新失败:' + data.Message);
+                $(btn).isLoading("hide");
+            }
+        },
+        function () {
+            bootbox.alert('执行失败！');
+            $.isLoading("hide");
+            $(btn).isLoading("hide");
+        });
+}
+
+//下发曲线库
+function btnSaveAndSendDeviceCurveLibraryFunc(btn) {
+    var currentdNode = Qrms.currentdNode;
+
+    if (!currentdNode) return;
+    var code = currentdNode.deviceCode;
+    var id = currentdNode.id;
+
+    $(btn).isLoading({
+        text: "正在执行...",
+        position: "overlay"
+    });
+    var dataUrl = "/BaseDataApi/SaveAndSendDeviceCurveLibrary?rand=" + Math.random();
+
+    AjaxPost(dataUrl,
+        { scode: code, deviceId: id },
+        function (data) {
+            //LoadDataFromDeviceData(data.AppendData);
+            console.log(data);
+            $(btn).isLoading("hide");
+            if (data.ResultType == 0) {
+                $.isLoading("hide");
+                //getGetDeviceCurLibraryDataList(id);
+                bootbox.alert('下发成功！');
+                $(btn).isLoading("hide");
+            }
+            else {
+                $.isLoading("hide");
+                bootbox.alert('下发失败:' + data.Message);
+                $(btn).isLoading("hide");
+            }
+        },
+        function () {
+            bootbox.alert('执行失败！');
+            $.isLoading("hide");
+            $(btn).isLoading("hide");
         });
 }

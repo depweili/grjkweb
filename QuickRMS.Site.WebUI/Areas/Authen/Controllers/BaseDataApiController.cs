@@ -288,5 +288,23 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
             return Json(dd);
         }
 
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult UpdateDeviceCurveLibrary(string scode)
+        {
+            var dd = DeviceApiService.UpdateDeviceCurveLibrary(scode);
+            return Json(dd);
+        }
+
+
+        [AdminPermission(PermissionCustomMode.Ignore)]
+        [HttpPost]
+        public ActionResult SaveAndSendDeviceCurveLibrary(string scode, int deviceId)
+        {
+            var dd = DeviceApiService.SaveAndSendDeviceCurveLibrary(scode, deviceId);
+            return Json(dd);
+        }
+
     }
 }

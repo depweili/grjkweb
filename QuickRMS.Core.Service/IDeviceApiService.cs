@@ -44,5 +44,9 @@ namespace QuickRMS.Core.Service
         OperationResult SaveTimeSpan(int timespanid, string StartTime, string EndTime, int CurveCode);
 
         OperationResult DeleteTimeSpan(int timespanid);
+
+        OperationResult UpdateDeviceCurveLibrary(string scode);
+
+        OperationResult SaveAndSendDeviceCurveLibrary(string scode, int deviceId);
     }
 }

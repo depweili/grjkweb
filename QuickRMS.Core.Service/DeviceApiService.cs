@@ -14,6 +14,8 @@ using QuickRMS.Domain.Models.SysConfig;
 using RemoteHelper;
 using ARMControl = QuickRMS.Domain.Models.ARMControl;
 using QuickRMS.Domain.Models.DeviceInfo;
+using System.Threading;
+using System.Reflection;
 
 namespace QuickRMS.Core.Service
 {
@@ -898,5 +900,109 @@ namespace QuickRMS.Core.Service
 
 
         }
-    }
-}
+
+        public OperationResult UpdateDeviceCurveLibrary(string scode)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+                RemoteResult res = null;
+                for (byte i = (byte)SettingType.曲线起始参数; i <= (byte)SettingType.曲线终止参数; i++)
+                {
+                    //SendCommand(new byte[] { i }, CommandConst.读取参数, 247);
+
+                    string msg = RemoteClient.Instance.SendCommandAndGetResult(new byte[] { i }, CommandConst.读取参数, 247, scode, out res);
+
+                    if (!string.IsNullOrEmpty(msg))
+                    {
+
+                        result.ResultType = OperationResultType.Error;
+                        result.Message = msg;
+
+                        break;
+                    }
+                    else
+                    {
+                        DealCommandResult(res);
+                    }
+
+                    Thread.Sleep(600);
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+            
+        }
+
+        public OperationResult SaveAndSendDeviceCurveLibrary(string scode,int deviceId)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "成功执行！");
+            try
+            {
+                RemoteResult res = null;
+
+
+                var curs = DeviceService.DeviceCureLibraries
+                    .Where(r => r.DeviceId == deviceId).OrderBy(r => r.Id)
+                    .ToList();
+
+                int rowCount = curs.Count;
+                string strTmp = "";
+                short tmp = 0;
+                byte[] arr = new byte[243];
+                int colCount = 121;//dt.Columns.Count;
+                for (int j = 0; j < rowCount; j++)
+                {
+                    var row = curs[j];
+                    arr[0] = (byte)(Convert.ToInt32(row.Code) + 1);    //type
+                    for (int i = 1; i <=121; i++)
+                    {
+                        strTmp = Convert.ToDecimal(row.GetValue("Column" + i.ToString())).ToString("0.00");
+                        strTmp = strTmp.Replace(".", "");
+                        tmp = short.Parse(strTmp);
+                        arr[((i - 1) * 2 + 1)] = (byte)(tmp >> 8);
+                        arr[((i - 1) * 2 + 2)] = (byte)(tmp & 0xFF);
+                    }
+
+                    string msg = RemoteClient.Instance.SendCommandAndGetResult(arr, CommandConst.参数设定, 247, scode, out res);
+
+                    if (!string.IsNullOrEmpty(msg))
+                    {
+
+                        result.ResultType = OperationResultType.Error;
+                        result.Message = msg;
+
+                        break;
+                    }
+                    else
+                    {
+                        DealCommandResult(res);
+                    }
+
+                    Thread.Sleep(600);
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                result.ResultType = OperationResultType.Error;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
+
+
+
+
+    }//
+}//
