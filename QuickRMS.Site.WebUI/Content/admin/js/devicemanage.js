@@ -842,7 +842,7 @@ function btnSetTimeSpanFunc(btn) {
         { scode: code, sid: id, tst: tst },
         function () {
             $.isLoading("hide");
-            bootbox.alert('更新成功！');
+            bootbox.alert('保存成功！');
             $(btn).isLoading("hide");
         },
         function () {
@@ -1223,10 +1223,10 @@ function btnUpdateTimeSpanFunc(btn) {
     var code = currentdNode.deviceCode;
     var id = currentdNode.id;
     var tst = $("input[name='rdoTimePeriodMode']:checked").val();
-    //$(btn).isLoading({
-    //    text: "正在加载...",
-    //    position: "overlay"
-    //});
+    $(btn).isLoading({
+        text: "正在执行...",
+        position: "overlay"
+    });
     var dataUrl = "/BaseDataApi/UpdateTimeSpan?rand=" + Math.random();
 
     AjaxPost(dataUrl,
@@ -1237,18 +1237,23 @@ function btnUpdateTimeSpanFunc(btn) {
             if (data.AppendData && data.AppendData != null) {
                 //Qrms.currentParaData = data.AppendData;
                 //DoAfterUpdateData();
+                $.isLoading("hide");
                 getTimeSpanList(id, tst);
                 bootbox.alert('更新成功！');
+                $(btn).isLoading("hide");
             }
             else {
+                $.isLoading("hide");
                 bootbox.alert('更新失败！');
+                $(btn).isLoading("hide");
             }
 
-            $.isLoading("hide");
+            //$.isLoading("hide");
         },
         function () {
             bootbox.alert('执行失败！');
             $.isLoading("hide");
+            $(btn).isLoading("hide");
         });
 }
 
