@@ -16,7 +16,7 @@
         <div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs" role="tablist" id="DeviceManageModule">
                 <li role="presentation" class="active"><a href="#SystemState" aria-controls="home" role="tab" data-toggle="tab">系统状态</a></li>
                 <li role="presentation"><a href="#TimePeriodSetting" aria-controls="profile" role="tab" data-toggle="tab">时间段设置</a></li>
                 <li role="presentation"><a href="#ModeSetting" aria-controls="messages" role="tab" data-toggle="tab">模式设置</a></li>
@@ -1107,7 +1107,7 @@
     <script src="/Content/admin/js/devicemanagefunc.js"></script>
     <script type="text/javascript">
         var ServerTime = "@ViewBag.Now";
-        $('a[data-toggle="tab"]').on('shown.bs.tab',
+        $('#DeviceManageModule a[data-toggle="tab"]').on('shown.bs.tab',
             function (e) {
                 var href = e.target.href;
                 var pos = href.indexOf("#");
