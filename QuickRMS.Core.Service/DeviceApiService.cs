@@ -431,7 +431,7 @@ namespace QuickRMS.Core.Service
                 RemoteResult res = null;
 
                 var timespans = DeviceService.TimeSpanSettings
-                    .Where(r => r.DeviceId == sid && r.TimeSpanID == timeSpanType)
+                    .Where(r => r.DeviceId == sid && r.TimeSpanID == timeSpanType).OrderBy(r=>r.Id)
                     .ToList();
 
 

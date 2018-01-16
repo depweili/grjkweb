@@ -370,7 +370,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
         public List<TimeSpanSetting> GetTimeSpanList(int deviceId, int timeSpanId)
         {
             var data =
-                TimeSpanSettings.Where(r => r.DeviceId == deviceId && r.TimeSpanID == timeSpanId);
+                TimeSpanSettings.Where(r => r.DeviceId == deviceId && r.TimeSpanID == timeSpanId).OrderBy(r => r.Id);
             List<TimeSpanSetting> result = new List<TimeSpanSetting>();
 
             result = data.ToList();
