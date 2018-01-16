@@ -635,6 +635,16 @@ function Export2Excel(path, did) {
     var url = path + "?" + filterdata;
     window.open(url);
 
+} 
+
+function Export2ExcelTem(path, did) {
+    
+    var id = 0;
+
+    filterdata = "&deviceId=" + id;
+    var url = path + "?" + filterdata;
+    window.open(url);
+
 }
 
 function ExpandCondition(t) {

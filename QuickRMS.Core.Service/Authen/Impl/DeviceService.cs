@@ -1408,11 +1408,12 @@ namespace QuickRMS.Core.Service.Authen.Impl
             if (dt == null || dt.Rows.Count <= 1)
                 return new OperationResult(OperationResultType.ParamError, "导入格式错误");
             var hasError = false;
+           
             for (var i = 0; i < dt.Rows.Count; i++)
             {
                 if (i == 0) continue;
                 var dataRow = dt.Rows[i];                             
-               var ret = UpLoadMiYwRow(dataRow);
+               var ret = UpLoadMiYwRow(dataRow,i);
                 if (ret != OperationResultType.Success)
                 {
                     hasError = true;
@@ -1428,7 +1429,7 @@ namespace QuickRMS.Core.Service.Authen.Impl
             }
         }
 
-        private OperationResultType UpLoadMiYwRow(DataRow dataRow)
+        private OperationResultType UpLoadMiYwRow(DataRow dataRow,int rownum)
         {
             try
             {
@@ -1444,6 +1445,12 @@ namespace QuickRMS.Core.Service.Authen.Impl
                     dataRow["Result"] = "设备编码不存在";
                     return OperationResultType.Error;
                 }
+                if (rownum == 1)
+                {
+                    //全部删除
+                    DeviceCureLibraryRepository.Delete(r => r.DeviceId == device.Id);
+                }
+
                 #region 生成数据对象
                 DeviceCureLibrary ywMi = new DeviceCureLibrary
                 {
