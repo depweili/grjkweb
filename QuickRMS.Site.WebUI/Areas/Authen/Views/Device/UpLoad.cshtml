@@ -40,6 +40,17 @@
                                    msg += " <a class='alert-link' target='_blank' href='" + ret.AppendData + "'>查看详细信息</a>";
                                }
                                $("#msgFileload").show().html(msg);
+
+                               //
+                               var currentdNode = Qrms.currentdNode;
+                               if (currentdNode) {
+                                   var id = currentdNode.id;
+                                   if (id) {
+                                       getGetDeviceCurLibraryDataList(id);
+                                   }
+                               };
+                               
+
                            });
                            $('#file-0a').on('fileselect', function (event, numFiles, label) {
                                $("#msgFileload").hide().html("");
