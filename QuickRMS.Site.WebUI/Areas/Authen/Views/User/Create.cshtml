@@ -17,7 +17,7 @@
                 <label class="red">*</label>@Html.DisplayNameFor(t => t.LoginName) :
             </label>
             <div class="controls">
-                @Html.TextBoxFor(t => t.LoginName, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(t => t.LoginName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.LoginName)
             </div>
         </div>

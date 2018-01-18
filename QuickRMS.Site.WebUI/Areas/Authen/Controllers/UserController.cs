@@ -64,7 +64,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
 	                }
 	            }
 	        }
-	        return (l + 1).ToString();
+	        return (l + 1).ToString().PadRight(6,'0');
 	    }
 
 		[AdminPermission(PermissionCustomMode.Ignore)]
@@ -241,7 +241,7 @@ namespace QuickRMS.Site.WebUI.Areas.Authen.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.LoginName = GenerateUserLoginName();
+                //model.LoginName = GenerateUserLoginName();
 				this.CreateBaseData<UserModel>(model);
                 OperationResult result = UserService.Insert(model);
                 if (result.ResultType == OperationResultType.Success)
