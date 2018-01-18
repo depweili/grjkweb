@@ -154,8 +154,20 @@ namespace QuickRMS.Core.Service.Authen.Impl
         {
             List<DeviceCureLibraryDataModel> result = new List<DeviceCureLibraryDataModel>();
             var data = DeviceCureLibraries.Where(r => r.DeviceId == deviceId).OrderBy(r => r.Code).ToList();
+
+            //Random rrr = new Random(DateTime.Now.Millisecond);
+            //string sss = rrr.Next(1, 100).ToString();
+
+            //var data = (from r in DeviceCureLibraries
+            //            where r.DeviceId == deviceId && sss==sss
+            //            orderby r.Code
+            //            select new { x = r }).ToList();
+            //var data = query.ToList();
+
+            
             foreach (var d in data)
             {
+                //var d = i.x;
                 DeviceCureLibraryDataModel model = new DeviceCureLibraryDataModel
                 {
                     Id = d.Id,
@@ -780,16 +792,20 @@ namespace QuickRMS.Core.Service.Authen.Impl
                         prop.SetValue(curveModel, tmp, null);
                     }
                     DeviceCureLibraryRepository.Insert(curveModel);
+                    UnitOfWork.Commit();
                     if (code == 30)
                     {
                         //treeView1.Enabled = true;
                         //ShowMessage("更新成功！");
                         //BindDevCurves();
-                        resobj.IsBindDevCurves = true;
-                        resobj.DevCurvesData = DeviceCureLibraries.Where(t => t.DeviceId == device.Id);
+
+                        //resobj.Message = "更新成功";
+                        //resobj.IsBindDevCurves = true;
+                        //resobj.DevCurvesData = DeviceCureLibraries.Where(t => t.DeviceId == device.Id);
                     }
                     else {
-                        resobj.IsBindDevCurves = false;
+                        //resobj.Message = "更新成功";
+                        //resobj.IsBindDevCurves = false;
                     }
                 }
 

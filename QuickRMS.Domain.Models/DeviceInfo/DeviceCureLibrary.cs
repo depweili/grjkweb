@@ -143,5 +143,10 @@ namespace QuickRMS.Domain.Models.DeviceInfo
 
         #endregion
 
+        public object GetValue(string propertyName)
+        {
+            return this.GetType().GetProperty(propertyName).GetValue(this, null);
+        }
+
     }
 }
